@@ -82,4 +82,39 @@ until python -m alembic upgrade head; do
   echo "waiting for database before migrations (attempt ${attempt})..." >&2
   sleep 3
 done
+
+python - <<'PY'
+import os
+import psycopg
+from psycopg import sql
+
+user = os.environ["APP_DB_USER"]
+with psycopg.connect(
+    host="db",
+    port=5432,
+    dbname=os.environ["POSTGRES_DB"],
+    user=os.environ["POSTGRES_USER"],
+    password=os.environ["POSTGRES_PASSWORD"],
+) as conn:
+    conn.autocommit = True
+    ident = sql.Identifier(user)
+    conn.execute(sql.SQL("GRANT CONNECT ON DATABASE {} TO {}").format(sql.Identifier(os.environ["POSTGRES_DB"]), ident))
+    conn.execute(sql.SQL("GRANT USAGE ON SCHEMA public TO {}").format(ident))
+    conn.execute(sql.SQL("GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO {}").format(ident))
+    conn.execute(sql.SQL("GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO {}").format(ident))
+    owner = sql.Identifier(os.environ["POSTGRES_USER"])
+    conn.execute(
+        sql.SQL(
+            "ALTER DEFAULT PRIVILEGES FOR ROLE {} IN SCHEMA public "
+            "GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO {}"
+        ).format(owner, ident)
+    )
+    conn.execute(
+        sql.SQL(
+            "ALTER DEFAULT PRIVILEGES FOR ROLE {} IN SCHEMA public "
+            "GRANT USAGE, SELECT ON SEQUENCES TO {}"
+        ).format(owner, ident)
+    )
+PY
+
 exec uvicorn landvalue360_portal.main:app --host 0.0.0.0 --port 8090 --proxy-headers --forwarded-allow-ips='*'
