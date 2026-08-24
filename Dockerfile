@@ -8,7 +8,7 @@ COPY app /app/app
 COPY migrations /app/migrations
 COPY scripts /app/scripts
 COPY alembic.ini pyproject.toml VERSION /app/
-RUN pip install --no-cache-dir --no-deps . && mkdir -p /app/data/private && chown -R lv360:lv360 /app
+RUN pip install --no-cache-dir --no-deps . && mkdir -p /app/data/private && chown -R lv360:lv360 /app && chmod +x /app/scripts/docker_entrypoint.sh /app/scripts/healthcheck.py
 USER lv360
 EXPOSE 8090
 HEALTHCHECK --interval=30s --timeout=5s --retries=5 CMD ["python", "/app/scripts/healthcheck.py"]
