@@ -31,12 +31,14 @@ services:
       - "9000"
     labels:
       - traefik.enable=true
+      - traefik.http.middlewares.lv360-minio-gzip.compress=true
+      - traefik.http.middlewares.lv360-minio-redirect.redirectscheme.scheme=https
       - traefik.http.routers.lv360-minio-http.entrypoints=http
-      - traefik.http.routers.lv360-minio-http.middlewares=lv360-redirect@docker
+      - traefik.http.routers.lv360-minio-http.middlewares=lv360-minio-redirect
       - traefik.http.routers.lv360-minio-http.rule=Host(`minio.sia-ai.net`)
       - traefik.http.routers.lv360-minio-http.service=lv360-minio
       - traefik.http.routers.lv360-minio-https.entrypoints=https
-      - traefik.http.routers.lv360-minio-https.middlewares=lv360-gzip@docker
+      - traefik.http.routers.lv360-minio-https.middlewares=lv360-minio-gzip
       - traefik.http.routers.lv360-minio-https.rule=Host(`minio.sia-ai.net`)
       - traefik.http.routers.lv360-minio-https.service=lv360-minio
       - traefik.http.routers.lv360-minio-https.tls=true
@@ -138,15 +140,10 @@ services:
   notification-worker:
     build: .
     restart: unless-stopped
+    entrypoint: ["/app/scripts/worker_entrypoint.sh"]
     depends_on:
       app:
         condition: service_started
-    command:
-      - sh
-      - -c
-      - |
-        export LV360_PORTAL_DATABASE_URL="postgresql+psycopg://$$APP_DB_USER:$$APP_DB_PASSWORD@db:5432/$$POSTGRES_DB"
-        while true; do python scripts/send_notifications.py; sleep 30; done
     environment:
       LV360_PORTAL_ENV: production
       LV360_PORTAL_SECRET_KEY: ${LV360_PORTAL_SECRET_KEY}
