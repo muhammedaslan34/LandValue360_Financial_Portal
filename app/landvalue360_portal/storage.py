@@ -8,8 +8,11 @@ import zipfile
 from pathlib import Path
 
 import boto3
+from botocore.config import Config
 
 from .config import get_settings
+
+S3_CLIENT_CONFIG = Config(signature_version="s3v4", s3={"addressing_style": "path"})
 
 ALLOWED_EXTENSIONS = {".pdf", ".docx", ".xlsx", ".jpg", ".jpeg", ".png"}
 ALLOWED_MIME = {
@@ -119,11 +122,12 @@ class S3Storage(Storage):
             region_name=settings.s3_region,
             aws_access_key_id=settings.s3_access_key,
             aws_secret_access_key=settings.s3_secret_key,
+            config=S3_CLIENT_CONFIG,
         )
 
     def put(self, *, project_id: str, data: bytes, suffix: str) -> str:
         key = f"projects/{project_id}/{secrets.token_hex(24)}{suffix}"
-        self.client.put_object(Bucket=self.bucket, Key=key, Body=data, ServerSideEncryption="AES256")
+        self.client.put_object(Bucket=self.bucket, Key=key, Body=data)
         return key
 
     def get(self, key: str) -> bytes:
@@ -141,6 +145,7 @@ class S3Storage(Storage):
             region_name=get_settings().s3_region,
             aws_access_key_id=get_settings().s3_access_key,
             aws_secret_access_key=get_settings().s3_secret_key,
+            config=S3_CLIENT_CONFIG,
         )
         return public_client.generate_presigned_url(
             "get_object",

@@ -17,71 +17,12 @@ services:
       timeout: 5s
       retries: 12
 
-  minio:
-    image: minio/minio:RELEASE.2025-04-22T22-12-26Z
-    restart: unless-stopped
-    command: server /data --console-address ":9001"
-    environment:
-      MINIO_ROOT_USER: ${MINIO_ROOT_USER:?Set MINIO_ROOT_USER}
-      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:?Set MINIO_ROOT_PASSWORD}
-      MINIO_SERVER_URL: ${MINIO_SERVER_URL:-https://minio.sia-ai.net}
-    volumes:
-      - minio_data:/data
-    expose:
-      - "9000"
-    labels:
-      - traefik.enable=true
-      - traefik.http.middlewares.lv360-minio-gzip.compress=true
-      - traefik.http.middlewares.lv360-minio-redirect.redirectscheme.scheme=https
-      - traefik.http.routers.lv360-minio-http.entrypoints=http
-      - traefik.http.routers.lv360-minio-http.middlewares=lv360-minio-redirect
-      - traefik.http.routers.lv360-minio-http.rule=Host(`minio.sia-ai.net`)
-      - traefik.http.routers.lv360-minio-http.service=lv360-minio
-      - traefik.http.routers.lv360-minio-https.entrypoints=https
-      - traefik.http.routers.lv360-minio-https.middlewares=lv360-minio-gzip
-      - traefik.http.routers.lv360-minio-https.rule=Host(`minio.sia-ai.net`)
-      - traefik.http.routers.lv360-minio-https.service=lv360-minio
-      - traefik.http.routers.lv360-minio-https.tls=true
-      - traefik.http.routers.lv360-minio-https.tls.certresolver=letsencrypt
-      - traefik.http.services.lv360-minio.loadbalancer.server.port=9000
-    networks:
-      - default
-      - coolify
-
-  minio-init:
-    image: minio/mc:RELEASE.2025-04-16T18-13-26Z
-    depends_on:
-      - minio
-    entrypoint: ["/bin/sh", "-c"]
-    command:
-      - |
-        until mc alias set local http://minio:9000 "$${MINIO_ROOT_USER}" "$${MINIO_ROOT_PASSWORD}"; do
-          sleep 2
-        done
-
-        mc mb --ignore-existing local/lv360-private
-        mc anonymous set none local/lv360-private
-        mc admin user add local "$${MINIO_APP_ACCESS_KEY}" "$${MINIO_APP_SECRET_KEY}" || true
-
-        printf '%s' '{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Action":["s3:GetObject","s3:PutObject","s3:DeleteObject","s3:ListBucket"],"Resource":["arn:aws:s3:::lv360-private","arn:aws:s3:::lv360-private/*"]}]}' > /tmp/policy.json
-
-        mc admin policy create local lv360-app /tmp/policy.json || true
-        mc admin policy attach local lv360-app --user "$${MINIO_APP_ACCESS_KEY}" || true
-    environment:
-      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
-      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
-      MINIO_APP_ACCESS_KEY: ${MINIO_APP_ACCESS_KEY}
-      MINIO_APP_SECRET_KEY: ${MINIO_APP_SECRET_KEY}
-    restart: "no"
-
   app:
     build: .
     restart: unless-stopped
     depends_on:
       db:
         condition: service_healthy
-      minio-init:
-        condition: service_completed_successfully
     environment:
       LV360_PORTAL_ENV: production
       LV360_PORTAL_SECRET_KEY: ${LV360_PORTAL_SECRET_KEY:?Set LV360_PORTAL_SECRET_KEY}
@@ -92,12 +33,12 @@ services:
       APP_DB_USER: ${APP_DB_USER:-lv360_app}
       APP_DB_PASSWORD: ${APP_DB_PASSWORD:?Set APP_DB_PASSWORD}
       LV360_PORTAL_STORAGE_BACKEND: s3
-      LV360_PORTAL_S3_ENDPOINT_URL: http://minio:9000
-      LV360_PORTAL_S3_PUBLIC_ENDPOINT_URL: ${S3_PUBLIC_ENDPOINT_URL:-}
-      LV360_PORTAL_S3_REGION: us-east-1
-      LV360_PORTAL_S3_BUCKET: lv360-private
-      LV360_PORTAL_S3_ACCESS_KEY: ${MINIO_APP_ACCESS_KEY}
-      LV360_PORTAL_S3_SECRET_KEY: ${MINIO_APP_SECRET_KEY}
+      LV360_PORTAL_S3_ENDPOINT_URL: ${S3_ENDPOINT_URL:?Set S3_ENDPOINT_URL}
+      LV360_PORTAL_S3_PUBLIC_ENDPOINT_URL: ${S3_PUBLIC_ENDPOINT_URL:-${S3_ENDPOINT_URL}}
+      LV360_PORTAL_S3_REGION: ${S3_REGION:-eu-central-2}
+      LV360_PORTAL_S3_BUCKET: ${S3_BUCKET:?Set S3_BUCKET}
+      LV360_PORTAL_S3_ACCESS_KEY: ${S3_ACCESS_KEY:?Set S3_ACCESS_KEY}
+      LV360_PORTAL_S3_SECRET_KEY: ${S3_SECRET_KEY:?Set S3_SECRET_KEY}
       LV360_PORTAL_EMAIL_BACKEND: ${EMAIL_BACKEND:-console}
       LV360_PORTAL_SMTP_HOST: ${SMTP_HOST:-}
       LV360_PORTAL_SMTP_PORT: ${SMTP_PORT:-587}
@@ -114,6 +55,7 @@ services:
       - "8090"
     labels:
       - traefik.enable=true
+      - traefik.docker.network=coolify
       - traefik.http.middlewares.lv360-gzip.compress=true
       - traefik.http.middlewares.lv360-redirect.redirectscheme.scheme=https
       - traefik.http.routers.lv360-http.entrypoints=http
@@ -152,11 +94,12 @@ services:
       APP_DB_USER: ${APP_DB_USER:-lv360_app}
       APP_DB_PASSWORD: ${APP_DB_PASSWORD:?Set APP_DB_PASSWORD}
       LV360_PORTAL_STORAGE_BACKEND: s3
-      LV360_PORTAL_S3_ENDPOINT_URL: http://minio:9000
-      LV360_PORTAL_S3_REGION: us-east-1
-      LV360_PORTAL_S3_BUCKET: lv360-private
-      LV360_PORTAL_S3_ACCESS_KEY: ${MINIO_APP_ACCESS_KEY}
-      LV360_PORTAL_S3_SECRET_KEY: ${MINIO_APP_SECRET_KEY}
+      LV360_PORTAL_S3_ENDPOINT_URL: ${S3_ENDPOINT_URL:?Set S3_ENDPOINT_URL}
+      LV360_PORTAL_S3_PUBLIC_ENDPOINT_URL: ${S3_PUBLIC_ENDPOINT_URL:-${S3_ENDPOINT_URL}}
+      LV360_PORTAL_S3_REGION: ${S3_REGION:-eu-central-2}
+      LV360_PORTAL_S3_BUCKET: ${S3_BUCKET:?Set S3_BUCKET}
+      LV360_PORTAL_S3_ACCESS_KEY: ${S3_ACCESS_KEY:?Set S3_ACCESS_KEY}
+      LV360_PORTAL_S3_SECRET_KEY: ${S3_SECRET_KEY:?Set S3_SECRET_KEY}
       LV360_PORTAL_EMAIL_BACKEND: ${EMAIL_BACKEND:-console}
       LV360_PORTAL_SMTP_HOST: ${SMTP_HOST:-}
       LV360_PORTAL_SMTP_PORT: ${SMTP_PORT:-587}
@@ -170,7 +113,6 @@ services:
 
 volumes:
   postgres_data:
-  minio_data:
 
 networks:
   default:
