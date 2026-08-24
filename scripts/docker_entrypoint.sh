@@ -8,6 +8,20 @@ if [ -z "${LV360_PORTAL_MIGRATION_DATABASE_URL:-}" ]; then
   export LV360_PORTAL_MIGRATION_DATABASE_URL="postgresql+psycopg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}"
 fi
 
+python - <<'PY'
+import os
+import psycopg
+
+user = os.environ["APP_DB_USER"]
+password = os.environ["APP_DB_PASSWORD"]
+superuser = os.environ["POSTGRES_USER"]
+superpass = os.environ["POSTGRES_PASSWORD"]
+database = os.environ["POSTGRES_DB"]
+with psycopg.connect(f"postgresql://{superuser}:{superpass}@db:5432/{database}") as conn:
+    conn.autocommit = True
+    conn.execute(f"ALTER ROLE {user} WITH LOGIN PASSWORD %s", (password,))
+PY
+
 attempt=0
 until python -m alembic upgrade head; do
   attempt=$((attempt + 1))
