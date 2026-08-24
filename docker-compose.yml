@@ -91,6 +91,24 @@ services:
       LV360_PORTAL_SLA_HOURS: ${SLA_HOURS:-24}
     expose:
       - "8090"
+    labels:
+      - traefik.enable=true
+      - traefik.http.middlewares.lv360-gzip.compress=true
+      - traefik.http.middlewares.lv360-redirect.redirectscheme.scheme=https
+      - traefik.http.routers.lv360-http.entrypoints=http
+      - traefik.http.routers.lv360-http.middlewares=lv360-redirect
+      - traefik.http.routers.lv360-http.rule=Host(`portal.sia-dif.com`)
+      - traefik.http.routers.lv360-http.service=lv360-app
+      - traefik.http.routers.lv360-https.entrypoints=https
+      - traefik.http.routers.lv360-https.middlewares=lv360-gzip
+      - traefik.http.routers.lv360-https.rule=Host(`portal.sia-dif.com`)
+      - traefik.http.routers.lv360-https.service=lv360-app
+      - traefik.http.routers.lv360-https.tls=true
+      - traefik.http.routers.lv360-https.tls.certresolver=letsencrypt
+      - traefik.http.services.lv360-app.loadbalancer.server.port=8090
+    networks:
+      - default
+      - coolify
     healthcheck:
       test: ["CMD", "python", "/app/scripts/healthcheck.py"]
       interval: 15s
@@ -137,3 +155,8 @@ services:
 volumes:
   postgres_data:
   minio_data:
+
+networks:
+  default:
+  coolify:
+    external: true
