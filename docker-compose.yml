@@ -88,6 +88,12 @@ services:
       LV360_PORTAL_SLA_HOURS: ${SLA_HOURS:-24}
     expose:
       - "8090"
+    healthcheck:
+      test: ["CMD", "python", "/app/scripts/healthcheck.py"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
 
   notification-worker:
     build: .
@@ -118,24 +124,6 @@ services:
       LV360_PORTAL_COOKIE_SECURE: "true"
       LV360_PORTAL_TRUSTED_HOSTS: ${DOMAIN}
 
-  caddy:
-    image: caddy:2.10-alpine
-    restart: unless-stopped
-    depends_on:
-      app:
-        condition: service_healthy
-    environment:
-      DOMAIN: ${DOMAIN}
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
-      - caddy_data:/data
-      - caddy_config:/config
-
 volumes:
   postgres_data:
   minio_data:
-  caddy_data:
-  caddy_config:
