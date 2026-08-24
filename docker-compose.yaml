@@ -64,9 +64,9 @@ services:
     environment:
       LV360_PORTAL_ENV: production
       LV360_PORTAL_SECRET_KEY: ${LV360_PORTAL_SECRET_KEY:?Set LV360_PORTAL_SECRET_KEY}
-      LV360_PORTAL_BASE_URL: https://${DOMAIN}
-      LV360_PORTAL_DATABASE_URL: postgresql+psycopg://${APP_DB_USER:-lv360_app}:${APP_DB_PASSWORD}@db:5432/${POSTGRES_DB:-lv360_portal}
-      LV360_PORTAL_MIGRATION_DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-lv360}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-lv360_portal}
+      LV360_PORTAL_BASE_URL: ${LV360_PORTAL_BASE_URL:-https://${DOMAIN}}
+      LV360_PORTAL_DATABASE_URL: ${LV360_PORTAL_DATABASE_URL}
+      LV360_PORTAL_MIGRATION_DATABASE_URL: ${LV360_PORTAL_MIGRATION_DATABASE_URL}
       LV360_PORTAL_STORAGE_BACKEND: s3
       LV360_PORTAL_S3_ENDPOINT_URL: http://minio:9000
       LV360_PORTAL_S3_PUBLIC_ENDPOINT_URL: ${S3_PUBLIC_ENDPOINT_URL:-}
@@ -83,13 +83,13 @@ services:
       LV360_PORTAL_SMTP_STARTTLS: ${SMTP_STARTTLS:-true}
       LV360_PORTAL_AUTO_VERIFY_EMAIL: ${AUTO_VERIFY_EMAIL:-false}
       LV360_PORTAL_COOKIE_SECURE: "true"
-      LV360_PORTAL_TRUSTED_HOSTS: ${DOMAIN},127.0.0.1,localhost
-      LV360_PORTAL_HEALTH_HOST: 127.0.0.1
+      LV360_PORTAL_TRUSTED_HOSTS: ${LV360_PORTAL_TRUSTED_HOSTS:-${DOMAIN},127.0.0.1,localhost}
+      LV360_PORTAL_HEALTH_HOST: ${LV360_PORTAL_HEALTH_HOST:-127.0.0.1}
       LV360_PORTAL_SLA_HOURS: ${SLA_HOURS:-24}
     expose:
       - "8090"
     healthcheck:
-      test: ["CMD", "python", "/app/scripts/healthcheck.py"]
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://127.0.0.1:8090/api/health/live', timeout=3)\""]
       interval: 30s
       timeout: 5s
       retries: 5
@@ -105,8 +105,8 @@ services:
     environment:
       LV360_PORTAL_ENV: production
       LV360_PORTAL_SECRET_KEY: ${LV360_PORTAL_SECRET_KEY}
-      LV360_PORTAL_BASE_URL: https://${DOMAIN}
-      LV360_PORTAL_DATABASE_URL: postgresql+psycopg://${APP_DB_USER:-lv360_app}:${APP_DB_PASSWORD}@db:5432/${POSTGRES_DB:-lv360_portal}
+      LV360_PORTAL_BASE_URL: ${LV360_PORTAL_BASE_URL:-https://${DOMAIN}}
+      LV360_PORTAL_DATABASE_URL: ${LV360_PORTAL_DATABASE_URL}
       LV360_PORTAL_STORAGE_BACKEND: s3
       LV360_PORTAL_S3_ENDPOINT_URL: http://minio:9000
       LV360_PORTAL_S3_REGION: us-east-1
@@ -122,7 +122,7 @@ services:
       LV360_PORTAL_SMTP_STARTTLS: ${SMTP_STARTTLS:-true}
       LV360_PORTAL_AUTO_VERIFY_EMAIL: ${AUTO_VERIFY_EMAIL:-false}
       LV360_PORTAL_COOKIE_SECURE: "true"
-      LV360_PORTAL_TRUSTED_HOSTS: ${DOMAIN}
+      LV360_PORTAL_TRUSTED_HOSTS: ${LV360_PORTAL_TRUSTED_HOSTS:-${DOMAIN}}
 
 volumes:
   postgres_data:
