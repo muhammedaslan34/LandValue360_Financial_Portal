@@ -74,5 +74,6 @@ def deliver_pending(db: Session, limit: int = 50) -> int:
         except Exception as exc:
             row.status = "FAILED" if row.attempts >= 5 else "PENDING"
             row.last_error = str(exc)[:2000]
+            print(f"[EMAIL FAILED] to={row.recipient} template={row.template_code} attempts={row.attempts} error={exc}")
     db.flush()
     return delivered
