@@ -97,7 +97,10 @@ SAMPLE = {
 
 
 def http(method, path, body=None, headers=None, cookie=None):
-    hdrs = {"Accept": "application/json"}
+    hdrs = {
+        "Accept": "application/json",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) LandValue360-Setup/2.5.0",
+    }
     if headers:
         hdrs.update(headers)
     if cookie:
