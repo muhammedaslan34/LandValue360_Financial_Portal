@@ -1,12 +1,12 @@
 """Administrative access governance and password-reset controls.
 
-Revision ID: 0007_admin_governance_and_security
+Revision ID: 0007_admin_governance
 Revises: 0006_standalone_financial_portal
 """
 from alembic import op
 import sqlalchemy as sa
 
-revision = "0007_admin_governance_and_security"
+revision = "0007_admin_governance"
 down_revision = "0006_standalone_financial_portal"
 branch_labels = None
 depends_on = None
