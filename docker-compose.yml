@@ -24,8 +24,27 @@ services:
     environment:
       MINIO_ROOT_USER: ${MINIO_ROOT_USER:?Set MINIO_ROOT_USER}
       MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:?Set MINIO_ROOT_PASSWORD}
+      MINIO_SERVER_URL: ${MINIO_SERVER_URL:-https://minio.sia-ai.net}
     volumes:
       - minio_data:/data
+    expose:
+      - "9000"
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.lv360-minio-http.entrypoints=http
+      - traefik.http.routers.lv360-minio-http.middlewares=lv360-redirect@docker
+      - traefik.http.routers.lv360-minio-http.rule=Host(`minio.sia-ai.net`)
+      - traefik.http.routers.lv360-minio-http.service=lv360-minio
+      - traefik.http.routers.lv360-minio-https.entrypoints=https
+      - traefik.http.routers.lv360-minio-https.middlewares=lv360-gzip@docker
+      - traefik.http.routers.lv360-minio-https.rule=Host(`minio.sia-ai.net`)
+      - traefik.http.routers.lv360-minio-https.service=lv360-minio
+      - traefik.http.routers.lv360-minio-https.tls=true
+      - traefik.http.routers.lv360-minio-https.tls.certresolver=letsencrypt
+      - traefik.http.services.lv360-minio.loadbalancer.server.port=9000
+    networks:
+      - default
+      - coolify
 
   minio-init:
     image: minio/mc:RELEASE.2025-04-16T18-13-26Z
@@ -97,11 +116,11 @@ services:
       - traefik.http.middlewares.lv360-redirect.redirectscheme.scheme=https
       - traefik.http.routers.lv360-http.entrypoints=http
       - traefik.http.routers.lv360-http.middlewares=lv360-redirect
-      - traefik.http.routers.lv360-http.rule=Host(`portal.sia-dif.com`)
+      - traefik.http.routers.lv360-http.rule=Host(`sia-ai.net`)
       - traefik.http.routers.lv360-http.service=lv360-app
       - traefik.http.routers.lv360-https.entrypoints=https
       - traefik.http.routers.lv360-https.middlewares=lv360-gzip
-      - traefik.http.routers.lv360-https.rule=Host(`portal.sia-dif.com`)
+      - traefik.http.routers.lv360-https.rule=Host(`sia-ai.net`)
       - traefik.http.routers.lv360-https.service=lv360-app
       - traefik.http.routers.lv360-https.tls=true
       - traefik.http.routers.lv360-https.tls.certresolver=letsencrypt
