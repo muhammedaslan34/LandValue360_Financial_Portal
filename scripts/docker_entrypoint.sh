@@ -1,25 +1,75 @@
 #!/bin/sh
 set -eu
 
-if [ -z "${LV360_PORTAL_DATABASE_URL:-}" ]; then
-  export LV360_PORTAL_DATABASE_URL="postgresql+psycopg://${APP_DB_USER}:${APP_DB_PASSWORD}@db:5432/${POSTGRES_DB}"
-fi
-if [ -z "${LV360_PORTAL_MIGRATION_DATABASE_URL:-}" ]; then
-  export LV360_PORTAL_MIGRATION_DATABASE_URL="postgresql+psycopg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}"
-fi
-
 python - <<'PY'
 import os
+from urllib.parse import quote_plus
+
+def build_url(user: str, password: str, database: str) -> str:
+    return (
+        f"postgresql+psycopg://{quote_plus(user)}:{quote_plus(password)}"
+        f"@db:5432/{quote_plus(database)}"
+    )
+
+if not os.environ.get("LV360_PORTAL_DATABASE_URL"):
+    os.environ["LV360_PORTAL_DATABASE_URL"] = build_url(
+        os.environ["APP_DB_USER"],
+        os.environ["APP_DB_PASSWORD"],
+        os.environ["POSTGRES_DB"],
+    )
+if not os.environ.get("LV360_PORTAL_MIGRATION_DATABASE_URL"):
+    os.environ["LV360_PORTAL_MIGRATION_DATABASE_URL"] = build_url(
+        os.environ["POSTGRES_USER"],
+        os.environ["POSTGRES_PASSWORD"],
+        os.environ["POSTGRES_DB"],
+    )
+
+for key in ("LV360_PORTAL_DATABASE_URL", "LV360_PORTAL_MIGRATION_DATABASE_URL"):
+    print(f"export {key}={os.environ[key]!r}")
+PY
+> /tmp/lv360-db-urls.sh
+. /tmp/lv360-db-urls.sh
+
+python - <<'PY' || echo "app role sync skipped" >&2
+import os
 import psycopg
+from psycopg import sql
 
 user = os.environ["APP_DB_USER"]
 password = os.environ["APP_DB_PASSWORD"]
-superuser = os.environ["POSTGRES_USER"]
-superpass = os.environ["POSTGRES_PASSWORD"]
-database = os.environ["POSTGRES_DB"]
-with psycopg.connect(f"postgresql://{superuser}:{superpass}@db:5432/{database}") as conn:
+with psycopg.connect(
+    host="db",
+    port=5432,
+    dbname=os.environ["POSTGRES_DB"],
+    user=os.environ["POSTGRES_USER"],
+    password=os.environ["POSTGRES_PASSWORD"],
+) as conn:
     conn.autocommit = True
-    conn.execute(f"ALTER ROLE {user} WITH LOGIN PASSWORD %s", (password,))
+    exists = conn.execute(
+        "SELECT 1 FROM pg_roles WHERE rolname = %s",
+        (user,),
+    ).fetchone()
+    if exists:
+        conn.execute(
+            sql.SQL("ALTER ROLE {} WITH LOGIN PASSWORD {}").format(
+                sql.Identifier(user),
+                sql.Literal(password),
+            )
+        )
+    else:
+        conn.execute(
+            sql.SQL("CREATE ROLE {} LOGIN PASSWORD {}").format(
+                sql.Identifier(user),
+                sql.Literal(password),
+            )
+        )
+        conn.execute(
+            sql.SQL("GRANT CONNECT ON DATABASE {} TO {}").format(
+                sql.Identifier(os.environ["POSTGRES_DB"]),
+                sql.Identifier(user),
+            )
+        )
+        conn.execute(sql.SQL("GRANT USAGE ON SCHEMA public TO {}").format(sql.Identifier(user)))
 PY
 
 attempt=0
