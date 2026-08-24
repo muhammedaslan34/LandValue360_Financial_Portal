@@ -1,0 +1,13 @@
+{
+  "status": "SKIPPED_BY_DEFAULT",
+  "test": "tests/browser/test_portal_e2e.py",
+  "pytest_result": "1 skipped",
+  "reason": "The release environment does not enable LV360_RUN_BROWSER_E2E and does not guarantee unrestricted Chromium. Run this test in Staging with LV360_RUN_BROWSER_E2E=1.",
+  "counted_as_pass": false,
+  "alternative_validation": [
+    "FastAPI TestClient route and workflow tests",
+    "JavaScript syntax checks",
+    "Live Uvicorn HTTP smoke on fresh migrated SQLite",
+    "PDF visual rendering QA"
+  ]
+}

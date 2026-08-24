@@ -1,0 +1,2649 @@
+{
+  "status": "PASS",
+  "portal_version": "2.5.0",
+  "engine_version": "2.1.1",
+  "portal_adapter_version": "2.5.0",
+  "contract_engine_version": "3.1.0",
+  "scenario_count": 8,
+  "candidate_point_count": 144,
+  "rate_methods_retested": [
+    "GROSS_SALES",
+    "NET_SALES",
+    "PROFIT_SHARE"
+  ],
+  "candidate_rates": [
+    "0",
+    "0.10",
+    "0.18",
+    "0.25",
+    "0.35",
+    "0.50"
+  ],
+  "policy_version_selection_test": {
+    "base_policy_version_id": "79ea3c20-9e4e-4f67-8f1a-e668868f47d9",
+    "alternate_policy_version_id": "9c773a41-5764-4ed4-a408-100ad9452ceb",
+    "base_balanced": "0.123",
+    "alternate_balanced": "0.112",
+    "base_policy_ceiling": "0.141",
+    "alternate_policy_ceiling": "0.133",
+    "base_technical_ceiling": "0.199",
+    "alternate_technical_ceiling": "0.199",
+    "alternate_run_input_hash": "b68b3bcbd1edd024a0defee68a0ea8b52a108033a60e057566c2e814d1d953ca",
+    "alternate_run_result_hash": "8397d72a97fd409111a0b7ea950319f19f791781804d511026c82740e316b1d2"
+  },
+  "validation_rules": [
+    "Rate-based entitlement is tested against the disclosed eligible calculation base for feasible candidates.",
+    "Infeasible candidates may pay less than contractual entitlement only when the run discloses mandatory-payment shortfall or equivalent failed constraints.",
+    "Landowner value is nondecreasing as the contractual rate increases.",
+    "Developer NPV is nonincreasing as the contractual rate increases.",
+    "Every candidate must calculate successfully and reconcile monthly cash.",
+    "Fair Floor, Balanced, Policy-Adjusted Ceiling, Residual Equivalent, Current Offer and Technical Ceiling remain distinct comparison points.",
+    "Policy selection changes policy-adjusted recommendations while preserving underlying technical project economics."
+  ],
+  "failures": [],
+  "results": [
+    {
+      "code": "CHEAP_HIGH_PROFIT",
+      "name_ar": "مشروع منخفض القيمة وعالي الربحية",
+      "project_id": "ca6f07b4-9354-4eb3-afcb-8a0291d15dde",
+      "run_id": "d8a2586e-4e30-4f76-804f-5b3dff52e259",
+      "policy_version_id": "0cf1dd65-fb44-4ef4-ac6a-7c5c66945eca",
+      "gross_sales": "9600000.00",
+      "net_sales": "9600000.00",
+      "development_cost": "4000000.000000000000000000000",
+      "project_profit_pre_land": "5600000.000000000000000000000",
+      "selected_offer": "0.18",
+      "selected_landowner_nominal": "1728000.000000000000000000000",
+      "developer_profit": "3871999.999999999999999999997",
+      "developer_irr": "0.4269771957403021947973310418",
+      "developer_npv": "2056333.2678418331528698393538291068524874579930623",
+      "developer_moic": "3.581333333333333333333333332",
+      "financial_audit": "VALIDATED",
+      "recommendation_validation": "SUPPORTED",
+      "contract_engine_version": "3.1.0",
+      "gross_sales_negotiation": {
+        "status": "VALID_RANGE",
+        "fair_floor": "0.057",
+        "balanced": "0.141",
+        "policy_adjusted_ceiling": "0.207",
+        "technical_ceiling": "0.416",
+        "ceiling_kind": "TECHNICAL_CEILING",
+        "eligible_base_total": "9599999.999999999999999999998",
+        "residual_land_value": "3680000.000000000000000000000",
+        "residual_equivalent_measure": "0.3833333333333333333333333334",
+        "offer_position": "WITHIN_RECOMMENDED_RANGE",
+        "governing_constraint_id": "MIN_PROFIT_ON_COST"
+      },
+      "net_sales_negotiation": {
+        "status": "VALID_RANGE",
+        "fair_floor": "0.057",
+        "balanced": "0.141",
+        "policy_adjusted_ceiling": "0.207",
+        "technical_ceiling": "0.416",
+        "ceiling_kind": "TECHNICAL_CEILING",
+        "eligible_base_total": "9599999.999999999999999999998",
+        "residual_land_value": "3680000.000000000000000000000",
+        "residual_equivalent_measure": "0.3833333333333333333333333334",
+        "offer_position": "WITHIN_RECOMMENDED_RANGE",
+        "governing_constraint_id": "MIN_PROFIT_ON_COST"
+      },
+      "candidate_matrix": {
+        "GROSS_SALES": [
+          {
+            "rate": "0",
+            "public_nominal": "0.0000000000000000000000",
+            "public_npv": "0",
+            "developer_npv": "3246565.1186004466687026377894227103328653875069153",
+            "developer_irr": "0.5664394551019992894305529628",
+            "profit_on_cost": "1.400000000000000000000000000",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.10",
+            "public_nominal": "959999.9999999999999999999999",
+            "public_npv": "702480.20559413725432320192472379264740696828870262",
+            "developer_npv": "2583830.4361750373059871562969467619471631799494641",
+            "developer_irr": "0.4905914949347835959906347268",
+            "profit_on_cost": "0.9354838709677419354838709673",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.18",
+            "public_nominal": "1728000.000000000000000000000",
+            "public_npv": "1262103.0542157903701731998737299701309370404504700",
+            "developer_npv": "2056333.2678418331528698393538291068524874579930623",
+            "developer_irr": "0.4269771957403021947973310418",
+            "profit_on_cost": "0.6759776536312849162011173179",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.25",
+            "public_nominal": "2400000.000000000000000000000",
+            "public_npv": "1751773.0467597368465419480789047844222297120171705",
+            "developer_npv": "1594773.2455502795188921870300849246016674006018520",
+            "developer_irr": "0.3673771665332344126950683414",
+            "profit_on_cost": "0.4999999999999999999999999997",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.35",
+            "public_nominal": "3359999.999999999999999999999",
+            "public_npv": "2451301.6075368032413544455139259177739668211806603",
+            "developer_npv": "935401.78513377432749554085379255853681068748714370",
+            "developer_irr": "0.2742767115350656371621878256",
+            "profit_on_cost": "0.3043478260869565217391304347",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.50",
+            "public_nominal": "4800000.000000000000000000000",
+            "public_npv": "3497922.6201776801622713186644743856634596274742994",
+            "developer_npv": "-50581.94203740167891835835268044082743929804811485",
+            "developer_irr": "0.1106281221113254766273872185",
+            "profit_on_cost": "0.09090909090909090909090909097",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          }
+        ],
+        "NET_SALES": [
+          {
+            "rate": "0",
+            "public_nominal": "0.0000000000000000000000",
+            "public_npv": "0",
+            "developer_npv": "3246565.1186004466687026377894227103328653875069153",
+            "developer_irr": "0.5664394551019992894305529628",
+            "profit_on_cost": "1.400000000000000000000000000",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.10",
+            "public_nominal": "959999.9999999999999999999999",
+            "public_npv": "702480.20559413725432320192472379264740696828870262",
+            "developer_npv": "2583830.4361750373059871562969467619471631799494641",
+            "developer_irr": "0.4905914949347835959906347268",
+            "profit_on_cost": "0.9354838709677419354838709673",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.18",
+            "public_nominal": "1728000.000000000000000000000",
+            "public_npv": "1262103.0542157903701731998737299701309370404504700",
+            "developer_npv": "2056333.2678418331528698393538291068524874579930623",
+            "developer_irr": "0.4269771957403021947973310418",
+            "profit_on_cost": "0.6759776536312849162011173179",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.25",
+            "public_nominal": "2400000.000000000000000000000",
+            "public_npv": "1751773.0467597368465419480789047844222297120171705",
+            "developer_npv": "1594773.2455502795188921870300849246016674006018520",
+            "developer_irr": "0.3673771665332344126950683414",
+            "profit_on_cost": "0.4999999999999999999999999997",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.35",
+            "public_nominal": "3359999.999999999999999999999",
+            "public_npv": "2451301.6075368032413544455139259177739668211806603",
+            "developer_npv": "935401.78513377432749554085379255853681068748714370",
+            "developer_irr": "0.2742767115350656371621878256",
+            "profit_on_cost": "0.3043478260869565217391304347",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.50",
+            "public_nominal": "4800000.000000000000000000000",
+            "public_npv": "3497922.6201776801622713186644743856634596274742994",
+            "developer_npv": "-50581.94203740167891835835268044082743929804811485",
+            "developer_irr": "0.1106281221113254766273872185",
+            "profit_on_cost": "0.09090909090909090909090909097",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          }
+        ],
+        "PROFIT_SHARE": [
+          {
+            "rate": "0",
+            "public_nominal": "0.0000000000000000000000",
+            "public_npv": "0",
+            "developer_npv": "3246565.1186004466687026377894227103328653875069153",
+            "developer_irr": "0.5664394551019992894305529628",
+            "profit_on_cost": "1.400000000000000000000000000",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.10",
+            "public_nominal": "559999.9999999999999999999999",
+            "public_npv": "389299.54250944745598411021072699759068060667435386",
+            "developer_npv": "2882985.5283396739326683963340781305743578345065841",
+            "developer_irr": "0.5330354772588067134689359643",
+            "profit_on_cost": "1.105263157894736842105263157",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.18",
+            "public_nominal": "1008000.000000000000000000000",
+            "public_npv": "700739.17651700542077139837931701655304360071200956",
+            "developer_npv": "2592121.8561310557438410031695120934815097567207297",
+            "developer_irr": "0.5047129106435543869883112287",
+            "profit_on_cost": "0.9169329073482428115015974435",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.25",
+            "public_nominal": "1400000.000000000000000000000",
+            "public_npv": "973248.85627361863996027552681403764132824819036606",
+            "developer_npv": "2337616.1429485148286170341504840599945513236615959",
+            "developer_irr": "0.4785906474067008114068874122",
+            "profit_on_cost": "0.7777777777777777777777777774",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.35",
+            "public_nominal": "1959999.999999999999999999999",
+            "public_npv": "1362548.3987830660959443857372073417623351146610147",
+            "developer_npv": "1974036.5526877420925827926959190583731658225290138",
+            "developer_irr": "0.4387435116693072600211798125",
+            "profit_on_cost": "0.6107382550335570469798657716",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.50",
+            "public_nominal": "2799999.999999999999999999998",
+            "public_npv": "1946497.7125472372799205510530744331983202155531157",
+            "developer_npv": "1428667.1672965829885314305129696478004301165362696",
+            "developer_irr": "0.3719879565617599179431578372",
+            "profit_on_cost": "0.4117647058823529411764705881",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          }
+        ]
+      }
+    },
+    {
+      "code": "EXPENSIVE_HIGH_PROFIT",
+      "name_ar": "مشروع مرتفع القيمة وعالي الربحية",
+      "project_id": "98f3bb93-eec3-48cc-9d49-b5c8a5a22b22",
+      "run_id": "b451d571-8089-4e5e-ac35-7fb12a900ac1",
+      "policy_version_id": "3691746d-8317-4ca6-b171-baf78597b901",
+      "gross_sales": "960000000.00",
+      "net_sales": "960000000.00",
+      "development_cost": "400000000.0000000000000000000",
+      "project_profit_pre_land": "560000000.0000000000000000000",
+      "selected_offer": "0.18",
+      "selected_landowner_nominal": "172800000.0000000000000000000",
+      "developer_profit": "387199999.9999999999999999998",
+      "developer_irr": "0.5596886953126929839658225353",
+      "developer_npv": "220683392.39348419085933902944571113409660473270302",
+      "developer_moic": "5.302222222222222222222222221",
+      "financial_audit": "VALIDATED",
+      "recommendation_validation": "SUPPORTED",
+      "contract_engine_version": "3.1.0",
+      "gross_sales_negotiation": {
+        "status": "VALID_RANGE",
+        "fair_floor": "0.087",
+        "balanced": "0.164",
+        "policy_adjusted_ceiling": "0.225",
+        "technical_ceiling": "0.416",
+        "ceiling_kind": "TECHNICAL_CEILING",
+        "eligible_base_total": "959999999.9999999999999999998",
+        "residual_land_value": "368000000.0000000000000000000",
+        "residual_equivalent_measure": "0.3833333333333333333333333334",
+        "offer_position": "WITHIN_RECOMMENDED_RANGE",
+        "governing_constraint_id": "MIN_PROFIT_ON_COST"
+      },
+      "net_sales_negotiation": {
+        "status": "VALID_RANGE",
+        "fair_floor": "0.087",
+        "balanced": "0.164",
+        "policy_adjusted_ceiling": "0.225",
+        "technical_ceiling": "0.416",
+        "ceiling_kind": "TECHNICAL_CEILING",
+        "eligible_base_total": "959999999.9999999999999999998",
+        "residual_land_value": "368000000.0000000000000000000",
+        "residual_equivalent_measure": "0.3833333333333333333333333334",
+        "offer_position": "WITHIN_RECOMMENDED_RANGE",
+        "governing_constraint_id": "MIN_PROFIT_ON_COST"
+      },
+      "candidate_matrix": {
+        "GROSS_SALES": [
+          {
+            "rate": "0",
+            "public_nominal": "0.00000000000000000000",
+            "public_npv": "0",
+            "developer_npv": "338113101.61061298663045495213135922970126890484388",
+            "developer_irr": "0.7243020308905748043522691860",
+            "profit_on_cost": "1.400000000000000000000000000",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.10",
+            "public_nominal": "95999999.99999999999999999999",
+            "public_npv": "69345705.535707506162126696816262348972495864947897",
+            "developer_npv": "272874374.26776365564650166180668764847430752143799",
+            "developer_irr": "0.6367011031482204360285345493",
+            "profit_on_cost": "0.9354838709677419354838709673",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.18",
+            "public_nominal": "172800000.0000000000000000000",
+            "public_npv": "124822269.96427351109182805429292613059591549714626",
+            "developer_npv": "220683392.39348419085933902944571113409660473270302",
+            "developer_irr": "0.5596886953126929839658225353",
+            "profit_on_cost": "0.6759776536312849162011173181",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.25",
+            "public_nominal": "240000000.0000000000000000000",
+            "public_npv": "173364263.83926876540531674206312205235748488324067",
+            "developer_npv": "175016283.25348965917057172626196018242934731188003",
+            "developer_irr": "0.4860580626623071008705035795",
+            "profit_on_cost": "0.4999999999999999999999999997",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.35",
+            "public_nominal": "335999999.9999999999999999999",
+            "public_npv": "242709969.37497627156744343880039142743546258697247",
+            "developer_npv": "109777555.91064032818661843601524641491459111524906",
+            "developer_irr": "0.3680396724362616289595736435",
+            "profit_on_cost": "0.3043478260869565217391304347",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.50",
+            "public_nominal": "479999999.9999999999999999999",
+            "public_npv": "343201862.25711841731839506689332899175547354257166",
+            "developer_npv": "15866130.789540578943021871109277146152601208606043",
+            "developer_irr": "0.1642501785453337650410888363",
+            "profit_on_cost": "0.09090909090909090909090909086",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_DEVELOPER_IRR",
+              "MIN_PROFIT_ON_COST",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          }
+        ],
+        "NET_SALES": [
+          {
+            "rate": "0",
+            "public_nominal": "0.00000000000000000000",
+            "public_npv": "0",
+            "developer_npv": "338113101.61061298663045495213135922970126890484388",
+            "developer_irr": "0.7243020308905748043522691860",
+            "profit_on_cost": "1.400000000000000000000000000",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.10",
+            "public_nominal": "95999999.99999999999999999999",
+            "public_npv": "69345705.535707506162126696816262348972495864947897",
+            "developer_npv": "272874374.26776365564650166180668764847430752143799",
+            "developer_irr": "0.6367011031482204360285345493",
+            "profit_on_cost": "0.9354838709677419354838709673",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.18",
+            "public_nominal": "172800000.0000000000000000000",
+            "public_npv": "124822269.96427351109182805429292613059591549714626",
+            "developer_npv": "220683392.39348419085933902944571113409660473270302",
+            "developer_irr": "0.5596886953126929839658225353",
+            "profit_on_cost": "0.6759776536312849162011173181",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.25",
+            "public_nominal": "240000000.0000000000000000000",
+            "public_npv": "173364263.83926876540531674206312205235748488324067",
+            "developer_npv": "175016283.25348965917057172626196018242934731188003",
+            "developer_irr": "0.4860580626623071008705035795",
+            "profit_on_cost": "0.4999999999999999999999999997",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.35",
+            "public_nominal": "335999999.9999999999999999999",
+            "public_npv": "242709969.37497627156744343880039142743546258697247",
+            "developer_npv": "109777555.91064032818661843601524641491459111524906",
+            "developer_irr": "0.3680396724362616289595736435",
+            "profit_on_cost": "0.3043478260869565217391304347",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.50",
+            "public_nominal": "479999999.9999999999999999999",
+            "public_npv": "343201862.25711841731839506689332899175547354257166",
+            "developer_npv": "15866130.789540578943021871109277146152601208606043",
+            "developer_irr": "0.1642501785453337650410888363",
+            "profit_on_cost": "0.09090909090909090909090909086",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_DEVELOPER_IRR",
+              "MIN_PROFIT_ON_COST",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          }
+        ],
+        "PROFIT_SHARE": [
+          {
+            "rate": "0",
+            "public_nominal": "0.00000000000000000000",
+            "public_npv": "0",
+            "developer_npv": "338113101.61061298663045495213135922970126890484388",
+            "developer_irr": "0.7243020308905748043522691860",
+            "profit_on_cost": "1.400000000000000000000000000",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.10",
+            "public_nominal": "56000000.00000000000000000000",
+            "public_npv": "38929954.250944745598411021080303696889251357576315",
+            "developer_npv": "301755142.58453571302703080659690125385051360481075",
+            "developer_irr": "0.6840314640997208970807295961",
+            "profit_on_cost": "1.105263157894736842105263157",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.18",
+            "public_nominal": "100800000.0000000000000000000",
+            "public_npv": "70073917.651700542077139837946909530946741451482813",
+            "developer_npv": "272668775.36367389414429149014029754456570582622532",
+            "developer_irr": "0.6498050279676716412365493272",
+            "profit_on_cost": "0.9169329073482428115015974437",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.25",
+            "public_nominal": "140000000.0000000000000000000",
+            "public_npv": "97324885.627361863996027552704215577596396889459392",
+            "developer_npv": "247218204.04541980262189458823749419586986252031193",
+            "developer_irr": "0.6181629078956274543456726392",
+            "profit_on_cost": "0.7777777777777777777777777776",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.35",
+            "public_nominal": "196000000.0000000000000000000",
+            "public_npv": "136254839.87830660959443857375875386533946491680611",
+            "developer_npv": "210860245.01934252901847044270879211293938226360241",
+            "developer_irr": "0.5697389417190983252962083923",
+            "profit_on_cost": "0.6107382550335570469798657716",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.50",
+            "public_nominal": "279999999.9999999999999999999",
+            "public_npv": "194649771.25472372799205510535306694675916569615715",
+            "developer_npv": "156323306.48022661861333422441385105566581166432798",
+            "developer_irr": "0.4881009808219063933462243618",
+            "profit_on_cost": "0.4117647058823529411764705883",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          }
+        ]
+      }
+    },
+    {
+      "code": "ULTRA_PROFIT_POLICY_CAP",
+      "name_ar": "مشروع فائق الربحية لاختبار حد السياسة",
+      "project_id": "8e574bdf-be4c-45d5-a941-75625400bbc3",
+      "run_id": "60893414-34e2-4142-b9f9-613191486a6c",
+      "policy_version_id": "8129833b-9f83-4e6c-bdc6-665160950665",
+      "gross_sales": "1280000000.00",
+      "net_sales": "1280000000.00",
+      "development_cost": "99999999.99999999999999999998",
+      "project_profit_pre_land": "1180000000.000000000000000000",
+      "selected_offer": "0.18",
+      "selected_landowner_nominal": "230400000.0000000000000000000",
+      "developer_profit": "949600000.0000000000000000000",
+      "developer_irr": "2.950988069531122469312332703",
+      "developer_npv": "651113630.57551898201650977370195546135396038998503",
+      "developer_moic": "38.98400000000000000000000001",
+      "financial_audit": "VALIDATED",
+      "recommendation_validation": "SUPPORTED",
+      "contract_engine_version": "3.1.0",
+      "gross_sales_negotiation": {
+        "status": "VALID_RANGE",
+        "fair_floor": "0.002",
+        "balanced": "0.118",
+        "policy_adjusted_ceiling": "0.210",
+        "technical_ceiling": "0.50",
+        "ceiling_kind": "POLICY_CAP_REACHED",
+        "eligible_base_total": "1280000000.000000000000000000",
+        "residual_land_value": "924000000.0000000000000000000",
+        "residual_equivalent_measure": "0.721875",
+        "offer_position": "WITHIN_RECOMMENDED_RANGE",
+        "governing_constraint_id": "MAX_LANDOWNER_SHARE_POLICY_CAP"
+      },
+      "net_sales_negotiation": {
+        "status": "VALID_RANGE",
+        "fair_floor": "0.002",
+        "balanced": "0.118",
+        "policy_adjusted_ceiling": "0.210",
+        "technical_ceiling": "0.50",
+        "ceiling_kind": "POLICY_CAP_REACHED",
+        "eligible_base_total": "1280000000.000000000000000000",
+        "residual_land_value": "924000000.0000000000000000000",
+        "residual_equivalent_measure": "0.721875",
+        "offer_position": "WITHIN_RECOMMENDED_RANGE",
+        "governing_constraint_id": "MAX_LANDOWNER_SHARE_POLICY_CAP"
+      },
+      "candidate_matrix": {
+        "GROSS_SALES": [
+          {
+            "rate": "0",
+            "public_nominal": "0.00000000000000000000",
+            "public_npv": "0",
+            "developer_npv": "812960531.55651072196845418070493420741288062844095",
+            "developer_irr": "3.509577910311254334079440594",
+            "profit_on_cost": "11.80000000000000000000000000",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.10",
+            "public_nominal": "128000000.0000000000000000000",
+            "public_npv": "95024626.250997340984730402100986360707688054156648",
+            "developer_npv": "723045586.56707086643959617684060360946264423095349",
+            "developer_irr": "3.201635444748174035146513781",
+            "profit_on_cost": "4.614035087719298245614035083",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.18",
+            "public_nominal": "230400000.0000000000000000000",
+            "public_npv": "171044327.25179521377251472376247050539014752790270",
+            "developer_npv": "651113630.57551898201650977370195546135396038998503",
+            "developer_irr": "2.950988069531122469312332703",
+            "profit_on_cost": "2.874092009685230024213075061",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.25",
+            "public_nominal": "320000000.0000000000000000000",
+            "public_npv": "237561565.62749335246182600522319475194617129865185",
+            "developer_npv": "588173169.08291108314630917101363811055423348579491",
+            "developer_irr": "2.727860515866379146635056472",
+            "profit_on_cost": "2.047619047619047619047619047",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.35",
+            "public_nominal": "447999999.9999999999999999999",
+            "public_npv": "332586191.87849069344655640722558475824370920874768",
+            "developer_npv": "498258224.09347122761745116720999764755537714511155",
+            "developer_irr": "2.401455761421217295672297492",
+            "profit_on_cost": "1.335766423357664233576642336",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.50",
+            "public_nominal": "639999999.9999999999999999999",
+            "public_npv": "475123131.25498670492365201039158134039523466734982",
+            "developer_npv": "363385806.60931144432416416140962018366487723925245",
+            "developer_irr": "1.888771411875672682610734934",
+            "profit_on_cost": "0.7297297297297297297297297300",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          }
+        ],
+        "NET_SALES": [
+          {
+            "rate": "0",
+            "public_nominal": "0.00000000000000000000",
+            "public_npv": "0",
+            "developer_npv": "812960531.55651072196845418070493420741288062844095",
+            "developer_irr": "3.509577910311254334079440594",
+            "profit_on_cost": "11.80000000000000000000000000",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.10",
+            "public_nominal": "128000000.0000000000000000000",
+            "public_npv": "95024626.250997340984730402100986360707688054156648",
+            "developer_npv": "723045586.56707086643959617684060360946264423095349",
+            "developer_irr": "3.201635444748174035146513781",
+            "profit_on_cost": "4.614035087719298245614035083",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.18",
+            "public_nominal": "230400000.0000000000000000000",
+            "public_npv": "171044327.25179521377251472376247050539014752790270",
+            "developer_npv": "651113630.57551898201650977370195546135396038998503",
+            "developer_irr": "2.950988069531122469312332703",
+            "profit_on_cost": "2.874092009685230024213075061",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.25",
+            "public_nominal": "320000000.0000000000000000000",
+            "public_npv": "237561565.62749335246182600522319475194617129865185",
+            "developer_npv": "588173169.08291108314630917101363811055423348579491",
+            "developer_irr": "2.727860515866379146635056472",
+            "profit_on_cost": "2.047619047619047619047619047",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.35",
+            "public_nominal": "447999999.9999999999999999999",
+            "public_npv": "332586191.87849069344655640722558475824370920874768",
+            "developer_npv": "498258224.09347122761745116720999764755537714511155",
+            "developer_irr": "2.401455761421217295672297492",
+            "profit_on_cost": "1.335766423357664233576642336",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.50",
+            "public_nominal": "639999999.9999999999999999999",
+            "public_npv": "475123131.25498670492365201039158134039523466734982",
+            "developer_npv": "363385806.60931144432416416140962018366487723925245",
+            "developer_irr": "1.888771411875672682610734934",
+            "profit_on_cost": "0.7297297297297297297297297300",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          }
+        ],
+        "PROFIT_SHARE": [
+          {
+            "rate": "0",
+            "public_nominal": "0.00000000000000000000",
+            "public_npv": "0",
+            "developer_npv": "812960531.55651072196845418070493420741288062844095",
+            "developer_irr": "3.509577910311254334079440594",
+            "profit_on_cost": "11.80000000000000000000000000",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.10",
+            "public_nominal": "118000000.0000000000000000000",
+            "public_npv": "86615353.224495181013920900498659629805804082342648",
+            "developer_npv": "731187508.36905232278931751062676889043706591804363",
+            "developer_irr": "3.289844124275826643543569474",
+            "profit_on_cost": "4.871559633027522935779816514",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.18",
+            "public_nominal": "212400000.0000000000000000000",
+            "public_npv": "155907635.80409132582505762090891479670346267646599",
+            "developer_npv": "665769089.81908560344600817436225204893002119918767",
+            "developer_irr": "3.108660121461460663889861879",
+            "profit_on_cost": "3.097311139564660691421254802",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.25",
+            "public_nominal": "295000000.0000000000000000000",
+            "public_npv": "216538383.06123795253480225123200494008878601679598",
+            "developer_npv": "608527973.58786472402061250539778957071098737905321",
+            "developer_irr": "2.945495045245969454025749603",
+            "profit_on_cost": "2.240506329113924050632911393",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.35",
+            "public_nominal": "413000000.0000000000000000000",
+            "public_npv": "303153736.28573313354872315174080452632746682409308",
+            "developer_npv": "526754950.40040632484147583515504439581573067789186",
+            "developer_irr": "2.703421632586295789525589488",
+            "profit_on_cost": "1.495126705653021442495126706",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.50",
+            "public_nominal": "590000000.0000000000000000002",
+            "public_npv": "433076766.12247590506960450269166991543943521461713",
+            "developer_npv": "404095415.61921872607277082973644293972411111164854",
+            "developer_irr": "2.314400897632952843252983354",
+            "profit_on_cost": "0.8550724637681159420289855066",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          }
+        ]
+      }
+    },
+    {
+      "code": "LOW_MARGIN_FEASIBLE",
+      "name_ar": "مشروع منخفض الهامش لكنه قابل للجدوى",
+      "project_id": "1c306005-bc68-4efe-a7cc-4bbb6f3252ed",
+      "run_id": "e19f3ddc-639a-4078-9a02-3f3bf2d37d52",
+      "policy_version_id": "42315462-e17c-4d35-ad1c-cffb8ccc05c6",
+      "gross_sales": "30000000.00",
+      "net_sales": "30000000.00",
+      "development_cost": "20999999.99999999999999999998",
+      "project_profit_pre_land": "9000000.00000000000000000002",
+      "selected_offer": "0.08",
+      "selected_landowner_nominal": "2400000.000000000000000000000",
+      "developer_profit": "6600000.000000000000000000003",
+      "developer_irr": "0.1655766032310501598235987584",
+      "developer_npv": "1354363.0166905925248054467445440019449262109223469",
+      "developer_moic": "1.825000000000000000000000001",
+      "financial_audit": "CONDITIONAL",
+      "recommendation_validation": "CONDITIONAL",
+      "contract_engine_version": "3.1.0",
+      "gross_sales_negotiation": {
+        "status": "VALID_RANGE",
+        "fair_floor": "0.023",
+        "balanced": "0.031",
+        "policy_adjusted_ceiling": "0.037",
+        "technical_ceiling": "0.058",
+        "ceiling_kind": "TECHNICAL_CEILING",
+        "eligible_base_total": "29999999.99999999999999999998",
+        "residual_land_value": "3000000.00000000000000000002",
+        "residual_equivalent_measure": "0.1000000000000000000000000007",
+        "offer_position": "ABOVE_TECHNICAL_CEILING",
+        "governing_constraint_id": "MIN_DEVELOPER_IRR"
+      },
+      "net_sales_negotiation": {
+        "status": "VALID_RANGE",
+        "fair_floor": "0.023",
+        "balanced": "0.031",
+        "policy_adjusted_ceiling": "0.037",
+        "technical_ceiling": "0.058",
+        "ceiling_kind": "TECHNICAL_CEILING",
+        "eligible_base_total": "29999999.99999999999999999998",
+        "residual_land_value": "3000000.00000000000000000002",
+        "residual_equivalent_measure": "0.1000000000000000000000000007",
+        "offer_position": "ABOVE_TECHNICAL_CEILING",
+        "governing_constraint_id": "MIN_DEVELOPER_IRR"
+      },
+      "candidate_matrix": {
+        "GROSS_SALES": [
+          {
+            "rate": "0",
+            "public_nominal": "0.000000000000000000000",
+            "public_npv": "0",
+            "developer_npv": "3002791.6677318555032970621875500482112022511412735",
+            "developer_irr": "0.2175176709225377458714486264",
+            "profit_on_cost": "0.4285714285714285714285714286",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.10",
+            "public_nominal": "3000000.000000000000000000000",
+            "public_npv": "2186026.7524283324837890544876765698507311416116010",
+            "developer_npv": "942255.8539302767801825428834248612673849475364144",
+            "developer_irr": "0.1520063008746361446183360916",
+            "profit_on_cost": "0.25",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_DEVELOPER_IRR",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.18",
+            "public_nominal": "5400000.000000000000000000001",
+            "public_npv": "3934848.1543709984708202980774061903086998153142868",
+            "developer_npv": "-706172.7971109861983090725601435352768933917869848",
+            "developer_irr": "0.09504833459088418419637242408",
+            "profit_on_cost": "0.1363636363636363636363636364",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.25",
+            "public_nominal": "7500000.000000000000000000001",
+            "public_npv": "5394491.8739325622522178026432771659301700346509426",
+            "developer_npv": "-2069220.8378959356750011931526104388907824359491678",
+            "developer_irr": "0.04229692281595687977848211805",
+            "profit_on_cost": "0.05263157894736842105263157895",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.35",
+            "public_nominal": "10500000.00000000000000000000",
+            "public_npv": "7449653.8350931370777648449318469613601060898698525",
+            "developer_npv": "-3982714.2775483541853050977083629066589652421606159",
+            "developer_irr": "-0.04801743387447733273980413955",
+            "profit_on_cost": "-0.04761904761904761904761904762",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "DEVELOPER_PROFIT_NONNEGATIVE",
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.50",
+            "public_nominal": "14999999.99999999999999999999",
+            "public_npv": "10532396.776833999316085408360176997289095051292045",
+            "developer_npv": "-6852954.4370269819507609545381236482688146223643243",
+            "developer_irr": "-0.2560779439652517542069918033",
+            "profit_on_cost": "-0.1666666666666666666666666665",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "DEVELOPER_PROFIT_NONNEGATIVE",
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          }
+        ],
+        "NET_SALES": [
+          {
+            "rate": "0",
+            "public_nominal": "0.000000000000000000000",
+            "public_npv": "0",
+            "developer_npv": "3002791.6677318555032970621875500482112022511412735",
+            "developer_irr": "0.2175176709225377458714486264",
+            "profit_on_cost": "0.4285714285714285714285714286",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.10",
+            "public_nominal": "3000000.000000000000000000000",
+            "public_npv": "2186026.7524283324837890544876765698507311416116010",
+            "developer_npv": "942255.8539302767801825428834248612673849475364144",
+            "developer_irr": "0.1520063008746361446183360916",
+            "profit_on_cost": "0.25",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_DEVELOPER_IRR",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.18",
+            "public_nominal": "5400000.000000000000000000001",
+            "public_npv": "3934848.1543709984708202980774061903086998153142868",
+            "developer_npv": "-706172.7971109861983090725601435352768933917869848",
+            "developer_irr": "0.09504833459088418419637242408",
+            "profit_on_cost": "0.1363636363636363636363636364",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.25",
+            "public_nominal": "7500000.000000000000000000001",
+            "public_npv": "5394491.8739325622522178026432771659301700346509426",
+            "developer_npv": "-2069220.8378959356750011931526104388907824359491678",
+            "developer_irr": "0.04229692281595687977848211805",
+            "profit_on_cost": "0.05263157894736842105263157895",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.35",
+            "public_nominal": "10500000.00000000000000000000",
+            "public_npv": "7449653.8350931370777648449318469613601060898698525",
+            "developer_npv": "-3982714.2775483541853050977083629066589652421606159",
+            "developer_irr": "-0.04801743387447733273980413955",
+            "profit_on_cost": "-0.04761904761904761904761904762",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "DEVELOPER_PROFIT_NONNEGATIVE",
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.50",
+            "public_nominal": "14999999.99999999999999999999",
+            "public_npv": "10532396.776833999316085408360176997289095051292045",
+            "developer_npv": "-6852954.4370269819507609545381236482688146223643243",
+            "developer_irr": "-0.2560779439652517542069918033",
+            "profit_on_cost": "-0.1666666666666666666666666665",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "DEVELOPER_PROFIT_NONNEGATIVE",
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          }
+        ],
+        "PROFIT_SHARE": [
+          {
+            "rate": "0",
+            "public_nominal": "0.000000000000000000000",
+            "public_npv": "0",
+            "developer_npv": "3002791.6677318555032970621875500482112022511412735",
+            "developer_irr": "0.2175176709225377458714486264",
+            "profit_on_cost": "0.4285714285714285714285714286",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.10",
+            "public_nominal": "900000.0000000000000000000002",
+            "public_npv": "603501.10438780670773333958248878204229363551688686",
+            "developer_npv": "2443084.2429281271827054612938388431950291050879236",
+            "developer_irr": "0.2013714319433307315832319633",
+            "profit_on_cost": "0.3698630136986301369863013699",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.18",
+            "public_nominal": "1620000.000000000000000000001",
+            "public_npv": "1086301.9878980520739200112486532528694052902509663",
+            "developer_npv": "1995318.3030851445262321805782942898900630839128830",
+            "developer_irr": "0.1878837025146179418816414248",
+            "profit_on_cost": "0.3262599469496021220159151194",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.25",
+            "public_nominal": "2250000.000000000000000000001",
+            "public_npv": "1508752.7609695167693333489563162187977323204881790",
+            "developer_npv": "1603523.1057225347018180599526964463787418816755381",
+            "developer_irr": "0.1756225403686644942218391546",
+            "profit_on_cost": "0.2903225806451612903225806452",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_DEVELOPER_IRR",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.35",
+            "public_nominal": "3150000.000000000000000000001",
+            "public_npv": "2112253.8653573234770666885389432542549566958258101",
+            "developer_npv": "1043815.6809188063812264590589852413625687356221882",
+            "developer_irr": "0.1572796864779605628294348347",
+            "profit_on_cost": "0.2422360248447204968944099379",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_DEVELOPER_IRR",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.50",
+            "public_nominal": "4500000.000000000000000000000",
+            "public_npv": "3017505.5219390335386666979118154855981466329446881",
+            "developer_npv": "204254.54371321390033905771906309384537982139440729",
+            "developer_irr": "0.1276502689925540150049028741",
+            "profit_on_cost": "0.1764705882352941176470588236",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_DEVELOPER_IRR",
+              "MIN_PROFIT_ON_COST",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "code": "EXPENSIVE_LOW_MARGIN",
+      "name_ar": "مشروع مرتفع القيمة ومنخفض الهامش",
+      "project_id": "f5734958-880d-4327-b085-5662b8e79ee7",
+      "run_id": "dc78bfcd-49da-46c3-9e6e-f514578e9b3b",
+      "policy_version_id": "2cf3de90-9786-4bfa-a7d2-e5f54f9dd0f0",
+      "gross_sales": "700000000.00",
+      "net_sales": "700000000.00",
+      "development_cost": "559999999.9999999999999999998",
+      "project_profit_pre_land": "140000000.0000000000000000002",
+      "selected_offer": "0.03",
+      "selected_landowner_nominal": "20999999.99999999999999999999",
+      "developer_profit": "118999999.9999999999999999997",
+      "developer_irr": "0.1306835248100987383513834111",
+      "developer_npv": "7220111.095297788626127005222262368673712727506627",
+      "developer_moic": "1.66111111111111111111111111",
+      "financial_audit": "CONDITIONAL",
+      "recommendation_validation": "CONDITIONAL",
+      "contract_engine_version": "3.1.0",
+      "gross_sales_negotiation": {
+        "status": "NO_FEASIBLE_RANGE",
+        "fair_floor": null,
+        "balanced": null,
+        "policy_adjusted_ceiling": null,
+        "technical_ceiling": null,
+        "ceiling_kind": "NOT_ESTABLISHED",
+        "eligible_base_total": "700000000.00",
+        "residual_land_value": "2E-19",
+        "residual_equivalent_measure": "2.857142857142857142857142857E-28",
+        "offer_position": "NO_FEASIBLE_RANGE",
+        "governing_constraint_id": null
+      },
+      "net_sales_negotiation": {
+        "status": "NO_FEASIBLE_RANGE",
+        "fair_floor": null,
+        "balanced": null,
+        "policy_adjusted_ceiling": null,
+        "technical_ceiling": null,
+        "ceiling_kind": "NOT_ESTABLISHED",
+        "eligible_base_total": "700000000.00",
+        "residual_land_value": "2E-19",
+        "residual_equivalent_measure": "2.857142857142857142857142857E-28",
+        "offer_position": "NO_FEASIBLE_RANGE",
+        "governing_constraint_id": null
+      },
+      "candidate_matrix": {
+        "GROSS_SALES": [
+          {
+            "rate": "0",
+            "public_nominal": "0.00000000000000000000",
+            "public_npv": "0",
+            "developer_npv": "20614565.172864718198254337086743242768160176897004",
+            "developer_irr": "0.1497730626933295488653012652",
+            "profit_on_cost": "0.2499999999999999999999999996",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_DEVELOPER_IRR",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.10",
+            "public_nominal": "69999999.99999999999999999999",
+            "public_npv": "47953779.093746745929430986720936209303184243859557",
+            "developer_npv": "-24033615.085691713708836769194577635893836820736527",
+            "developer_irr": "0.08217582544127523999029100165",
+            "profit_on_cost": "0.1111111111111111111111111108",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.18",
+            "public_nominal": "126000000.0000000000000000001",
+            "public_npv": "86316802.368744142672975776157134145165949761867193",
+            "developer_npv": "-59752159.292536859234509654299295896840041018442063",
+            "developer_irr": "0.01795695980256765464571455567",
+            "profit_on_cost": "0.02040816326530612244897959143",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.25",
+            "public_nominal": "174999999.9999999999999999999",
+            "public_npv": "119884447.73436686482357746674106912345911000727364",
+            "developer_npv": "-91005885.473526361569473428592959792913704639560030",
+            "developer_irr": "-0.04924649616932599476470704620",
+            "profit_on_cost": "-0.04761904761904761904761904780",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "DEVELOPER_PROFIT_NONNEGATIVE",
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.35",
+            "public_nominal": "245000000.0000000000000000000",
+            "public_npv": "167838226.82811361075300845351667827412126863479111",
+            "developer_npv": "-135654065.73208279347656453493874667228278212241795",
+            "developer_irr": "-0.1753668738255809156741178576",
+            "profit_on_cost": "-0.1304347826086956521739130439",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "DEVELOPER_PROFIT_NONNEGATIVE",
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.50",
+            "public_nominal": "319999999.9999999999999999997",
+            "public_npv": "216856302.56906179988040175837670449256279863933427",
+            "developer_npv": "-180896434.72579375701995415831523103402747967129648",
+            "developer_irr": null,
+            "profit_on_cost": "-0.2045454545454545454545454548",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "DEVELOPER_PROFIT_NONNEGATIVE",
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "MAX_RESIDUAL_FUNDING_GAP",
+              "COMPLETE_SCOPE",
+              "MANDATORY_PAYMENT_SHORTFALL",
+              "CONTRACTUAL_ARREARS_ZERO",
+              "MANDATORY_SHORTFALL_ZERO",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          }
+        ],
+        "NET_SALES": [
+          {
+            "rate": "0",
+            "public_nominal": "0.00000000000000000000",
+            "public_npv": "0",
+            "developer_npv": "20614565.172864718198254337086743242768160176897004",
+            "developer_irr": "0.1497730626933295488653012652",
+            "profit_on_cost": "0.2499999999999999999999999996",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_DEVELOPER_IRR",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.10",
+            "public_nominal": "69999999.99999999999999999999",
+            "public_npv": "47953779.093746745929430986720936209303184243859557",
+            "developer_npv": "-24033615.085691713708836769194577635893836820736527",
+            "developer_irr": "0.08217582544127523999029100165",
+            "profit_on_cost": "0.1111111111111111111111111108",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.18",
+            "public_nominal": "126000000.0000000000000000001",
+            "public_npv": "86316802.368744142672975776157134145165949761867193",
+            "developer_npv": "-59752159.292536859234509654299295896840041018442063",
+            "developer_irr": "0.01795695980256765464571455567",
+            "profit_on_cost": "0.02040816326530612244897959143",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.25",
+            "public_nominal": "174999999.9999999999999999999",
+            "public_npv": "119884447.73436686482357746674106912345911000727364",
+            "developer_npv": "-91005885.473526361569473428592959792913704639560030",
+            "developer_irr": "-0.04924649616932599476470704620",
+            "profit_on_cost": "-0.04761904761904761904761904780",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "DEVELOPER_PROFIT_NONNEGATIVE",
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.35",
+            "public_nominal": "245000000.0000000000000000000",
+            "public_npv": "167838226.82811361075300845351667827412126863479111",
+            "developer_npv": "-135654065.73208279347656453493874667228278212241795",
+            "developer_irr": "-0.1753668738255809156741178576",
+            "profit_on_cost": "-0.1304347826086956521739130439",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "DEVELOPER_PROFIT_NONNEGATIVE",
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.50",
+            "public_nominal": "319999999.9999999999999999997",
+            "public_npv": "216856302.56906179988040175837670449256279863933427",
+            "developer_npv": "-180896434.72579375701995415831523103402747967129648",
+            "developer_irr": null,
+            "profit_on_cost": "-0.2045454545454545454545454548",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "DEVELOPER_PROFIT_NONNEGATIVE",
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "MAX_RESIDUAL_FUNDING_GAP",
+              "COMPLETE_SCOPE",
+              "MANDATORY_PAYMENT_SHORTFALL",
+              "CONTRACTUAL_ARREARS_ZERO",
+              "MANDATORY_SHORTFALL_ZERO",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          }
+        ],
+        "PROFIT_SHARE": [
+          {
+            "rate": "0",
+            "public_nominal": "0.00000000000000000000",
+            "public_npv": "0",
+            "developer_npv": "20614565.172864718198254337086743242768160176897004",
+            "developer_irr": "0.1497730626933295488653012652",
+            "profit_on_cost": "0.2499999999999999999999999996",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_DEVELOPER_IRR",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.10",
+            "public_nominal": "13999999.99999999999999999998",
+            "public_npv": "9242822.9131395961210655812201428047270413586770816",
+            "developer_npv": "12067345.310273358016824661793189370826420783479433",
+            "developer_irr": "0.1377698777322667755255031947",
+            "profit_on_cost": "0.2195121951219512195121951215",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_DEVELOPER_IRR",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.18",
+            "public_nominal": "25199999.99999999999999999996",
+            "public_npv": "16637081.243651273017918046195842288263882226156514",
+            "developer_npv": "5229569.420200269871680921543150715963503154371051",
+            "developer_irr": "0.1278260534121458662507386154",
+            "profit_on_cost": "0.1961722488038277511961722484",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_DEVELOPER_IRR",
+              "MIN_PROFIT_ON_COST",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.25",
+            "public_nominal": "34999999.99999999999999999995",
+            "public_npv": "23107057.282848990302663953053027816424219961411625",
+            "developer_npv": "-753484.483613682255319851188008276820141114244540",
+            "developer_irr": "0.1188558319700722918346945413",
+            "profit_on_cost": "0.1764705882352941176470588231",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.35",
+            "public_nominal": "48999999.99999999999999999994",
+            "public_npv": "32349880.195988586423729534281528668508437863797331",
+            "developer_npv": "-9300704.346205042436749526481562148761880507662112",
+            "developer_irr": "0.1055669899420044264305720124",
+            "profit_on_cost": "0.1494252873563218390804597699",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.50",
+            "public_nominal": "69999999.99999999999999999991",
+            "public_npv": "46214114.565697980605327906112968303594976913860459",
+            "developer_npv": "-22121534.140092082708894039398293795701361920161685",
+            "developer_irr": "0.08446030356611164677080445653",
+            "profit_on_cost": "0.1111111111111111111111111110",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "code": "LOSS_MAKING",
+      "name_ar": "مشروع خاسر قبل مقابل الأرض",
+      "project_id": "70656d0f-c847-44b9-a769-239c003fe5b4",
+      "run_id": "30d2204f-9a75-48fd-99bc-b8eb619153cf",
+      "policy_version_id": "d21133ac-94e8-48b9-9acd-b13ab21910cf",
+      "gross_sales": "24000000.00",
+      "net_sales": "24000000.00",
+      "development_cost": "27999999.99999999999999999999",
+      "project_profit_pre_land": "-3999999.99999999999999999999",
+      "selected_offer": "0.02",
+      "selected_landowner_nominal": "479999.9999999999999999999998",
+      "developer_profit": "-4480000.000000000000000000003",
+      "developer_irr": "-0.08263305113822384804360117636",
+      "developer_npv": "-8897248.7584528954126807019718846454690500143615376",
+      "developer_moic": "0.850666666666666666666666667",
+      "financial_audit": "CONDITIONAL",
+      "recommendation_validation": "CONDITIONAL",
+      "contract_engine_version": "3.1.0",
+      "gross_sales_negotiation": {
+        "status": "NO_FEASIBLE_RANGE",
+        "fair_floor": null,
+        "balanced": null,
+        "policy_adjusted_ceiling": null,
+        "technical_ceiling": null,
+        "ceiling_kind": "NOT_ESTABLISHED",
+        "eligible_base_total": "24000000.00",
+        "residual_land_value": "-8799999.99999999999999999999",
+        "residual_equivalent_measure": "0E+2",
+        "offer_position": "NO_FEASIBLE_RANGE",
+        "governing_constraint_id": null
+      },
+      "net_sales_negotiation": {
+        "status": "NO_FEASIBLE_RANGE",
+        "fair_floor": null,
+        "balanced": null,
+        "policy_adjusted_ceiling": null,
+        "technical_ceiling": null,
+        "ceiling_kind": "NOT_ESTABLISHED",
+        "eligible_base_total": "24000000.00",
+        "residual_land_value": "-8799999.99999999999999999999",
+        "residual_equivalent_measure": "0E+2",
+        "offer_position": "NO_FEASIBLE_RANGE",
+        "governing_constraint_id": null
+      },
+      "candidate_matrix": {
+        "GROSS_SALES": [
+          {
+            "rate": "0",
+            "public_nominal": "0.000000000000000000000",
+            "public_npv": "0",
+            "developer_npv": "-8586129.2364482819948781406549660674930531246118495",
+            "developer_irr": "-0.07244706369615419376787900412",
+            "profit_on_cost": "-0.1428571428571428571428571428",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "PROJECT_PROFIT_NONNEGATIVE",
+              "DEVELOPER_PROFIT_NONNEGATIVE",
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.10",
+            "public_nominal": "2399999.999999999999999999999",
+            "public_npv": "1665869.3529842221028452949155150952408721039195898",
+            "developer_npv": "-10141726.846471349083890947220863725106269706996423",
+            "developer_irr": "-0.1281101792521448567142096669",
+            "profit_on_cost": "-0.2105263157894736842105263157",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "PROJECT_PROFIT_NONNEGATIVE",
+              "DEVELOPER_PROFIT_NONNEGATIVE",
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.18",
+            "public_nominal": "4320000.000000000000000000002",
+            "public_npv": "2998564.8353715997851215308500647629460502095016266",
+            "developer_npv": "-11386204.934489802755101192472352374056729318520402",
+            "developer_irr": "-0.1844024713514031821735827287",
+            "profit_on_cost": "-0.2574257425742574257425742576",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "PROJECT_PROFIT_NONNEGATIVE",
+              "DEVELOPER_PROFIT_NONNEGATIVE",
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.25",
+            "public_nominal": "6000000.000000000000000000002",
+            "public_npv": "4130378.0530494950437249717838196339647612007023925",
+            "developer_npv": "-12437428.956177150903206102458568369320315236303354",
+            "developer_irr": "-0.2578268809034732963998432982",
+            "profit_on_cost": "-0.2941176470588235294117647058",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "PROJECT_PROFIT_NONNEGATIVE",
+              "DEVELOPER_PROFIT_NONNEGATIVE",
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.35",
+            "public_nominal": "7328796.003817806662837210556",
+            "public_npv": "4993130.5160838433834692358809614391703549224714948",
+            "developer_npv": "-13233628.271663950194314052376428488533601284695379",
+            "developer_irr": "-0.4044255632220280664210611000",
+            "profit_on_cost": "-0.3206674805049557935461533698",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "PROJECT_PROFIT_NONNEGATIVE",
+              "DEVELOPER_PROFIT_NONNEGATIVE",
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "MAX_RESIDUAL_FUNDING_GAP",
+              "COMPLETE_SCOPE",
+              "MANDATORY_PAYMENT_SHORTFALL",
+              "CONTRACTUAL_ARREARS_ZERO",
+              "MANDATORY_SHORTFALL_ZERO",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.50",
+            "public_nominal": "7471165.445666402311282799151",
+            "public_npv": "5124155.4997542453885245012557758372000673698328409",
+            "developer_npv": "-13362612.444504430826429823480518580936290757249539",
+            "developer_irr": "-0.4093866045282535650656678339",
+            "profit_on_cost": "-0.3233940949371276497949724558",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "PROJECT_PROFIT_NONNEGATIVE",
+              "DEVELOPER_PROFIT_NONNEGATIVE",
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "MAX_RESIDUAL_FUNDING_GAP",
+              "COMPLETE_SCOPE",
+              "MANDATORY_PAYMENT_SHORTFALL",
+              "CONTRACTUAL_ARREARS_ZERO",
+              "MANDATORY_SHORTFALL_ZERO",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          }
+        ],
+        "NET_SALES": [
+          {
+            "rate": "0",
+            "public_nominal": "0.000000000000000000000",
+            "public_npv": "0",
+            "developer_npv": "-8586129.2364482819948781406549660674930531246118495",
+            "developer_irr": "-0.07244706369615419376787900412",
+            "profit_on_cost": "-0.1428571428571428571428571428",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "PROJECT_PROFIT_NONNEGATIVE",
+              "DEVELOPER_PROFIT_NONNEGATIVE",
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.10",
+            "public_nominal": "2399999.999999999999999999999",
+            "public_npv": "1665869.3529842221028452949155150952408721039195898",
+            "developer_npv": "-10141726.846471349083890947220863725106269706996423",
+            "developer_irr": "-0.1281101792521448567142096669",
+            "profit_on_cost": "-0.2105263157894736842105263157",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "PROJECT_PROFIT_NONNEGATIVE",
+              "DEVELOPER_PROFIT_NONNEGATIVE",
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.18",
+            "public_nominal": "4320000.000000000000000000002",
+            "public_npv": "2998564.8353715997851215308500647629460502095016266",
+            "developer_npv": "-11386204.934489802755101192472352374056729318520402",
+            "developer_irr": "-0.1844024713514031821735827287",
+            "profit_on_cost": "-0.2574257425742574257425742576",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "PROJECT_PROFIT_NONNEGATIVE",
+              "DEVELOPER_PROFIT_NONNEGATIVE",
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.25",
+            "public_nominal": "6000000.000000000000000000002",
+            "public_npv": "4130378.0530494950437249717838196339647612007023925",
+            "developer_npv": "-12437428.956177150903206102458568369320315236303354",
+            "developer_irr": "-0.2578268809034732963998432982",
+            "profit_on_cost": "-0.2941176470588235294117647058",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "PROJECT_PROFIT_NONNEGATIVE",
+              "DEVELOPER_PROFIT_NONNEGATIVE",
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.35",
+            "public_nominal": "7328796.003817806662837210556",
+            "public_npv": "4993130.5160838433834692358809614391703549224714948",
+            "developer_npv": "-13233628.271663950194314052376428488533601284695379",
+            "developer_irr": "-0.4044255632220280664210611000",
+            "profit_on_cost": "-0.3206674805049557935461533698",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "PROJECT_PROFIT_NONNEGATIVE",
+              "DEVELOPER_PROFIT_NONNEGATIVE",
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "MAX_RESIDUAL_FUNDING_GAP",
+              "COMPLETE_SCOPE",
+              "MANDATORY_PAYMENT_SHORTFALL",
+              "CONTRACTUAL_ARREARS_ZERO",
+              "MANDATORY_SHORTFALL_ZERO",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.50",
+            "public_nominal": "7471165.445666402311282799151",
+            "public_npv": "5124155.4997542453885245012557758372000673698328409",
+            "developer_npv": "-13362612.444504430826429823480518580936290757249539",
+            "developer_irr": "-0.4093866045282535650656678339",
+            "profit_on_cost": "-0.3233940949371276497949724558",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "PROJECT_PROFIT_NONNEGATIVE",
+              "DEVELOPER_PROFIT_NONNEGATIVE",
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "MAX_RESIDUAL_FUNDING_GAP",
+              "COMPLETE_SCOPE",
+              "MANDATORY_PAYMENT_SHORTFALL",
+              "CONTRACTUAL_ARREARS_ZERO",
+              "MANDATORY_SHORTFALL_ZERO",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          }
+        ],
+        "PROFIT_SHARE": [
+          {
+            "rate": "0",
+            "public_nominal": "0.000000000000000000000",
+            "public_npv": "0",
+            "developer_npv": "-8586129.2364482819948781406549660674930531246118495",
+            "developer_irr": "-0.07244706369615419376787900412",
+            "profit_on_cost": "-0.1428571428571428571428571428",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "PROJECT_PROFIT_NONNEGATIVE",
+              "DEVELOPER_PROFIT_NONNEGATIVE",
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.10",
+            "public_nominal": "0.000000000000000000000",
+            "public_npv": "0",
+            "developer_npv": "-8586129.2364482819948781406549660674930531246118495",
+            "developer_irr": "-0.07244706369615419376787900412",
+            "profit_on_cost": "-0.1428571428571428571428571428",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "PROJECT_PROFIT_NONNEGATIVE",
+              "DEVELOPER_PROFIT_NONNEGATIVE",
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.18",
+            "public_nominal": "0.000000000000000000000",
+            "public_npv": "0",
+            "developer_npv": "-8586129.2364482819948781406549660674930531246118495",
+            "developer_irr": "-0.07244706369615419376787900412",
+            "profit_on_cost": "-0.1428571428571428571428571428",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "PROJECT_PROFIT_NONNEGATIVE",
+              "DEVELOPER_PROFIT_NONNEGATIVE",
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.25",
+            "public_nominal": "0.000000000000000000000",
+            "public_npv": "0",
+            "developer_npv": "-8586129.2364482819948781406549660674930531246118495",
+            "developer_irr": "-0.07244706369615419376787900412",
+            "profit_on_cost": "-0.1428571428571428571428571428",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "PROJECT_PROFIT_NONNEGATIVE",
+              "DEVELOPER_PROFIT_NONNEGATIVE",
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.35",
+            "public_nominal": "0.000000000000000000000",
+            "public_npv": "0",
+            "developer_npv": "-8586129.2364482819948781406549660674930531246118495",
+            "developer_irr": "-0.07244706369615419376787900412",
+            "profit_on_cost": "-0.1428571428571428571428571428",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "PROJECT_PROFIT_NONNEGATIVE",
+              "DEVELOPER_PROFIT_NONNEGATIVE",
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.50",
+            "public_nominal": "0.000000000000000000000",
+            "public_npv": "0",
+            "developer_npv": "-8586129.2364482819948781406549660674930531246118495",
+            "developer_irr": "-0.07244706369615419376787900412",
+            "profit_on_cost": "-0.1428571428571428571428571428",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "PROJECT_PROFIT_NONNEGATIVE",
+              "DEVELOPER_PROFIT_NONNEGATIVE",
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "code": "DOUMA_REGRESSION",
+      "name_ar": "حالة ضاحية دوما الانحدارية",
+      "project_id": "d3bba5ab-4d66-45df-b904-a51f75177572",
+      "run_id": "6a73eac2-6c36-49bc-b41d-dd97c623192d",
+      "policy_version_id": "9dd4ed5a-5972-46cb-8be5-ed6facd877d8",
+      "gross_sales": "596092000.000",
+      "net_sales": "596092000.000",
+      "development_cost": "340814826.0000000000000000000",
+      "project_profit_pre_land": "255277174.0000000000000000000",
+      "selected_offer": "0.18",
+      "selected_landowner_nominal": "107296560.0000000000000000000",
+      "developer_profit": "147980614.0000000000000000000",
+      "developer_irr": "0.1590412669110873484949625574",
+      "developer_npv": "28253920.207031683592423349368367408282954471829529",
+      "developer_moic": "1.422801754285714285714285715",
+      "financial_audit": "CONDITIONAL",
+      "recommendation_validation": "CONDITIONAL",
+      "contract_engine_version": "3.1.0",
+      "gross_sales_negotiation": {
+        "status": "VALID_RANGE",
+        "fair_floor": "0.003",
+        "balanced": "0.035",
+        "policy_adjusted_ceiling": "0.060",
+        "technical_ceiling": "0.140",
+        "ceiling_kind": "TECHNICAL_CEILING",
+        "eligible_base_total": "596092000.0000000000000000001",
+        "residual_land_value": "136058774.0000000000000000000",
+        "residual_equivalent_measure": "0.2282513001348785086865785818",
+        "offer_position": "ABOVE_TECHNICAL_CEILING",
+        "governing_constraint_id": "MIN_DEVELOPER_IRR"
+      },
+      "net_sales_negotiation": {
+        "status": "VALID_RANGE",
+        "fair_floor": "0.003",
+        "balanced": "0.035",
+        "policy_adjusted_ceiling": "0.060",
+        "technical_ceiling": "0.140",
+        "ceiling_kind": "TECHNICAL_CEILING",
+        "eligible_base_total": "596092000.0000000000000000001",
+        "residual_land_value": "136058774.0000000000000000000",
+        "residual_equivalent_measure": "0.2282513001348785086865785818",
+        "offer_position": "ABOVE_TECHNICAL_CEILING",
+        "governing_constraint_id": "MIN_DEVELOPER_IRR"
+      },
+      "candidate_matrix": {
+        "GROSS_SALES": [
+          {
+            "rate": "0",
+            "public_nominal": "0.00000000000000000000",
+            "public_npv": "0",
+            "developer_npv": "101950055.06626832344555015176769030761996002170898",
+            "developer_irr": "0.2486134473127313946751575950",
+            "profit_on_cost": "0.7490201555961652912364792484",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.10",
+            "public_nominal": "59609200.00000000000000000001",
+            "public_npv": "43435768.630283652230892835589648984075934689704329",
+            "developer_npv": "61007757.922247967971590817023751840459802732559624",
+            "developer_irr": "0.2007676563825413307442995887",
+            "profit_on_cost": "0.4886519321895035339362978187",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.18",
+            "public_nominal": "107296560.0000000000000000000",
+            "public_npv": "78184383.534510574015607104020370919184170908981916",
+            "developer_npv": "28253920.207031683592423349368367408282954471829529",
+            "developer_irr": "0.1590412669110873484949625574",
+            "profit_on_cost": "0.3302317651888452573262666439",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_DEVELOPER_IRR",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.25",
+            "public_nominal": "149023000.0000000000000000000",
+            "public_npv": "108589421.57570913057723208894293732127602076770245",
+            "developer_npv": "-405687.793782565239348184921919110961805891581429",
+            "developer_irr": "0.1194158182991627266164886941",
+            "profit_on_cost": "0.2169170455202861364977558920",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.35",
+            "public_nominal": "208632200.0000000000000000000",
+            "public_npv": "151908919.20555048155461903000173306245168402844128",
+            "developer_npv": "-41217866.897961697015441599837709882702546112928272",
+            "developer_irr": "0.05645946741869167998718302990",
+            "profit_on_cost": "0.08489439708060227083657014802",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.50",
+            "public_nominal": "298046000.0000000000000000002",
+            "public_npv": "213972131.35299241416269762614270143477684249316296",
+            "developer_npv": "-99172822.557578578716930468177970387063421427373790",
+            "developer_irr": "-0.06372195758677975331108440854",
+            "profit_on_cost": "-0.06694545080777890738913454705",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "DEVELOPER_PROFIT_NONNEGATIVE",
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          }
+        ],
+        "NET_SALES": [
+          {
+            "rate": "0",
+            "public_nominal": "0.00000000000000000000",
+            "public_npv": "0",
+            "developer_npv": "101950055.06626832344555015176769030761996002170898",
+            "developer_irr": "0.2486134473127313946751575950",
+            "profit_on_cost": "0.7490201555961652912364792484",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.10",
+            "public_nominal": "59609200.00000000000000000001",
+            "public_npv": "43435768.630283652230892835589648984075934689704329",
+            "developer_npv": "61007757.922247967971590817023751840459802732559624",
+            "developer_irr": "0.2007676563825413307442995887",
+            "profit_on_cost": "0.4886519321895035339362978187",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.18",
+            "public_nominal": "107296560.0000000000000000000",
+            "public_npv": "78184383.534510574015607104020370919184170908981916",
+            "developer_npv": "28253920.207031683592423349368367408282954471829529",
+            "developer_irr": "0.1590412669110873484949625574",
+            "profit_on_cost": "0.3302317651888452573262666439",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_DEVELOPER_IRR",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.25",
+            "public_nominal": "149023000.0000000000000000000",
+            "public_npv": "108589421.57570913057723208894293732127602076770245",
+            "developer_npv": "-405687.793782565239348184921919110961805891581429",
+            "developer_irr": "0.1194158182991627266164886941",
+            "profit_on_cost": "0.2169170455202861364977558920",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.35",
+            "public_nominal": "208632200.0000000000000000000",
+            "public_npv": "151908919.20555048155461903000173306245168402844128",
+            "developer_npv": "-41217866.897961697015441599837709882702546112928272",
+            "developer_irr": "0.05645946741869167998718302990",
+            "profit_on_cost": "0.08489439708060227083657014802",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.50",
+            "public_nominal": "298046000.0000000000000000002",
+            "public_npv": "213972131.35299241416269762614270143477684249316296",
+            "developer_npv": "-99172822.557578578716930468177970387063421427373790",
+            "developer_irr": "-0.06372195758677975331108440854",
+            "profit_on_cost": "-0.06694545080777890738913454705",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "DEVELOPER_PROFIT_NONNEGATIVE",
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          }
+        ],
+        "PROFIT_SHARE": [
+          {
+            "rate": "0",
+            "public_nominal": "0.00000000000000000000",
+            "public_npv": "0",
+            "developer_npv": "101950055.06626832344555015176769030761996002170898",
+            "developer_irr": "0.2486134473127313946751575950",
+            "profit_on_cost": "0.7490201555961652912364792484",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.10",
+            "public_nominal": "25527717.39999999999999999999",
+            "public_npv": "17276113.348308031934569842093376726696431954439996",
+            "developer_npv": "85900419.499191520830495542751580875421002311639631",
+            "developer_irr": "0.2317864606287543588460413136",
+            "profit_on_cost": "0.6271438049965779650150236960",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.18",
+            "public_nominal": "45949891.31999999999999999999",
+            "public_npv": "31097004.026954457482225715769712012048213534055334",
+            "developer_npv": "73060711.045530078738451855534088615325616108925267",
+            "developer_irr": "0.2176171229825015309036745828",
+            "profit_on_cost": "0.5412264183002182852784116518",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.25",
+            "public_nominal": "63819293.49999999999999999998",
+            "public_npv": "43190283.370770079836424605231870755207776024500626",
+            "developer_npv": "61825966.148576316907913629256771781015968467486009",
+            "developer_irr": "0.2046384180206050744557518172",
+            "profit_on_cost": "0.4731629669207863228646985119",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.35",
+            "public_nominal": "89347010.90000000000000000000",
+            "public_npv": "60466396.719078111770994447342843371077211228853516",
+            "developer_npv": "45776330.581499514292859020164684562269380185545059",
+            "developer_irr": "0.1850292635343042754219937186",
+            "profit_on_cost": "0.3857389216481653907499389328",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.50",
+            "public_nominal": "127638587.0000000000000000000",
+            "public_npv": "86380566.741540159672849210490135344175056923870591",
+            "developer_npv": "21701877.230884310370277106669875467864346341391440",
+            "developer_irr": "0.1527882537147878993925643028",
+            "profit_on_cost": "0.2724680479593389150950641062",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_DEVELOPER_IRR",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "code": "OLD_PLATFORM_REFERENCE",
+      "name_ar": "مرجع البلاتفورم القديم",
+      "project_id": "d7d8069e-67b9-418e-bf92-1f3002cb4e3d",
+      "run_id": "ddadd32d-6cf1-422d-bcd4-39aac4efe668",
+      "policy_version_id": "79ea3c20-9e4e-4f67-8f1a-e668868f47d9",
+      "gross_sales": "877500000.000",
+      "net_sales": "877500000.000",
+      "development_cost": "556522674.0000000000000000000",
+      "project_profit_pre_land": "320977326.0000000000000000000",
+      "selected_offer": "0.18",
+      "selected_landowner_nominal": "157950000.0000000000000000000",
+      "developer_profit": "163027325.9999999999999999997",
+      "developer_irr": "1.118142783534593461609780734",
+      "developer_npv": "97661249.243777454963898497072040102564780042448995",
+      "developer_moic": "24.28961799999999999999999997",
+      "financial_audit": "VALIDATED",
+      "recommendation_validation": "SUPPORTED",
+      "contract_engine_version": "3.1.0",
+      "gross_sales_negotiation": {
+        "status": "VALID_RANGE",
+        "fair_floor": "0.100",
+        "balanced": "0.123",
+        "policy_adjusted_ceiling": "0.141",
+        "technical_ceiling": "0.199",
+        "ceiling_kind": "TECHNICAL_CEILING",
+        "eligible_base_total": "877499999.9999999999999999998",
+        "residual_land_value": "145477326.0000000000000000000",
+        "residual_equivalent_measure": "0.1657861264957264957264957265",
+        "offer_position": "ABOVE_RISK_ADJUSTED_CEILING",
+        "governing_constraint_id": "MIN_PROFIT_ON_COST"
+      },
+      "net_sales_negotiation": {
+        "status": "VALID_RANGE",
+        "fair_floor": "0.100",
+        "balanced": "0.123",
+        "policy_adjusted_ceiling": "0.141",
+        "technical_ceiling": "0.199",
+        "ceiling_kind": "TECHNICAL_CEILING",
+        "eligible_base_total": "877499999.9999999999999999998",
+        "residual_land_value": "145477326.0000000000000000000",
+        "residual_equivalent_measure": "0.1657861264957264957264957265",
+        "offer_position": "ABOVE_RISK_ADJUSTED_CEILING",
+        "governing_constraint_id": "MIN_PROFIT_ON_COST"
+      },
+      "candidate_matrix": {
+        "GROSS_SALES": [
+          {
+            "rate": "0",
+            "public_nominal": "0.00000000000000000000",
+            "public_npv": "0",
+            "developer_npv": "198406678.84147728953139907193692015060910042344744",
+            "developer_irr": "1.552721048352725772262173343",
+            "profit_on_cost": "0.5767551637976928142194616129",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.10",
+            "public_nominal": "87749999.99999999999999999999",
+            "public_npv": "60113487.363946813647250986924516003763265917911639",
+            "developer_npv": "142436995.73164404810500986368185117554018634696143",
+            "developer_irr": "1.339425274204898954484010930",
+            "profit_on_cost": "0.3620009592398140418415448731",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.18",
+            "public_nominal": "157950000.0000000000000000000",
+            "public_npv": "108204277.25510426456505177648511818885881824320847",
+            "developer_npv": "97661249.243777454963898497072040102564780042448995",
+            "developer_irr": "1.118142783534593461609780734",
+            "profit_on_cost": "0.2281785321295576939027901852",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.25",
+            "public_nominal": "219375000.0000000000000000000",
+            "public_npv": "150283718.40986703411812746736627716307379995075689",
+            "developer_npv": "58482471.066894185965426051267014712583274989620186",
+            "developer_irr": "0.8540894119441476321268921229",
+            "profit_on_cost": "0.1309480997361515482517092836",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_PROFIT_ON_COST",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.35",
+            "public_nominal": "307125000.0000000000000000000",
+            "public_npv": "208163827.42420498935290641679259609562660804034944",
+            "developer_npv": "4967514.2090191863095766701272650541029717965587127",
+            "developer_irr": "0.2485210905800005111531611000",
+            "profit_on_cost": "0.01603932531404003989710276200",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_PROFIT_ON_COST",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.50",
+            "public_nominal": "327977325.9999999999999999998",
+            "public_npv": "221267942.32760978100444656212331849628886576427173",
+            "developer_npv": "-7034861.3504475349952204394900367624344019872170853",
+            "developer_irr": null,
+            "profit_on_cost": "-0.007914075749010740531373657434",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "DEVELOPER_PROFIT_NONNEGATIVE",
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "MAX_RESIDUAL_FUNDING_GAP",
+              "COMPLETE_SCOPE",
+              "MANDATORY_PAYMENT_SHORTFALL",
+              "CONTRACTUAL_ARREARS_ZERO",
+              "MANDATORY_SHORTFALL_ZERO",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          }
+        ],
+        "NET_SALES": [
+          {
+            "rate": "0",
+            "public_nominal": "0.00000000000000000000",
+            "public_npv": "0",
+            "developer_npv": "198406678.84147728953139907193692015060910042344744",
+            "developer_irr": "1.552721048352725772262173343",
+            "profit_on_cost": "0.5767551637976928142194616129",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.10",
+            "public_nominal": "87749999.99999999999999999999",
+            "public_npv": "60113487.363946813647250986924516003763265917911639",
+            "developer_npv": "142436995.73164404810500986368185117554018634696143",
+            "developer_irr": "1.339425274204898954484010930",
+            "profit_on_cost": "0.3620009592398140418415448731",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.18",
+            "public_nominal": "157950000.0000000000000000000",
+            "public_npv": "108204277.25510426456505177648511818885881824320847",
+            "developer_npv": "97661249.243777454963898497072040102564780042448995",
+            "developer_irr": "1.118142783534593461609780734",
+            "profit_on_cost": "0.2281785321295576939027901852",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.25",
+            "public_nominal": "219375000.0000000000000000000",
+            "public_npv": "150283718.40986703411812746736627716307379995075689",
+            "developer_npv": "58482471.066894185965426051267014712583274989620186",
+            "developer_irr": "0.8540894119441476321268921229",
+            "profit_on_cost": "0.1309480997361515482517092836",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_PROFIT_ON_COST",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.35",
+            "public_nominal": "307125000.0000000000000000000",
+            "public_npv": "208163827.42420498935290641679259609562660804034944",
+            "developer_npv": "4967514.2090191863095766701272650541029717965587127",
+            "developer_irr": "0.2485210905800005111531611000",
+            "profit_on_cost": "0.01603932531404003989710276200",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "MIN_PROFIT_ON_COST",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          },
+          {
+            "rate": "0.50",
+            "public_nominal": "327977325.9999999999999999998",
+            "public_npv": "221267942.32760978100444656212331849628886576427173",
+            "developer_npv": "-7034861.3504475349952204394900367624344019872170853",
+            "developer_irr": null,
+            "profit_on_cost": "-0.007914075749010740531373657434",
+            "feasible": false,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": [
+              "DEVELOPER_PROFIT_NONNEGATIVE",
+              "MIN_DEVELOPER_IRR",
+              "MIN_DEVELOPER_NPV",
+              "MIN_PROFIT_ON_COST",
+              "MIN_DEVELOPER_MULTIPLE",
+              "MAX_RESIDUAL_FUNDING_GAP",
+              "COMPLETE_SCOPE",
+              "MANDATORY_PAYMENT_SHORTFALL",
+              "CONTRACTUAL_ARREARS_ZERO",
+              "MANDATORY_SHORTFALL_ZERO",
+              "SELECTED_CONTRACT_CONSTRAINTS_PASS"
+            ]
+          }
+        ],
+        "PROFIT_SHARE": [
+          {
+            "rate": "0",
+            "public_nominal": "0.00000000000000000000",
+            "public_npv": "0",
+            "developer_npv": "198406678.84147728953139907193692015060910042344744",
+            "developer_irr": "1.552721048352725772262173343",
+            "profit_on_cost": "0.5767551637976928142194616129",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.10",
+            "public_nominal": "32097732.59999999999999999998",
+            "public_npv": "21642907.280503388727840088643684262971316016466747",
+            "developer_npv": "178313786.82723437047530788866752716816328229672409",
+            "developer_irr": "1.488782717147218000829160602",
+            "profit_on_cost": "0.4907740033490031570373353747",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.18",
+            "public_nominal": "57775918.68000000000000000001",
+            "public_npv": "38957233.104906099710112159592063862777075004474642",
+            "developer_npv": "162239473.21584003523043494204625688928635275202180",
+            "developer_irr": "1.433801638666048428029659160",
+            "profit_on_cost": "0.4284584247079769819797595302",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.25",
+            "public_nominal": "80244331.49999999999999999997",
+            "public_npv": "54107268.201258471819600221626178121987971746440016",
+            "developer_npv": "148174448.80586999189117111379567069484809534925126",
+            "developer_irr": "1.382404372389786829251236146",
+            "profit_on_cost": "0.3780550694692047765028239984",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.35",
+            "public_nominal": "112342064.1000000000000000000",
+            "public_npv": "75750175.481761860547440310278660329545789387863209",
+            "developer_npv": "128081556.79162707283507993053203360532255226585152",
+            "developer_irr": "1.302585553933922146770363346",
+            "profit_on_cost": "0.3119244445336682639511984161",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          },
+          {
+            "rate": "0.50",
+            "public_nominal": "160488662.9999999999999999999",
+            "public_npv": "108214536.40251694363920044321213706872336463593627",
+            "developer_npv": "97942218.770262694250943155665933024927640361702285",
+            "developer_irr": "1.164320090337377044079874697",
+            "profit_on_cost": "0.2238300215328394451871825840",
+            "feasible": true,
+            "calculation_valid": true,
+            "cash_reconciliation_passed": true,
+            "failed_constraints": []
+          }
+        ]
+      }
+    }
+  ],
+  "revalidation": {
+    "status": "PASS",
+    "generated_at_utc": "2026-08-18T08:57:32.972265+00:00",
+    "source_matrix": "contract-scenario-tests-v2.4.0.json",
+    "source_matrix_sha256": "de1eeeef08e1e4575bd3cb96dadd0b1386d26fabe8be6d418f8320c806d48344",
+    "contract_engine_version": "3.1.0",
+    "current_engine_source_hash": "4c4881993b8c7d05dbbd168a333e629f20aa480c2134440bbc02e71590d15eaf",
+    "calculation_change_scope": "NONE",
+    "current_code_validation": "validate_policy_negotiation_v250.py executes 10 disposable current-code scenarios and 49 assertions",
+    "reason": "v2.5 changes UI, reporting and workflow exposure; Contract Engine 3.1.0 and monthly financial calculations are unchanged."
+  }
+}

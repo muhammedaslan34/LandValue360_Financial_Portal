@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="financialApp" data-project-id="{{ project.id }}">
+  {% if admin_access %}<div class="admin-access-banner"><span data-ar="أنت تستعرض التحليل بصلاحية مدير المنصة. جميع عمليات التشغيل والتنزيل تُسجّل في سجل التدقيق." data-en="You are viewing this analysis with platform-administrator access. Runs and downloads are recorded in the audit trail.">أنت تستعرض التحليل بصلاحية مدير المنصة. جميع عمليات التشغيل والتنزيل تُسجّل في سجل التدقيق.</span><a class="button small secondary" href="/admin" data-ar="العودة للإدارة" data-en="Back to Admin">العودة للإدارة</a></div>{% endif %}
+  <div class="page-head financial-page-head">
+    <div>
+      <p class="eyebrow">{{ project.reference }}</p>
+      <h1 data-ar="التحليل المالي" data-en="Financial Analysis">التحليل المالي</h1>
+      <p><span>{{ project.name }}</span> — <span data-ar="نموذج مالي شهري وتقييم قدرة الأرض ومجال تفاوضي." data-en="Monthly financial model, land capacity indication and negotiation range.">نموذج مالي شهري وتقييم قدرة الأرض ومجال تفاوضي.</span></p>
+    </div>
+    <div class="actions">
+      <a class="button secondary" href="/portal/projects/{{ project.id }}" data-ar="بيانات المشروع" data-en="Project Data">بيانات المشروع</a>
+      <button class="button secondary" id="saveFinancial" type="button" data-ar="حفظ الافتراضات" data-en="Save Assumptions">حفظ الافتراضات</button>
+      <button class="button" id="runFinancial" type="button" data-ar="تشغيل التحليل المالي" data-en="Run Financial Analysis">تشغيل التحليل المالي</button>
+    </div>
+  </div>
+
+  <div class="notice financial-disclaimer" data-ar="الحسابات المعتمدة تنفذ على الخادم وفق إصدار المشروع والسياسة المالية والمحرك المثبت. القيمة المتبقية للأرض مؤشر قدرة تطويرية وليست تقييماً سوقياً مستقلاً." data-en="Authoritative calculations run on the server against frozen project, policy and engine versions. Residual land value is a development-capacity indication, not an independent market valuation.">الحسابات المعتمدة تنفذ على الخادم وفق إصدار المشروع والسياسة المالية والمحرك المثبت. القيمة المتبقية للأرض مؤشر قدرة تطويرية وليست تقييماً سوقياً مستقلاً.</div>
+  <p class="form-message" id="financialMessage"></p>
+
+  <section class="panel financial-control-bar">
+    <label data-ar="إصدار المشروع" data-en="Project Version"><span class="i18n-label">إصدار المشروع</span><select id="projectVersionSelect"></select></label>
+    <label data-ar="السياسة المالية" data-en="Financial Policy"><span class="i18n-label">السياسة المالية</span><select id="policyVersionSelect"></select><small id="policyVersionDescription" class="field-help"></small></label>
+    <div class="provenance-mini" id="currentProvenance"></div>
+    <div class="run-state" id="financialRunState" data-ar="لم يتم التشغيل بعد" data-en="Not run yet">لم يتم التشغيل بعد</div>
+  </section>
+
+  <div class="financial-tabs" role="tablist">
+    <button type="button" class="active" data-financial-tab="inputs" data-ar="الافتراضات" data-en="Assumptions">الافتراضات</button>
+    <button type="button" data-financial-tab="results" data-ar="النتائج والتوصية" data-en="Results & Recommendation">النتائج والتوصية</button>
+    <button type="button" data-financial-tab="cashflow" data-ar="التدفقات النقدية" data-en="Cash Flow">التدفقات النقدية</button>
+  </div>
+
+  <section class="financial-tab-panel active" data-financial-panel="inputs">
+    <form id="financialForm">
+      <div class="grid-2 financial-input-grid">
+        <section class="panel">
+          <div class="section-head"><div><h2 data-ar="المبيعات والتنفيذ" data-en="Sales & Delivery">المبيعات والتنفيذ</h2><p data-ar="المدخلات الأساسية التي يحتاجها المستخدم. منحنيات التوزيع والتحصيل تطبق تلقائياً من السياسة." data-en="Core user inputs. Timing curves and collection profiles are applied automatically from policy.">المدخلات الأساسية التي يحتاجها المستخدم. منحنيات التوزيع والتحصيل تطبق تلقائياً من السياسة.</p></div></div>
+          <div class="form-grid compact-form">
+            <label data-ar="تاريخ التقييم" data-en="Valuation Date"><span class="i18n-label">تاريخ التقييم</span><input type="date" name="valuation_date" required></label>
+            <label data-ar="بداية المبيعات - شهر" data-en="Sales Start - Month"><span class="i18n-label">بداية المبيعات - شهر</span><input type="number" name="sales.start_month" min="1" max="600" step="1" required></label>
+            <label data-ar="مدة المبيعات - شهر" data-en="Sales Duration - Months"><span class="i18n-label">مدة المبيعات - شهر</span><input type="number" name="sales.duration_months" min="1" max="600" step="1" required></label>
+            <label data-ar="حسم تجاري %" data-en="Commercial Discount %"><span class="i18n-label">حسم تجاري %</span><input type="number" name="sales.commercial_discount_rate" min="0" max="100" step="0.01" data-percent required></label>
+            <label data-ar="حوافز المشتري %" data-en="Buyer Incentives %"><span class="i18n-label">حوافز المشتري %</span><input type="number" name="sales.buyer_incentive_rate" min="0" max="100" step="0.01" data-percent required></label>
+            <label data-ar="مرتجعات أو إلغاءات %" data-en="Refunds / Cancellations %"><span class="i18n-label">مرتجعات أو إلغاءات %</span><input type="number" name="sales.refund_rate" min="0" max="100" step="0.01" data-percent required></label>
+            <label data-ar="بداية الإنشاء - شهر" data-en="Construction Start - Month"><span class="i18n-label">بداية الإنشاء - شهر</span><input type="number" name="delivery.construction_start_month" min="1" max="600" step="1" required></label>
+            <label data-ar="مدة الإنشاء - شهر" data-en="Construction Duration - Months"><span class="i18n-label">مدة الإنشاء - شهر</span><input type="number" name="delivery.construction_duration_months" min="1" max="600" step="1" required></label>
+            <label data-ar="تصاعد الكلفة السنوي %" data-en="Annual Cost Escalation %"><span class="i18n-label">تصاعد الكلفة السنوي %</span><input type="number" name="delivery.cost_escalation_rate" min="-100" max="1000" step="0.01" data-percent required></label>
+            <label data-ar="احتياطي الكلف %" data-en="Cost Contingency %"><span class="i18n-label">احتياطي الكلف %</span><input type="number" name="delivery.cost_contingency_rate" min="0" max="1000" step="0.01" data-percent required></label>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="section-head"><div><h2 data-ar="حقوق ملكية المطور" data-en="Developer Equity">حقوق ملكية المطور</h2><p data-ar="إجمالي الالتزام يشمل المساهمة الافتتاحية ولا يضاف إليها." data-en="Total commitment includes the initial contribution; it is not added on top of it.">إجمالي الالتزام يشمل المساهمة الافتتاحية ولا يضاف إليها.</p></div></div>
+          <div class="form-grid compact-form">
+            <label data-ar="المساهمة النقدية الافتتاحية" data-en="Initial Equity Contribution"><span class="i18n-label">المساهمة النقدية الافتتاحية</span><input type="number" name="funding.opening_cash" min="0" step="0.01" required></label>
+            <label data-ar="إجمالي التزام حقوق الملكية" data-en="Total Developer Equity Commitment"><span class="i18n-label">إجمالي التزام حقوق الملكية</span><input type="number" name="funding.total_developer_equity" min="0" step="0.01" required></label>
+          </div>
+          <div class="equity-explainer" id="equityExplainer"></div>
+          <hr>
+          <div class="section-head"><div><h2 data-ar="آلية مقابل الأرض" data-en="Landowner Consideration Mechanism">آلية مقابل الأرض</h2><p data-ar="هذه هي الآلية المختارة للمشروع، بينما يحلل المحرك الآليات المسموحة للمقارنة التفاوضية." data-en="This is the selected project mechanism; the engine also evaluates allowed mechanisms for negotiation comparison.">هذه هي الآلية المختارة للمشروع، بينما يحلل المحرك الآليات المسموحة للمقارنة التفاوضية.</p></div></div>
+          <div class="form-grid compact-form">
+            <label data-ar="الآلية" data-en="Mechanism"><span class="i18n-label">الآلية</span><select name="contract.method" id="contractMethod"></select></label>
+            <label data-ar="الحصة المتغيرة %" data-en="Variable Share %"><span class="i18n-label">الحصة المتغيرة %</span><input type="number" name="contract.share_rate" min="0" max="100" step="0.01" data-percent required></label>
+            <label data-ar="الدفعة الثابتة المقدمة" data-en="Upfront Fixed Payment"><span class="i18n-label">الدفعة الثابتة المقدمة</span><input type="number" name="contract.upfront_amount" min="0" step="0.01" required></label>
+            <label data-ar="شهر الدفعة المقدمة" data-en="Upfront Payment Month"><span class="i18n-label">شهر الدفعة المقدمة</span><input type="number" name="contract.upfront_payment_month" min="1" max="600" step="1" required></label>
+            <label data-ar="دفعة العقد الهجين الثابتة" data-en="Hybrid Fixed Payment"><span class="i18n-label">دفعة العقد الهجين الثابتة</span><input type="number" name="contract.hybrid_upfront_amount" min="0" step="0.01" required></label>
+            <label data-ar="شهر دفعة العقد الهجين" data-en="Hybrid Payment Month"><span class="i18n-label">شهر دفعة العقد الهجين</span><input type="number" name="contract.hybrid_upfront_payment_month" min="1" max="600" step="1" required></label>
+            <label data-ar="أساس الحصة الهجينة" data-en="Hybrid Variable Basis"><span class="i18n-label">أساس الحصة الهجينة</span><select name="contract.hybrid_variable_basis"><option value="GROSS_SALES" data-ar="إجمالي المبيعات" data-en="Gross Sales">إجمالي المبيعات</option><option value="NET_SALES" data-ar="صافي المبيعات" data-en="Net Sales">صافي المبيعات</option><option value="PROFIT_SHARE" data-ar="الربح النقدي القابل للتوزيع" data-en="Distributable Cash Profit">الربح النقدي القابل للتوزيع</option></select></label>
+            <label data-ar="الضمان الأدنى" data-en="Minimum Guarantee"><span class="i18n-label">الضمان الأدنى</span><input type="number" name="contract.minimum_guarantee_amount" min="0" step="0.01" required></label>
+            <label data-ar="شهر استحقاق الضمان" data-en="Guarantee Due Month"><span class="i18n-label">شهر استحقاق الضمان</span><input type="number" name="contract.minimum_guarantee_payment_month" min="1" max="600" step="1" required></label>
+            <label data-ar="الآلية المتغيرة للضمان" data-en="Guarantee Underlying Mechanism"><span class="i18n-label">الآلية المتغيرة للضمان</span><select name="contract.minimum_guarantee_underlying_method"><option value="GROSS_SALES" data-ar="إجمالي المبيعات" data-en="Gross Sales">إجمالي المبيعات</option><option value="NET_SALES" data-ar="صافي المبيعات" data-en="Net Sales">صافي المبيعات</option><option value="PROFIT_SHARE" data-ar="مشاركة الربح" data-en="Profit Share">مشاركة الربح</option></select></label>
+            <label data-ar="حصة الضمان المتغيرة %" data-en="Guarantee Variable Share %"><span class="i18n-label">حصة الضمان المتغيرة %</span><input type="number" name="contract.minimum_guarantee_underlying_share" min="0" max="100" step="0.01" data-percent required></label>
+            <label data-ar="معالجة حسميات صافي المبيعات" data-en="Net Sales Deduction Treatment"><span class="i18n-label">معالجة حسميات صافي المبيعات</span><select name="contract.net_deduction_treatment"><option value="CUMULATIVE_CARRY_FORWARD" data-ar="تراكمي مع ترحيل" data-en="Cumulative Carry Forward">تراكمي مع ترحيل</option><option value="PERIOD_BY_PERIOD" data-ar="كل فترة على حدة" data-en="Period by Period">كل فترة على حدة</option></select></label>
+          </div>
+        </section>
+      </div>
+
+      <section class="panel advanced-policy-summary" id="standardDefaultsPanel" hidden>
+        <div class="section-head"><div><h2 data-ar="الافتراضات المتقدمة المطبقة تلقائياً" data-en="Automatically Applied Advanced Assumptions">الافتراضات المتقدمة المطبقة تلقائياً</h2><p data-ar="للمستخدم الأساسي لا تظهر تفاصيل منحنيات البيع والكلف والتمويل. يطبق النظام القيم المعتمدة من المدير تلقائياً." data-en="Sales/cost curves and financing details are hidden for standard users. The system applies administrator-approved defaults automatically.">للمستخدم الأساسي لا تظهر تفاصيل منحنيات البيع والكلف والتمويل. يطبق النظام القيم المعتمدة من المدير تلقائياً.</p></div></div>
+        <div id="defaultAssumptionsSummary" class="policy-chip-grid"></div>
+      </section>
+
+      <details class="panel advanced-financial-panel" id="advancedFinancialPanel" hidden>
+        <summary data-ar="افتراضات المحلل المتقدمة" data-en="Advanced Analyst Assumptions">افتراضات المحلل المتقدمة</summary>
+        <p class="notice" data-ar="هذه الحقول للمحلل أو المدير. عند تعطيل التجاوزات تطبق قيم السياسة المالية المعتمدة. التمويل الافتراضي غير مفعّل." data-en="These fields are for analysts or administrators. When project overrides are disabled, approved financial-policy defaults apply. Financing is off by default.">هذه الحقول للمحلل أو المدير. عند تعطيل التجاوزات تطبق قيم السياسة المالية المعتمدة. التمويل الافتراضي غير مفعّل.</p>
+        <label class="checkbox-label"><input type="checkbox" name="advanced_overrides_enabled" id="advancedOverrides"><span data-ar="استخدام افتراضات متقدمة خاصة بهذا المشروع" data-en="Use project-specific advanced overrides">استخدام افتراضات متقدمة خاصة بهذا المشروع</span></label>
+        <div id="advancedFields">
+          <div class="grid-2 financial-input-grid">
+            <div>
+              <h3 data-ar="منحنى البيع والتحصيل" data-en="Sales & Collection Profile">منحنى البيع والتحصيل</h3>
+              <div class="form-grid compact-form">
+                <label data-ar="منحنى المبيعات" data-en="Sales Curve"><span class="i18n-label">منحنى المبيعات</span><select name="sales.curve_type" data-curve-select></select></label>
+                <label data-ar="شدة المنحنى" data-en="Curve Intensity"><span class="i18n-label">شدة المنحنى</span><input type="number" name="sales.curve_intensity" min="0.01" step="0.01"></label>
+              </div>
+              <div class="section-head subhead"><div><h3 data-ar="خطة التحصيل" data-en="Collection Schedule">خطة التحصيل</h3><p data-ar="مجموع الأوزان يجب أن يساوي 100%." data-en="Weights must total 100%.">مجموع الأوزان يجب أن يساوي 100%.</p></div><button type="button" class="button small secondary" id="addCollectionRule" data-ar="إضافة دفعة" data-en="Add Collection">إضافة دفعة</button></div>
+              <div class="table-wrap compact-table"><table><thead><tr><th data-ar="الوصف" data-en="Label">الوصف</th><th data-ar="التأخير - شهر" data-en="Lag - Months">التأخير - شهر</th><th data-ar="الوزن %" data-en="Weight %">الوزن %</th><th></th></tr></thead><tbody id="collectionRows"></tbody></table></div>
+              <div class="total-line"><span data-ar="مجموع الأوزان:" data-en="Total weights:">مجموع الأوزان:</span> <strong id="collectionTotal">0%</strong></div>
+            </div>
+            <div>
+              <h3 data-ar="منحنى الكلف والتنفيذ" data-en="Cost & Execution Profile">منحنى الكلف والتنفيذ</h3>
+              <div class="form-grid compact-form">
+                <label data-ar="منحنى الإنشاء" data-en="Construction Curve"><span class="i18n-label">منحنى الإنشاء</span><select name="delivery.construction_curve_type" data-curve-select></select></label>
+                <label data-ar="بداية الكلف الأخرى - شهر" data-en="Other Costs Start - Month"><span class="i18n-label">بداية الكلف الأخرى - شهر</span><input type="number" name="delivery.other_cost_start_month" min="1" max="600" step="1"></label>
+                <label data-ar="مدة الكلف الأخرى - شهر" data-en="Other Costs Duration - Months"><span class="i18n-label">مدة الكلف الأخرى - شهر</span><input type="number" name="delivery.other_cost_duration_months" min="1" max="600" step="1"></label>
+                <label data-ar="منحنى الكلف الأخرى" data-en="Other Cost Curve"><span class="i18n-label">منحنى الكلف الأخرى</span><select name="delivery.other_cost_curve_type" data-curve-select></select></label>
+                <label data-ar="التمديد الأقصى - شهر" data-en="Maximum Extension - Months"><span class="i18n-label">التمديد الأقصى - شهر</span><input type="number" name="delivery.maximum_extension_months" min="0" max="600" step="1"></label>
+                <label data-ar="التنفيذ الشهري الأقصى %" data-en="Maximum Monthly Execution %"><span class="i18n-label">التنفيذ الشهري الأقصى %</span><input type="number" name="delivery.maximum_monthly_execution_share" min="0" max="100" step="0.01" data-percent></label>
+                <label class="full" data-ar="سقف التنفيذ الشهري - مبلغ" data-en="Maximum Monthly Execution - Amount"><span class="i18n-label">سقف التنفيذ الشهري - مبلغ</span><input type="number" name="delivery.maximum_monthly_execution_amount" min="0" step="0.01"></label>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <h3 data-ar="التمويل والسيولة" data-en="Financing & Liquidity">التمويل والسيولة</h3>
+          <div class="form-grid compact-form policy-admin-grid">
+            <label class="checkbox-label"><input type="checkbox" name="finance.enabled"><span data-ar="تفعيل التمويل" data-en="Enable Financing">تفعيل التمويل</span></label>
+            <label data-ar="التمويل الملتزم به" data-en="Committed Financing"><span class="i18n-label">التمويل الملتزم به</span><input type="number" name="funding.committed_financing" min="0" step="0.01"></label>
+            <label data-ar="الفائدة السنوية %" data-en="Annual Interest %"><span class="i18n-label">الفائدة السنوية %</span><input type="number" name="finance.annual_interest_rate" min="0" max="1000" step="0.01" data-percent></label>
+            <label data-ar="رسوم الترتيب %" data-en="Upfront Fee %"><span class="i18n-label">رسوم الترتيب %</span><input type="number" name="finance.upfront_fee_rate" min="0" max="100" step="0.01" data-percent></label>
+            <label data-ar="رسوم الالتزام %" data-en="Commitment Fee %"><span class="i18n-label">رسوم الالتزام %</span><input type="number" name="finance.commitment_fee_rate" min="0" max="100" step="0.01" data-percent></label>
+            <label data-ar="السداد من الفائض النقدي %" data-en="Cash Sweep %"><span class="i18n-label">السداد من الفائض النقدي %</span><input type="number" name="finance.cash_sweep_share" min="0" max="100" step="0.01" data-percent></label>
+            <label data-ar="الحد الأدنى للنقد" data-en="Minimum Cash Balance"><span class="i18n-label">الحد الأدنى للنقد</span><input type="number" name="finance.minimum_cash_balance" min="0" step="0.01"></label>
+            <label data-ar="ترتيب السحب" data-en="Funding Draw Order"><span class="i18n-label">ترتيب السحب</span><select name="finance.funding_draw_order"><option value="EQUITY_FIRST" data-ar="حقوق الملكية أولاً" data-en="Equity First">حقوق الملكية أولاً</option><option value="DEBT_FIRST" data-ar="الدين أولاً" data-en="Debt First">الدين أولاً</option><option value="PRO_RATA" data-ar="بالتناسب" data-en="Pro Rata">بالتناسب</option></select></label>
+            <label data-ar="سياسة الإنفاق" data-en="Spending Policy"><span class="i18n-label">سياسة الإنفاق</span><select name="finance.spend_policy"><option value="CASH_DRIVEN" data-ar="حسب السيولة" data-en="Cash Driven">حسب السيولة</option><option value="HYBRID" data-ar="هجين" data-en="Hybrid">هجين</option></select></label>
+            <label data-ar="الحد الأدنى للتنفيذ الهجين %" data-en="Hybrid Minimum Execution %"><span class="i18n-label">الحد الأدنى للتنفيذ الهجين %</span><input type="number" name="finance.hybrid_minimum_execution_share" min="0" max="100" step="0.01" data-percent></label>
+            <label data-ar="احتياطي الكلف المستقبلية %" data-en="Future Cost Reserve %"><span class="i18n-label">احتياطي الكلف المستقبلية %</span><input type="number" name="finance.future_cost_reserve_share" min="0" max="100" step="0.01" data-percent></label>
+            <label class="checkbox-label"><input type="checkbox" name="finance.capitalize_interest"><span data-ar="رسملة الفوائد" data-en="Capitalize Interest">رسملة الفوائد</span></label>
+            <label class="checkbox-label"><input type="checkbox" name="finance.force_terminal_repayment"><span data-ar="سداد الدين عند الإغلاق" data-en="Force Terminal Repayment">سداد الدين عند الإغلاق</span></label>
+            <label class="checkbox-label"><input type="checkbox" name="finance.defer_contractual_payments"><span data-ar="تأجيل الالتزامات غير المغطاة" data-en="Defer Unfunded Contractual Payments">تأجيل الالتزامات غير المغطاة</span></label>
+            <label class="checkbox-label locked-control"><input type="checkbox" checked disabled><span data-ar="منع الرصيد النقدي السالب" data-en="Negative Cash Prohibited">منع الرصيد النقدي السالب</span></label>
+          </div>
+        </div>
+      </details>
+
+      <details class="panel" id="policyDetails">
+        <summary data-ar="السياسة المالية المعتمدة" data-en="Approved Financial Policy">السياسة المالية المعتمدة</summary>
+        <div id="policySummary" class="policy-box"></div>
+      </details>
+    </form>
+  </section>
+
+  <section class="financial-tab-panel" data-financial-panel="results">
+    <section class="panel result-status-panel">
+      <div class="section-head">
+        <div><h2 data-ar="حالة التحليل" data-en="Analysis Status">حالة التحليل</h2><p id="resultSubtitle"></p></div>
+        <div class="actions" id="resultBadges"></div>
+      </div>
+      <div id="auditSummary" class="decision-status"></div>
+      <div class="actions report-primary-actions" id="reportActions" hidden>
+        <a class="button" id="downloadPdf" href="#" data-ar="تحميل التقرير PDF" data-en="Download PDF Report">تحميل التقرير PDF</a>
+        <a class="button secondary" id="downloadExcel" href="#" data-ar="تحميل النموذج Excel" data-en="Download Excel Model">تحميل النموذج Excel</a>
+      </div>
+    </section>
+
+    <div class="grid-2 result-domain-grid">
+      <section class="panel result-domain project-domain"><div class="section-head"><div><h2 data-ar="اقتصاديات المشروع" data-en="Project Economics">اقتصاديات المشروع</h2><p data-ar="أداء المشروع قبل مقابل الأرض والتمويل." data-en="Whole-project economics before land consideration and financing.">أداء المشروع قبل مقابل الأرض والتمويل.</p></div></div><div id="projectKpis" class="metric-grid financial-kpis"></div></section>
+      <section class="panel result-domain developer-domain"><div class="section-head"><div><h2 data-ar="اقتصاديات المطور" data-en="Developer Economics">اقتصاديات المطور</h2><p data-ar="العائد الفعلي على حقوق ملكية المطور بعد مقابل الأرض والتمويل." data-en="Developer equity economics after landowner consideration and financing.">العائد الفعلي على حقوق ملكية المطور بعد مقابل الأرض والتمويل.</p></div></div><div id="developerKpis" class="metric-grid financial-kpis"></div></section>
+      <section class="panel result-domain landowner-domain"><div class="section-head"><div><h2 data-ar="اقتصاديات صاحب الأرض" data-en="Landowner Economics">اقتصاديات صاحب الأرض</h2><p data-ar="المقابل الاسمي والقيمة الحالية وتوقيت الاستلام للعقد المختار." data-en="Nominal consideration, present value and receipt timing for the selected contract.">المقابل الاسمي والقيمة الحالية وتوقيت الاستلام للعقد المختار.</p></div></div><div id="landownerKpis" class="metric-grid financial-kpis"></div></section>
+      <section class="panel residual-panel result-domain"><div class="section-head"><div><h2 data-ar="مؤشرات قدرة الأرض" data-en="Land Capacity Indicators">مؤشرات قدرة الأرض</h2><p data-ar="مؤشرات قبل مقابل الأرض، وليست تقييماً سوقياً مستقلاً." data-en="Pre-land development capacity indicators; not an independent market valuation.">مؤشرات قبل مقابل الأرض، وليست تقييماً سوقياً مستقلاً.</p></div></div><div id="landValuationKpis" class="metric-grid financial-kpis"></div><div class="residual-explainer" id="residualExplainer"></div></section>
+    </div>
+
+    <section class="panel negotiation-panel">
+      <div class="section-head"><div><h2 data-ar="المجال التفاوضي" data-en="Negotiation Range">المجال التفاوضي</h2><p data-ar="الحد الأدنى المقبول، النقطة المتوازنة، القيمة المتبقية المكافئة، السقف المتحفظ وفق السياسة، السقف الفني، والعرض الحالي." data-en="Minimum acceptable consideration, balanced point, residual equivalent, policy-adjusted ceiling, technical ceiling and current offer.">الحد الأدنى المقبول، النقطة المتوازنة، القيمة المتبقية المكافئة، السقف المتحفظ وفق السياسة، السقف الفني، والعرض الحالي.</p></div><label data-ar="الآلية" data-en="Mechanism"><span class="i18n-label">الآلية</span><select id="negotiationMethodSelect"></select></label></div>
+      <div id="negotiationChart" class="negotiation-chart"></div>
+      <div id="negotiationDetails" class="negotiation-detail-grid"></div>
+      <section id="negotiationExplanation" class="negotiation-explanation-section" aria-live="polite"></section>
+      <details>
+        <summary data-ar="مقارنة جميع الآليات" data-en="Compare All Mechanisms">مقارنة جميع الآليات</summary>
+        <div class="table-wrap financial-wide-table"><table><thead><tr><th data-ar="الآلية" data-en="Mechanism">الآلية</th><th data-ar="الحالة" data-en="Status">الحالة</th><th data-help="fair_floor" data-ar="الحد الأدنى المقبول" data-en="Minimum Acceptable">الحد الأدنى المقبول</th><th data-help="balanced" data-ar="متوازن" data-en="Balanced">متوازن</th><th data-ar="السقف المتحفظ وفق السياسة" data-en="Policy-Adjusted Ceiling">السقف المتحفظ وفق السياسة</th><th data-help="technical_ceiling" data-ar="السقف الفني / حد البحث" data-en="Technical Ceiling / Search Cap">السقف الفني / حد البحث</th><th data-help="landowner_npv" data-ar="NPV صاحب الأرض" data-en="Landowner NPV">NPV صاحب الأرض</th><th data-help="developer_irr" data-ar="IRR المطور" data-en="Developer IRR">IRR المطور</th><th data-help="developer_npv" data-ar="NPV المطور" data-en="Developer NPV">NPV المطور</th><th data-ar="القيد الحاكم" data-en="Governing Constraint">القيد الحاكم</th></tr></thead><tbody id="negotiationRows"></tbody></table></div>
+      </details>
+    </section>
+
+    <details class="panel technical-results" id="technicalChecks">
+      <summary data-ar="الفحوص الفنية والتحقق من سلامة النموذج" data-en="Technical Checks & Model Validation">الفحوص الفنية والتحقق من سلامة النموذج</summary>
+      <div id="constraintsList"></div>
+      <hr>
+      <h3 data-ar="التدقيق المالي المستقل" data-en="Independent Financial Audit">التدقيق المالي المستقل</h3>
+      <div id="auditChecks"></div>
+    </details>
+
+    <details class="panel technical-results" id="provenanceDetails" hidden>
+      <summary data-ar="السجل الفني والمراجع غير القابلة للتغيير" data-en="Technical Provenance & Immutable References">السجل الفني والمراجع غير القابلة للتغيير</summary>
+      <dl id="runProvenance" class="provenance-list"></dl>
+      <hr>
+      <div class="section-head"><h3 data-ar="تشغيلات سابقة" data-en="Previous Runs">تشغيلات سابقة</h3><button class="button small secondary" id="reloadRuns" type="button" data-ar="تحديث" data-en="Refresh">تحديث</button></div>
+      <div id="runHistory"></div>
+    </details>
+  </section>
+
+  <section class="financial-tab-panel" data-financial-panel="cashflow">
+    <section class="panel">
+      <div class="section-head"><div><h2 data-ar="التدفق النقدي السنوي" data-en="Annual Cash Flow">التدفق النقدي السنوي</h2><p data-ar="تجميع سنوي من دفتر التدفق الشهري نفسه." data-en="Annual aggregation of the same authoritative monthly ledger.">تجميع سنوي من دفتر التدفق الشهري نفسه.</p></div><button class="button small secondary" id="downloadCashflowCsv" type="button" data-ar="تنزيل CSV الشهري" data-en="Download Monthly CSV">تنزيل CSV الشهري</button></div>
+      <div class="table-wrap financial-wide-table"><table><thead><tr><th data-ar="السنة" data-en="Year">السنة</th><th data-ar="المبيعات المتعاقدة" data-en="Contracted Sales">المبيعات المتعاقدة</th><th data-ar="التحصيلات" data-en="Collections">التحصيلات</th><th data-ar="الكلفة المخططة" data-en="Planned Cost">الكلفة المخططة</th><th data-ar="الكلفة المدفوعة" data-en="Paid Cost">الكلفة المدفوعة</th><th data-ar="الكلفة المؤجلة" data-en="Deferred Cost">الكلفة المؤجلة</th><th data-ar="حقوق ملكية" data-en="Equity">حقوق ملكية</th><th data-ar="سحب تمويل" data-en="Debt Draw">سحب تمويل</th><th data-ar="فوائد ورسوم" data-en="Interest & Fees">فوائد ورسوم</th><th data-ar="سداد تمويل" data-en="Debt Repayment">سداد تمويل</th><th data-ar="صاحب الأرض" data-en="Landowner">صاحب الأرض</th><th data-ar="توزيعات المطور" data-en="Developer Distributions">توزيعات المطور</th><th data-ar="النقد الختامي" data-en="Ending Cash">النقد الختامي</th><th data-ar="الدين الختامي" data-en="Ending Debt">الدين الختامي</th><th data-ar="عجز التمويل" data-en="Funding Gap">عجز التمويل</th><th data-ar="متأخرات تعاقدية" data-en="Contractual Arrears">متأخرات تعاقدية</th></tr></thead><tbody id="annualCashflowRows"></tbody></table></div>
+    </section>
+    <details class="panel" id="monthlyCashflowDetails">
+      <summary data-ar="التدفق النقدي الشهري التفصيلي" data-en="Detailed Monthly Cash Flow">التدفق النقدي الشهري التفصيلي</summary>
+      <div class="table-wrap monthly-cashflow-wrap"><table><thead><tr><th>#</th><th data-ar="التاريخ" data-en="Date">التاريخ</th><th data-ar="النقد الافتتاحي" data-en="Opening Cash">النقد الافتتاحي</th><th data-ar="مبيعات متعاقدة" data-en="Contracted Sales">مبيعات متعاقدة</th><th data-ar="تحصيلات إجمالية" data-en="Gross Collections">تحصيلات إجمالية</th><th data-ar="تحصيلات صافية" data-en="Net Collections">تحصيلات صافية</th><th data-ar="كلفة مخططة" data-en="Planned Cost">كلفة مخططة</th><th data-ar="كلفة مدفوعة" data-en="Paid Cost">كلفة مدفوعة</th><th data-ar="كلفة مؤجلة" data-en="Deferred Cost">كلفة مؤجلة</th><th data-ar="مساهمة حقوق ملكية" data-en="Equity Contribution">مساهمة حقوق ملكية</th><th data-ar="سحب تمويل" data-en="Debt Draw">سحب تمويل</th><th data-ar="فائدة" data-en="Interest">فائدة</th><th data-ar="رسوم تمويل" data-en="Financing Fees">رسوم تمويل</th><th data-ar="سداد تمويل" data-en="Debt Repayment">سداد تمويل</th><th data-ar="صاحب الأرض" data-en="Landowner">صاحب الأرض</th><th data-ar="توزيع المطور" data-en="Developer Distribution">توزيع المطور</th><th data-ar="النقد الختامي" data-en="Ending Cash">النقد الختامي</th><th data-ar="الدين الختامي" data-en="Ending Debt">الدين الختامي</th><th data-ar="عجز التمويل" data-en="Funding Gap">عجز التمويل</th><th data-ar="متأخرات" data-en="Arrears">متأخرات</th><th data-ar="فرق المصالحة" data-en="Reconciliation Variance">فرق المصالحة</th></tr></thead><tbody id="monthlyCashflowRows"></tbody></table></div>
+    </details>
+  </section>
+</div>
+{% endblock %}
+{% block scripts %}<script src="/static/financial.js" defer></script>{% endblock %}

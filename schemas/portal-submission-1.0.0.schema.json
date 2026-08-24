@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://landvalue360.example/schemas/portal-submission-1.0.0.json",
+  "title": "LandValue360 Portal Submission Package",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "project_id",
+    "project_version_id",
+    "project_reference",
+    "land_data",
+    "planning_data",
+    "land_uses",
+    "products",
+    "costs",
+    "calculation_checks"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "portal-submission-1.0.0"
+    },
+    "project_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "project_version_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "land_uses": {
+      "type": "array"
+    },
+    "products": {
+      "type": "array"
+    },
+    "costs": {
+      "type": "array"
+    }
+  },
+  "additionalProperties": true
+}

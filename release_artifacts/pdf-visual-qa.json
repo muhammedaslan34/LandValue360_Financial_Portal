@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "artifact": "LandValue360_Financial_Portal_Sample_Report_AR.pdf",
+  "pages": 11,
+  "renderer": "pdfium via render_pdf.py at 150 DPI",
+  "inspected_pages": [1, 6, 7, 11],
+  "checks": {
+    "arabic_glyphs": "PASS",
+    "clipping": "PASS",
+    "overlap": "PASS",
+    "negotiation_axis_starts_at_minimum": "PASS",
+    "marker_collision_avoidance": "PASS",
+    "boundary_explanation_cards": "PASS",
+    "formal_layout": "PASS"
+  }
+}

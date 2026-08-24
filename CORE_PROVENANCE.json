@@ -1,0 +1,87 @@
+{
+  "generated_at_utc": "2026-08-18T08:40:16.784862+00:00",
+  "release": "LandValue360 Financial Portal 2.5.0",
+  "portal_baseline": {
+    "name": "LandValue360 Client Portal",
+    "version": "1.0.1 Integration Stable",
+    "archive_name": "LandValue360_Client_Portal_v1.0.1_INTEGRATION_STABLE(2).zip",
+    "archive_sha256": "7fe4ac3532967df19bbbba2f260a0434cbc474afe6bcad6ed3dc423d3df5073d"
+  },
+  "platform_engine_baseline": {
+    "name": "LandValue360 Platform",
+    "version": "2.1.1 Portal Integration Stable",
+    "runtime_marker": "2.1.1-portalintegration2",
+    "archive_name": "LandValue360_Platform_v2.1.1_PORTAL_INTEGRATION_STABLE(2).zip",
+    "archive_sha256": "47f8a018edc303489d37f9175fbbf43f6c291030412721a724c05294ac36305f"
+  },
+  "engine_registration": {
+    "engine_name": "LandValue360 Unified Monthly Deterministic Financial Kernel",
+    "engine_version": "2.1.1",
+    "input_schema_version": "2.1.1",
+    "supported_input_schema_versions": [
+      "2.1.1",
+      "0.3.0",
+      "0.2.0"
+    ],
+    "monthly_ledger_version": "2.1.1",
+    "formula_registry_version": "2.1.1",
+    "rounding_policy_version": "2.1.1",
+    "arithmetic": "decimal",
+    "decimal_precision": 50,
+    "date_basis": "actual monthly dates",
+    "day_count_basis": "ACT/365F",
+    "deterministic": true,
+    "single_source_of_truth": true,
+    "terminal_invariants": [
+      "terminal_debt = 0",
+      "deferred_development_cost = 0",
+      "contractual_arrears = 0",
+      "finance_arrears = 0",
+      "mandatory_shortfall = 0",
+      "unmodeled_scope = 0"
+    ],
+    "unified_engine_adapter_version": "2.1.1",
+    "portal_financial_adapter_version": "2.5.0",
+    "source_hash": "4c4881993b8c7d05dbbd168a333e629f20aa480c2134440bbc02e71590d15eaf",
+    "source": "Vendored and version-pinned from LandValue360 Platform 2.1.1; Portal Adapter 2.5.0 preserves immutable policy versions and corrected contract semantics while adding floor-anchored negotiation visualization, boundary explanations and decision-grade reports without modifying the vendored monthly kernel.",
+    "contract_engine_semantics_version": "3.1.0"
+  },
+  "vendoring_policy": {
+    "mode": "byte-for-byte version-pinned Python core packages",
+    "modified_platform_core_files": 0,
+    "portal_adapter_is_separate": true,
+    "omitted": [
+      "landvalue360_server/migrations/*"
+    ],
+    "reason_for_omission": "The portal owns its independent Alembic schema; platform database migrations are not executed."
+  },
+  "parity_report": {
+    "path": "release_artifacts/platform-core-parity.json",
+    "sha256": "5cf64a3cea1be02a9016f9d98e215b36390e33d4c0234793732fb470ccefc35f",
+    "status": "PASS",
+    "summary": {
+      "source_python_files": 118,
+      "vendored_python_files": 104,
+      "matched": 104,
+      "allowed_omitted": 14,
+      "missing": 0,
+      "changed": 0,
+      "extra": 0
+    }
+  },
+  "golden_cases": {
+    "contract_fixture_sha256": "bad490d24a3b016be830665bc6c5dc45177ce28b295a3c88ba5a02ef3f3cb90a",
+    "project_fixture_sha256": "258d84b01e786a88abd9612a12720b6299e3945fbae2555cc9e71568b50e1bfa",
+    "validation_report": "release_artifacts/golden-cases-2.1.1.json",
+    "validation_report_sha256": "fb6cc117cb55a40c13fca2c2c650c02811b9c3d69f0e65f86fd64eccd8629e4c"
+  },
+  "financial_validation": {
+    "independent_audit_module": "landvalue360_portal.financial_audit",
+    "methodology": "Independent ledger reconstruction with ACT/365F XNPV and multi-root-aware XIRR verification",
+    "recommendation_states": [
+      "SUPPORTED",
+      "CONDITIONAL",
+      "BLOCKED"
+    ]
+  }
+}

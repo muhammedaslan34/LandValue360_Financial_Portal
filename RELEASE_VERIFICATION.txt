@@ -1,0 +1,42 @@
+LandValue360 Financial Portal v2.5.0
+Final Release Verification
+Generated: 2026-08-18 UTC
+
+Release decision: READY_FOR_STAGING_AND_CONTROLLED_DOMAIN_DEPLOYMENT
+
+Versions
+- Portal: 2.5.0
+- Platform Monthly Engine: 2.1.1
+- Portal Adapter: 2.5.0
+- Contract Semantics: 3.1.0
+- Policy Schema: financial-policy-controls-2.4.0
+- Alembic head: 0007_admin_governance_and_security
+
+Validation
+- Release Gate: 38 / 38 PASS
+- Python non-browser tests: 56 PASS
+- Browser E2E: 1 SKIPPED by default; run in Staging with unrestricted Chromium
+- JavaScript syntax: 6 PASS
+- Current-code policy and negotiation assertions: 49/49 PASS across 10 scenarios
+- Contract regression matrix: 513/513 PASS; 144 candidate points; 8 projects
+- Golden financial cases: 14/14 PASS
+- Platform core parity: 104/104 MATCHED
+- Core provenance and current source hash: PASS
+- Fresh SQLite migration: PASS; 47 tables
+- PostgreSQL offline migration: PASS; 91,941 bytes
+- Static security scan: PASS; 0 High; 0 Medium
+- Live Uvicorn HTTP smoke: PASS; tested endpoints HTTP 200
+- Sample PDF: PASS; 11 A4 pages; visual QA PASS
+- Sample Excel: PASS; 5 sheets; 0 formula errors; 0 external links
+
+Functional acceptance
+- Minimum-anchored negotiation axis with dynamic scaling and collision avoidance.
+- Clear distinction between minimum acceptable, balanced, residual equivalent, policy ceiling, current offer and technical ceiling.
+- Evidence-based explanation and formula for each negotiation reference.
+- Full immutable versioned policy library controlled by administrators and selectable by users.
+- Legacy analyst/status workspace removed from the simple portal journey.
+- Formal bilingual PDF reporting and detailed Excel export.
+
+Deployment boundary
+- Production PostgreSQL, private object storage, SMTP, DNS, TLS and secrets must be configured in Staging/Production.
+- Apply backup and migration procedures before domain cutover.

@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "services": [
+    "app",
+    "caddy",
+    "db",
+    "minio",
+    "minio-init",
+    "notification-worker"
+  ],
+  "non_root_container": true,
+  "https_proxy": "caddy"
+}

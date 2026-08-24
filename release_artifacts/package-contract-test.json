@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "portal": {
+    "bytes": 3836,
+    "files": 6
+  },
+  "internal": {
+    "bytes": 4426,
+    "files": 4,
+    "effective_input_hash": "325a7c5118f5f9aa2ef00ef6f1d51a802fd12c3f3da43e09f0f169bfce48ed60",
+    "finance_enabled": true,
+    "allow_negative_cash": false
+  }
+}

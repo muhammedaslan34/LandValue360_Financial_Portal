@@ -1,0 +1,9 @@
+{
+  "portal_baseline": "LandValue360 Client Portal 1.0.1 Integration Stable",
+  "platform_engine_baseline": "LandValue360 Platform 2.1.1 Portal Integration Stable",
+  "financial_portal_release": "2.5.0",
+  "portal_financial_adapter": "2.5.0",
+  "contract_engine_semantics": "3.1.0",
+  "engine_source": "vendored versioned core packages",
+  "development_rule": "No direct production-server mutation; deploy this package through migrations and controlled release procedures."
+}

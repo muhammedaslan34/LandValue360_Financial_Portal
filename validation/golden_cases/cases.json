@@ -1,0 +1,94 @@
+[
+  {
+    "id": "GC-01-GROSS-SHARE",
+    "description": "10% of two gross collection periods (100 + 200).",
+    "ledger": [
+      {"month": 1, "date": "2026-01-01", "gross_collections": "100", "eligible_gross_sales_base": "100"},
+      {"month": 2, "date": "2026-02-01", "gross_collections": "200", "eligible_gross_sales_base": "200"}
+    ],
+    "contract": {"type": "GROSS_SALES_SHARE", "rate": "0.10"},
+    "discount_rate": "0",
+    "expected": {"contractual_consideration": "30", "contractual_consideration_npv": "30", "closing_receivable": "0"}
+  },
+  {
+    "id": "GC-02-NET-SHARE",
+    "description": "20% of eligible net sales bases 80 and 150.",
+    "ledger": [
+      {"month": 1, "date": "2026-01-01", "gross_collections": "100", "eligible_net_sales_base": "80"},
+      {"month": 2, "date": "2026-02-01", "gross_collections": "200", "eligible_net_sales_base": "150"}
+    ],
+    "contract": {"type": "NET_SALES_SHARE", "rate": "0.20"},
+    "discount_rate": "0",
+    "expected": {"contractual_consideration": "46", "contractual_consideration_npv": "46", "closing_receivable": "0"}
+  },
+  {
+    "id": "GC-03-DEFERRED-SALE-NPV",
+    "description": "100 today and 110 exactly one year later discounted at 10% equals NPV 200.",
+    "ledger": [
+      {"month": 1, "date": "2026-01-01", "gross_collections": "0"},
+      {"month": 13, "date": "2027-01-01", "gross_collections": "0"}
+    ],
+    "contract": {"type": "OUTRIGHT_SALE", "payment_schedule": [{"date": "2026-01-01", "amount": "100"}, {"date": "2027-01-01", "amount": "110"}]},
+    "discount_rate": "0.10",
+    "expected": {"contractual_consideration": "210", "contractual_consideration_npv": "200", "closing_receivable": "0"}
+  },
+  {
+    "id": "GC-04-PROFIT-CARRY",
+    "description": "A 50 loss is carried forward against the next 100 profit; 20% of the remaining 50 is 10.",
+    "ledger": [
+      {"month": 1, "date": "2026-01-01", "profit_share_base": "-50"},
+      {"month": 2, "date": "2026-02-01", "profit_share_base": "100"}
+    ],
+    "contract": {"type": "PROFIT_SHARE", "rate": "0.20"},
+    "discount_rate": "0",
+    "expected": {"contractual_consideration": "10", "contractual_consideration_npv": "10", "closing_receivable": "0"}
+  },
+  {
+    "id": "GC-05-MINIMUM-GUARANTEE",
+    "description": "Underlying 10% gross share equals 10; cumulative minimum guarantee tops entitlement up to 30, not 40.",
+    "ledger": [{"month": 1, "date": "2026-01-01", "gross_collections": "100", "eligible_gross_sales_base": "100"}],
+    "contract": {"type": "MINIMUM_GUARANTEE", "underlying": {"type": "GROSS_SALES_SHARE", "rate": "0.10"}, "guarantee_amount": "30", "guarantee_date": "2026-01-01"},
+    "discount_rate": "0",
+    "expected": {"contractual_consideration": "30", "contractual_consideration_npv": "30", "closing_receivable": "0"}
+  },
+  {
+    "id": "GC-06-CONTRACT-FLOOR",
+    "description": "A 10 gross share is topped up to the contractual floor of 25.",
+    "ledger": [{"month": 1, "date": "2026-01-01", "gross_collections": "100", "eligible_gross_sales_base": "100"}],
+    "contract": {"type": "GROSS_SALES_SHARE", "rate": "0.10", "floor": "25"},
+    "discount_rate": "0",
+    "expected": {"contractual_consideration": "25", "contractual_consideration_npv": "25", "closing_receivable": "0"}
+  },
+  {
+    "id": "GC-07-CONTRACT-CAP",
+    "description": "A 100 gross share is reduced to the contractual cap of 60.",
+    "ledger": [{"month": 1, "date": "2026-01-01", "gross_collections": "1000", "eligible_gross_sales_base": "1000"}],
+    "contract": {"type": "GROSS_SALES_SHARE", "rate": "0.10", "cap": "60"},
+    "discount_rate": "0",
+    "expected": {"contractual_consideration": "60", "contractual_consideration_npv": "60", "closing_receivable": "0"}
+  },
+  {
+    "id": "GC-08-UNITS-IN-KIND",
+    "description": "Two units at 100, quality factor 1.10, less a 10 public-borne registration cost: 210.",
+    "ledger": [{"month": 1, "date": "2026-01-01", "gross_collections": "0"}],
+    "contract": {"type": "UNITS_IN_KIND", "units": [{"quantity": "2", "value_at_delivery": "100", "quality_factor": "1.10", "registration_cost": "10", "delivery_date": "2026-01-01", "delivery_probability": "1"}]},
+    "discount_rate": "0",
+    "expected": {"contractual_consideration": "210", "contractual_consideration_npv": "210", "units_in_kind_value": "210", "closing_receivable": "0"}
+  },
+  {
+    "id": "GC-09-OVERAGE",
+    "description": "30% overage on collections above a 100 baseline where actual collections are 150: 15.",
+    "ledger": [{"month": 1, "date": "2026-01-01", "gross_collections": "150"}],
+    "contract": {"type": "OVERAGE", "driver": "COLLECTIONS", "baseline": "100", "rate": "0.30", "settlement_date": "2026-01-01"},
+    "discount_rate": "0",
+    "expected": {"contractual_consideration": "15", "contractual_consideration_npv": "15", "closing_receivable": "0"}
+  },
+  {
+    "id": "GC-10-HYBRID",
+    "description": "Hybrid of 20 upfront plus 10% of 100 gross collections: 30.",
+    "ledger": [{"month": 1, "date": "2026-01-01", "gross_collections": "100", "eligible_gross_sales_base": "100"}],
+    "contract": {"type": "HYBRID", "components": [{"component_id": "fixed", "type": "OUTRIGHT_SALE", "upfront_amount": "20"}, {"component_id": "variable", "type": "GROSS_SALES_SHARE", "rate": "0.10"}]},
+    "discount_rate": "0",
+    "expected": {"contractual_consideration": "30", "contractual_consideration_npv": "30", "closing_receivable": "0"}
+  }
+]

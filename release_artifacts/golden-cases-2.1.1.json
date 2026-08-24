@@ -1,0 +1,94 @@
+{
+  "engine_version": "2.1.1",
+  "fixture_source": "LandValue360 Platform 2.1.1 supplied release",
+  "independent_expected_values": true,
+  "fixture_hashes": {
+    "cases.json": "bad490d24a3b016be830665bc6c5dc45177ce28b295a3c88ba5a02ef3f3cb90a",
+    "project_cases.json": "258d84b01e786a88abd9612a12720b6299e3945fbae2555cc9e71568b50e1bfa"
+  },
+  "contract_cases": {
+    "count": 10,
+    "passed": 10,
+    "results": [
+      {
+        "id": "GC-01-GROSS-SHARE",
+        "passed": true,
+        "mismatches": []
+      },
+      {
+        "id": "GC-02-NET-SHARE",
+        "passed": true,
+        "mismatches": []
+      },
+      {
+        "id": "GC-03-DEFERRED-SALE-NPV",
+        "passed": true,
+        "mismatches": []
+      },
+      {
+        "id": "GC-04-PROFIT-CARRY",
+        "passed": true,
+        "mismatches": []
+      },
+      {
+        "id": "GC-05-MINIMUM-GUARANTEE",
+        "passed": true,
+        "mismatches": []
+      },
+      {
+        "id": "GC-06-CONTRACT-FLOOR",
+        "passed": true,
+        "mismatches": []
+      },
+      {
+        "id": "GC-07-CONTRACT-CAP",
+        "passed": true,
+        "mismatches": []
+      },
+      {
+        "id": "GC-08-UNITS-IN-KIND",
+        "passed": true,
+        "mismatches": []
+      },
+      {
+        "id": "GC-09-OVERAGE",
+        "passed": true,
+        "mismatches": []
+      },
+      {
+        "id": "GC-10-HYBRID",
+        "passed": true,
+        "mismatches": []
+      }
+    ]
+  },
+  "project_cases": {
+    "count": 4,
+    "passed": 4,
+    "results": [
+      {
+        "id": "PGC-01-BASELINE-10-PERCENT",
+        "passed": true,
+        "mismatches": []
+      },
+      {
+        "id": "PGC-02-ZERO-PERCENT",
+        "passed": true,
+        "mismatches": []
+      },
+      {
+        "id": "PGC-03-FIVE-PERCENT",
+        "passed": true,
+        "mismatches": []
+      },
+      {
+        "id": "PGC-04-TWENTY-PERCENT",
+        "passed": true,
+        "mismatches": []
+      }
+    ]
+  },
+  "total_cases": 14,
+  "total_passed": 14,
+  "status": "PASS"
+}

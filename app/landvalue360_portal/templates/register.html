@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="auth-card wide"><h1>إنشاء حساب صاحب أرض</h1><form id="registerForm" class="form-grid"><label>الاسم الكامل<input name="full_name" required minlength="2"></label><label>البريد الإلكتروني<input type="email" name="email" required></label><label>اسم المؤسسة أو المالك<input name="organization_name" required></label><label>الدولة<input name="country"></label><label>رقم الهاتف<input name="phone"></label><label>كلمة المرور<input type="password" name="password" required minlength="10"></label><label class="full checkbox"><input type="checkbox" name="accepted_terms" required> أوافق على شروط الاستخدام والإقرار المهني وسياسة الخصوصية.</label><button class="button full" type="submit">إنشاء الحساب</button><p class="form-message full" id="formMessage"></p></form></section>
+{% endblock %}
+{% block scripts %}<script src="/static/auth.js" defer></script>{% endblock %}

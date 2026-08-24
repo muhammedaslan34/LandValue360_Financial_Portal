@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "database": "fresh temporary SQLite",
+  "alembic_head": "0007_admin_governance_and_security",
+  "table_count": 47,
+  "required_financial_tables": [
+    "calculation_run_results",
+    "calculation_runs",
+    "engine_versions",
+    "financial_policies",
+    "financial_policy_versions",
+    "monthly_cashflow_snapshots",
+    "negotiation_results"
+  ],
+  "required_tables_present": true,
+  "stdout_tail": "",
+  "stderr_tail": "INFO  [alembic.runtime.migration] Context impl SQLiteImpl.\nINFO  [alembic.runtime.migration] Will assume non-transactional DDL.\nINFO  [alembic.runtime.migration] Running upgrade  -> 0001_initial_portal, Initial LandValue360 Client Portal schema.\nINFO  [alembic.runtime.migration] Running upgrade 0001_initial_portal -> 0002_postgres_rls, PostgreSQL RLS policies for tenant and project isolation.\nINFO  [alembic.runtime.migration] Running upgrade 0002_postgres_rls -> 0003_extended_project_rls, Extend PostgreSQL RLS to indirect project children.\nINFO  [alembic.runtime.migration] Running upgrade 0003_extended_project_rls -> 0004_assignment_aware_rls, Make project RLS assignment-aware instead of granting all staff global access.\nINFO  [alembic.runtime.migration] Running upgrade 0004_assignment_aware_rls -> 0005_fix_project_assignments_rls, Remove recursive self-reference from project_assignments RLS.\nINFO  [alembic.runtime.migration] Running upgrade 0005_fix_project_assignments_rls -> 0006_standalone_financial_portal, Standalone monthly financial portal, policy versions and calculation provenance.\nINFO  [alembic.runtime.migration] Running upgrade 0006_standalone_financial_portal -> 0007_admin_governance_and_security, Administrative access governance and password-reset controls.\n",
+  "errors": []
+}

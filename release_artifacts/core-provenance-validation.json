@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "engine_version": "2.1.1",
+  "engine_source_hash": "4c4881993b8c7d05dbbd168a333e629f20aa480c2134440bbc02e71590d15eaf",
+  "registered_source_hash": "4c4881993b8c7d05dbbd168a333e629f20aa480c2134440bbc02e71590d15eaf",
+  "pairing_source_hash": "4c4881993b8c7d05dbbd168a333e629f20aa480c2134440bbc02e71590d15eaf",
+  "parity_report_sha256": "5cf64a3cea1be02a9016f9d98e215b36390e33d4c0234793732fb470ccefc35f",
+  "vendored_core_files": 104,
+  "vendored_core_hash_mismatches": [],
+  "golden_cases": {
+    "status": "PASS",
+    "passed": 14,
+    "total": 14
+  },
+  "baseline_archives": [
+    {
+      "label": "platform_engine_baseline",
+      "checked": false,
+      "expected_sha256": "47f8a018edc303489d37f9175fbbf43f6c291030412721a724c05294ac36305f",
+      "status": "NOT_PROVIDED"
+    },
+    {
+      "label": "portal_baseline",
+      "checked": false,
+      "expected_sha256": "7fe4ac3532967df19bbbba2f260a0434cbc474afe6bcad6ed3dc423d3df5073d",
+      "status": "NOT_PROVIDED"
+    }
+  ],
+  "errors": []
+}

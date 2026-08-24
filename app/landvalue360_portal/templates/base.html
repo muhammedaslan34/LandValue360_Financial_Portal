@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{{ title or 'LandValue360 Financial Portal' }}</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="/">LandValue360 <span data-ar="البوابة المالية" data-en="Financial Portal">البوابة المالية</span></a>
+  <nav>
+  {% if user %}
+    <a href="/portal" data-ar="مشروعاتي" data-en="My Projects">مشروعاتي</a>
+    <a id="adminNav" href="/admin" hidden data-ar="الإدارة" data-en="Administration">الإدارة</a>
+    <button id="languageToggle" class="link-button" type="button">English</button><button id="logoutButton" class="link-button" data-ar="تسجيل الخروج" data-en="Sign out">تسجيل الخروج</button>
+  {% else %}
+    <button id="languageToggle" class="link-button" type="button">English</button><a href="/login" data-ar="تسجيل الدخول" data-en="Sign in">تسجيل الدخول</a>
+    <a class="button small" href="/register" data-ar="إنشاء حساب" data-en="Create account">إنشاء حساب</a>
+  {% endif %}
+  </nav>
+</header>
+<main class="page">{% block content %}{% endblock %}</main>
+<footer class="footer" data-ar="النموذج المالي والتفاوضي أداة قرار تطويري. مؤشر القيمة المتبقية للأرض ليس تقييماً سوقياً مستقلاً أو توصية استثمارية." data-en="The financial and negotiation model is a development decision-support tool. Residual land value is not an independent market valuation or investment recommendation.">النموذج المالي والتفاوضي أداة قرار تطويري. مؤشر القيمة المتبقية للأرض ليس تقييماً سوقياً مستقلاً أو توصية استثمارية.</footer>
+<script src="/static/common.js" defer></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "source": "release_artifacts/contract-scenario-tests-v2.5.0.json",
+  "portal_version": "2.5.0",
+  "contract_engine_version": "3.1.0",
+  "scenario_count": 8,
+  "candidate_point_count": 144,
+  "checks_executed": 513,
+  "failure_count": 0,
+  "failures": []
+}

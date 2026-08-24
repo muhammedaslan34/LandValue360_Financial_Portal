@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "generated_at_utc": "2026-08-18T09:07:34.676218+00:00",
+  "wheel": "dist/landvalue360_financial_portal-2.5.0-py3-none-any.whl",
+  "wheel_sha256": "b7b741eed6dc590a9888e8071263e85e50f5ccaaf87d38f990832cce76a00f51",
+  "wheel_bytes": 653209,
+  "source_distribution": null,
+  "source_distribution_sha256": null,
+  "source_distribution_bytes": null,
+  "installation": "isolated target directory with no source PYTHONPATH",
+  "application_version": "2.5.0",
+  "engine_version": "2.1.1",
+  "engine_source_hash": "4c4881993b8c7d05dbbd168a333e629f20aa480c2134440bbc02e71590d15eaf",
+  "route_count": 97,
+  "health_live": 200,
+  "health_ready": 200,
+  "migration_head": "0007_admin_governance_and_security",
+  "bytecode_entries_in_wheel": 0
+}

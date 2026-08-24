@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "source_version": "2.4.0",
+  "target_version": "2.5.0",
+  "database_migration_required": false,
+  "alembic_head_before": "0007_admin_governance_and_security",
+  "alembic_head_after": "0007_admin_governance_and_security",
+  "historical_runs_preserved": true,
+  "policy_versions_preserved": true,
+  "calculation_change_scope": "NONE",
+  "notes": "UI, reporting and workflow exposure update. Generate a new Calculation Run only to obtain the new report and negotiation presentation."
+}

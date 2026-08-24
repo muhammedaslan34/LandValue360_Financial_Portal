@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-head"><div><h1>مشروعاتي</h1><p>المسودات والطلبات المرسلة والتقارير المنشورة.</p></div><a class="button" href="/portal/projects/new">مشروع جديد</a></div>
+<div class="cards">
+{% for project in projects %}<article class="project-card"><div class="row"><strong>{{ project.reference }}</strong><span class="status {{ project.status|lower }}">{{ project.status }}</span></div><h2>{{ project.name }}</h2><p>{{ project.description or 'لا يوجد وصف' }}</p><div class="actions"><a class="button small" href="/portal/projects/{{ project.id }}/financial">النموذج المالي</a><a class="button secondary small" href="/portal/projects/{{ project.id }}">البيانات</a></div></article>{% else %}<div class="empty">لا توجد مشروعات بعد.</div>{% endfor %}
+</div>
+{% endblock %}

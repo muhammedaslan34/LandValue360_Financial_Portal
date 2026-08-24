@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-head">
+  <div>
+    <p class="eyebrow">{{ project.reference }}</p>
+    <h1>{{ project.name }}</h1>
+    <p>الحالة: <strong>{{ project.status }}</strong> · الإصدار {{ version.version_number }} · اكتمال {{ version.completeness_percent }}%</p>
+  </div>
+  <div class="actions">
+    <a class="button secondary small" href="/api/operations/projects/{{ project.id }}/export/portal.lv360">حزمة البوابة</a>
+    <a class="button small" href="/api/operations/projects/{{ project.id }}/export/internal.lv360">حزمة البرنامج الداخلي</a>
+  </div>
+</div>
+
+<div id="operationsProject" data-project-id="{{ project.id }}">
+  <div class="grid-2">
+    <section class="panel">
+      <h2>إدارة الحالة</h2>
+      {% if allowed_statuses %}
+      <form id="statusForm">
+        <label>الحالة التالية
+          <select name="target_status">
+            {% for status in allowed_statuses %}<option value="{{ status }}">{{ status }}</option>{% endfor %}
+          </select>
+        </label>
+        <label>سبب التغيير<textarea name="reason" placeholder="سبب التغيير أو القرار"></textarea></label>
+        <button class="button">تحديث الحالة</button>
+      </form>
+      {% else %}<p>لا توجد انتقالات متاحة من الحالة الحالية.</p>{% endif %}
+
+      {% if can_assign %}
+      <hr>
+      <h3>الإسناد</h3>
+      <form id="assignmentForm" class="form-grid">
+        <label>نوع الإسناد
+          <select name="assignment_type"><option value="ANALYST">محلل</option><option value="REVIEWER">مدقق</option></select>
+        </label>
+        <label>عضو الفريق
+          <select name="user_id" required>
+            <option value="">اختر العضو</option>
+            {% for member in staff %}<option value="{{ member.id }}">{{ member.full_name }} — {{ member.roles|join(', ') }}</option>{% endfor %}
+          </select>
+        </label>
+        <button class="button secondary full">حفظ الإسناد</button>
+      </form>
+      {% endif %}
+      <div class="compact-list">
+        {% for assignment, assigned_user in assignments %}
+        <div class="download-row"><span>{{ assignment.assignment_type }}</span><strong>{{ assigned_user.full_name }}</strong></div>
+        {% else %}<p>لم يتم إسناد محلل أو مدقق بعد.</p>{% endfor %}
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>طلب استكمال</h2>
+      <form id="infoRequestForm">
+        <label>العنوان<input name="subject" placeholder="عنوان الطلب" required></label>
+        <label>البيانات المطلوبة<textarea name="message" placeholder="البيانات أو الوثائق المطلوبة" required></textarea></label>
+        <button class="button secondary">إرسال للعميل</button>
+      </form>
+      <h3>الطلبات السابقة</h3>
+      {% for item in requests %}
+      <div class="request-card"><strong>{{ item.subject }}</strong><span>{{ item.status }}</span></div>
+      {% else %}<p>لا توجد طلبات استكمال.</p>{% endfor %}
+      <h3>ملاحظة داخلية</h3>
+      <form id="internalNoteForm"><textarea name="body" placeholder="لا تظهر هذه الملاحظة للعميل" required></textarea><button class="button secondary">حفظ الملاحظة</button></form>
+    </section>
+  </div>
+
+  <section class="panel">
+    <h2>التقارير</h2>
+    {% if can_upload %}
+    <details>
+      <summary>تسجيل نتيجة التحليل الداخلي</summary>
+      <form id="analysisImportForm" class="form-grid">
+        <label>مرجع المصدر<input name="source_reference" placeholder="اسم الحزمة أو المرجع الداخلي"></label>
+        <label>Calculation Run<input name="calculation_run_reference" placeholder="مرجع تشغيل الحساب"></label>
+        <button class="button secondary full">تسجيل المرجع</button>
+      </form>
+    </details>
+    {% endif %}
+    {% if can_upload %}
+    <form id="reportUploadForm" enctype="multipart/form-data" class="form-grid">
+      <label>نوع التقرير<select name="report_type"><option value="EXECUTIVE">التقرير التنفيذي</option><option value="DETAILED">التقرير الفني والمالي</option></select></label>
+      <label>اللغة<select name="language"><option value="ar">العربية</option><option value="en">English</option></select></label>
+      <label class="full">مرجع تشغيل الحساب<input name="calculation_run_reference" placeholder="مرجع تشغيل الحساب الداخلي"></label>
+      <label class="full">ملف PDF<input type="file" name="file" accept=".pdf" required></label>
+      <button class="button full">رفع للمراجعة</button>
+    </form>
+    {% endif %}
+    <div class="report-list">
+      {% for report in reports %}
+      <article>
+        <div><strong>{{ report.report_type }} — {{ report.language }}</strong><span>{{ report.status }}</span></div>
+        {% if report.current_version_id and can_review %}
+        <div class="actions"><button class="button small report-review" data-version-id="{{ report.current_version_id }}" data-action="APPROVE">اعتماد</button><button class="button danger small report-review" data-version-id="{{ report.current_version_id }}" data-action="REJECT">إعادة</button></div>
+        {% endif %}
+      </article>
+      {% else %}<p>لا توجد تقارير.</p>{% endfor %}
+    </div>
+    {% if can_publish %}<button class="button" id="publishReports">نشر مجموعة التقارير للعميل</button>{% endif %}
+  </section>
+
+  <div class="grid-2">
+    <section class="panel">
+      <h2>ملخص المدخلات المرسلة</h2>
+      <div class="metric-grid">
+        <div class="metric"><span>مساحة الأرض</span><strong>{{ version.input_snapshot.get('land', {}).get('gross_land_area_sqm', '—') }} م²</strong></div>
+        <div class="metric"><span>FAR</span><strong>{{ version.input_snapshot.get('planning', {}).get('far', '—') }}</strong></div>
+        <div class="metric"><span>المنتجات</span><strong>{{ version.input_snapshot.get('products', [])|length }}</strong></div>
+        <div class="metric"><span>بنود الكلف</span><strong>{{ version.input_snapshot.get('costs', [])|length }}</strong></div>
+      </div>
+      <details><summary>عرض JSON الكامل</summary><pre class="json-view">{{ version.input_snapshot|tojson(indent=2) }}</pre></details>
+    </section>
+    <section class="panel">
+      <h2>المستندات</h2>
+      {% for doc in documents %}<a class="download-row" href="/api/documents/{{ doc.id }}/download"><span>{{ doc.category }}</span><strong>{{ doc.original_name }}</strong></a>{% else %}<p>لا توجد مستندات.</p>{% endfor %}
+    </section>
+  </div>
+  <p class="form-message" id="formMessage"></p>
+</div>
+{% endblock %}
+{% block scripts %}<script src="/static/operations.js" defer></script>{% endblock %}

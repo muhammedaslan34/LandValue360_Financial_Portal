@@ -1,0 +1,251 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="adminApp">
+  <div class="page-head"><div><h1>إدارة المنصة</h1><p>المستخدمون والمؤسسات والعضويات والإعدادات وسجل التدقيق.</p></div></div>
+  <div class="metric-grid" id="adminSummary"></div>
+
+  <section class="panel financial-policy-admin" id="financialPolicyPanel">
+    <div class="section-head">
+      <div>
+        <h2 data-ar="إدارة السياسات المالية" data-en="Financial Policy Management">إدارة السياسات المالية</h2>
+        <p data-ar="كل نشر ينشئ نسخة سياسة مستقلة وثابتة. يمكن للمستخدم اختيار النسخ المسموح بها، وتبقى كل نتيجة مرتبطة بالنسخة التي احتسبت عليها." data-en="Every publish creates an immutable policy version. Users may select approved versions, and every result remains bound to the version used for calculation.">كل نشر ينشئ نسخة سياسة مستقلة وثابتة. يمكن للمستخدم اختيار النسخ المسموح بها، وتبقى كل نتيجة مرتبطة بالنسخة التي احتسبت عليها.</p>
+      </div>
+      <div id="financialPolicyCurrent" class="save-state"></div>
+    </div>
+    <form id="financialPolicyForm">
+      <div class="policy-admin-group policy-version-toolbar">
+        <h3 data-ar="نسخة المصدر وحالة النشر" data-en="Source Version & Publication">نسخة المصدر وحالة النشر</h3>
+        <div class="form-grid policy-admin-grid">
+          <label data-ar="نسخة السياسة المصدر" data-en="Source policy version">نسخة السياسة المصدر
+            <select name="policy_source_version" id="policySourceVersion" required></select>
+          </label>
+          <div class="policy-version-actions">
+            <button class="button secondary" type="button" id="loadPolicyVersion" data-ar="تحميل النسخة للتحرير" data-en="Load Version for Editing">تحميل النسخة للتحرير</button>
+            <button class="button secondary" type="button" id="activatePolicyVersion" data-ar="تعيينها كافتراضية" data-en="Set as Default">تعيينها كافتراضية</button>
+          </div>
+          <label data-ar="اسم السياسة بالعربية" data-en="Arabic policy name">اسم السياسة بالعربية<input name="display_name_ar" maxlength="240" required></label>
+          <label data-ar="اسم السياسة بالإنكليزية" data-en="English policy name">اسم السياسة بالإنكليزية<input name="display_name_en" maxlength="240" dir="ltr" required></label>
+          <label class="full" data-ar="وصف السياسة بالعربية" data-en="Arabic policy description">وصف السياسة بالعربية<textarea name="description_ar" rows="2" maxlength="4000"></textarea></label>
+          <label class="full" data-ar="وصف السياسة بالإنكليزية" data-en="English policy description">وصف السياسة بالإنكليزية<textarea name="description_en" rows="2" maxlength="4000" dir="ltr"></textarea></label>
+          <label class="checkbox-label"><input type="checkbox" name="user_selectable"> <span data-ar="إتاحة هذه النسخة للمستخدمين" data-en="Allow users to select this version">إتاحة هذه النسخة للمستخدمين</span></label>
+          <label class="checkbox-label"><input type="checkbox" name="activate_new_policy" checked> <span data-ar="جعل النسخة الجديدة هي الافتراضية بعد النشر" data-en="Make the new version the default after publication">جعل النسخة الجديدة هي الافتراضية بعد النشر</span></label>
+        </div>
+      </div>
+
+      <div class="policy-admin-group">
+        <h3 data-ar="حدود الجدوى والعائد" data-en="Feasibility & Return Thresholds">حدود الجدوى والعائد</h3>
+        <div class="form-grid policy-admin-grid">
+          <label>Discount Rate %<input type="number" name="discount_rate" data-policy-rate min="0" max="1000" step="0.01" required></label>
+          <label>Landowner Discount Rate %<input type="number" name="government_discount_rate" data-policy-rate min="0" max="1000" step="0.01" required></label>
+          <label>Minimum Project NPV<input type="number" name="minimum_project_npv" min="0" step="0.01" required></label>
+          <label>Minimum Developer Equity IRR %<input type="number" name="minimum_developer_equity_irr" data-policy-rate min="0" max="1000" step="0.01" required></label>
+          <label>Target Developer IRR %<input type="number" name="target_developer_irr" data-policy-rate min="0" max="1000" step="0.01" required></label>
+          <label>Minimum Developer NPV<input type="number" name="minimum_developer_npv" min="0" step="0.01" required></label>
+          <label>Minimum Profit on Cost %<input type="number" name="minimum_profit_on_cost" data-policy-rate min="0" max="1000" step="0.01" required></label>
+          <label>Target Developer Profit on Cost %<input type="number" name="target_developer_profit_on_cost" data-policy-rate min="0" max="1000" step="0.01" required></label>
+          <label>Minimum Developer MOIC<input type="number" name="minimum_developer_multiple" min="0" step="0.01" required></label>
+          <label>Maximum Funding Gap<input type="number" name="maximum_funding_gap" min="0" step="0.01" required></label>
+        </div>
+      </div>
+
+      <div class="policy-admin-group">
+        <h3 data-ar="صاحب الأرض ومجال البحث" data-en="Landowner & Search Range">صاحب الأرض ومجال البحث</h3>
+        <div class="form-grid policy-admin-grid">
+          <label>Minimum Landowner NPV<input type="number" name="minimum_landowner_npv" min="0" step="0.01" required></label>
+          <label>Minimum Value Recovery %<input type="number" name="minimum_landowner_value_recovery" data-policy-rate min="0" max="1000" step="0.01" required></label>
+          <label>Minimum Landowner Share %<input type="number" name="minimum_landowner_share" data-policy-rate min="0" max="100" step="0.0001" required></label>
+          <label>Maximum Landowner Share %<input type="number" name="maximum_landowner_share" data-policy-rate min="0" max="100" step="0.0001" required></label>
+          <label>Search Tolerance<input type="number" name="search_tolerance" min="0.000000001" max="1" step="0.000000001" required></label>
+          <label data-ar="طريقة اختيار المقترح النهائي" data-en="Final proposal selection"><span class="i18n-label">طريقة اختيار المقترح النهائي</span><select name="proposal_selection_method"><option value="BALANCED">Balanced</option><option value="MAXIMUM_LANDOWNER_VALUE">Maximum Landowner Value</option></select></label>
+        </div>
+        <div class="contract-policy-options">
+          <strong data-ar="الآليات المسموحة" data-en="Allowed mechanisms">الآليات المسموحة</strong>
+          <label class="checkbox-label"><input type="checkbox" name="allowed_contract_methods" value="GROSS_SALES"> Gross Sales Share</label>
+          <label class="checkbox-label"><input type="checkbox" name="allowed_contract_methods" value="NET_SALES"> Net Sales Share</label>
+          <label class="checkbox-label"><input type="checkbox" name="allowed_contract_methods" value="PROFIT_SHARE"> Profit Share</label>
+          <label class="checkbox-label"><input type="checkbox" name="allowed_contract_methods" value="UPFRONT"> Upfront Payment</label>
+          <label class="checkbox-label"><input type="checkbox" name="allowed_contract_methods" value="HYBRID"> Hybrid</label>
+          <label class="checkbox-label"><input type="checkbox" name="allowed_contract_methods" value="MINIMUM_GUARANTEE"> Minimum Guarantee</label>
+        </div>
+      </div>
+
+      <div class="policy-admin-group">
+        <h3 data-ar="منهج تحديد النقطة المتوازنة والسقف المتحفظ" data-en="Balanced Point & Policy-Adjusted Ceiling">منهج تحديد النقطة المتوازنة والسقف المتحفظ</h3>
+        <p class="muted" data-ar="السقف الفني تحدده الجدوى الفعلية. أما السقف المتحفظ والنقطة المتوازنة فيحددهما نطاق السياسة بين الحد الأدنى المقبول والسقف الفني." data-en="The technical ceiling is determined by actual feasibility. The policy-adjusted ceiling and balanced point are positioned within the range between the Minimum Acceptable and Technical Ceiling.">السقف الفني تحدده الجدوى الفعلية. أما السقف المتحفظ والنقطة المتوازنة فيحددهما نطاق السياسة بين الحد الأدنى المقبول والسقف الفني.</p>
+        <div class="form-grid policy-admin-grid">
+          <label data-ar="منهج التوصية" data-en="Recommendation method"><span class="i18n-label">منهج التوصية</span><select name="negotiation_recommendation_method"><option value="POLICY_RANGE_POSITION">Policy Range Position</option><option value="CORE_TARGET_RETURN">Core Target Return</option></select></label>
+          <label>Institutional Conservatism %<input type="number" name="institutional_conservatism" data-policy-rate min="0" max="95" step="0.01" required></label>
+          <label>Policy Ceiling Capacity Factor %<input type="number" name="risk_adjusted_capacity_factor" data-policy-rate min="0" max="100" step="0.01" required></label>
+          <label>Minimum Capacity Factor %<input type="number" name="minimum_capacity_factor" data-policy-rate min="0" max="100" step="0.01" required></label>
+          <label>Developer Safety Buffer %<input type="number" name="developer_safety_buffer" data-policy-rate min="0" max="50" step="0.01" required></label>
+          <label>Balanced Position Factor %<input type="number" name="balanced_position_factor" data-policy-rate min="0" max="100" step="0.01" required></label>
+          <label>Balanced Position Minimum %<input type="number" name="balanced_position_minimum" data-policy-rate min="0" max="100" step="0.01" required></label>
+          <label>Balanced Position Maximum %<input type="number" name="balanced_position_maximum" data-policy-rate min="0" max="100" step="0.01" required></label>
+          <label>Developer Competitive Position %<input type="number" name="developer_competitive_position_factor" data-policy-rate min="0" max="100" step="0.01" required></label>
+          <label>Negotiation Rounding Increment %<input type="number" name="rounding_increment_percent" data-policy-rate min="0" max="100" step="0.0001" required></label>
+        </div>
+      </div>
+
+      <div class="grid-2 policy-admin-columns">
+        <div class="policy-admin-group">
+          <h3 data-ar="تعريف أسس المشاركة" data-en="Participation Bases">تعريف أسس المشاركة</h3>
+          <label data-ar="الحسومات البيعية المؤهلة من صافي المبيعات" data-en="Eligible revenue deductions from Net Sales">الحسومات البيعية المؤهلة من صافي المبيعات<textarea name="net_sales_deductible_categories" rows="4" placeholder="COMMERCIAL_DISCOUNT, REFUNDS"></textarea></label>
+          <label data-ar="الكلف الداخلة في Profit Share" data-en="Costs included in Profit Share">الكلف الداخلة في Profit Share<textarea name="profit_share_cost_categories" rows="4" placeholder="CONSTRUCTION, MARKETING"></textarea></label>
+        </div>
+        <div class="policy-admin-group">
+          <h3 data-ar="سياسة التمويل والإقفال" data-en="Financing & Close Policy">سياسة التمويل والإقفال</h3>
+          <div class="contract-policy-options stacked">
+            <label class="checkbox-label"><input type="checkbox" name="finance_allow_financing"> <span data-ar="السماح بالتمويل" data-en="Allow financing">السماح بالتمويل</span></label>
+            <label class="checkbox-label"><input type="checkbox" name="finance_defer_unfunded_costs"> <span data-ar="تأجيل الكلف غير المغطاة مع الإفصاح" data-en="Defer uncovered costs with disclosure">تأجيل الكلف غير المغطاة مع الإفصاح</span></label>
+            <label class="checkbox-label locked-control"><input type="checkbox" checked disabled> منع الكاش السالب</label>
+            <label class="checkbox-label locked-control"><input type="checkbox" checked disabled> Terminal Debt = 0</label>
+            <label class="checkbox-label locked-control"><input type="checkbox" checked disabled> Deferred Cost = 0</label>
+            <label class="checkbox-label locked-control"><input type="checkbox" checked disabled> Contractual Arrears = 0</label>
+            <label class="checkbox-label locked-control"><input type="checkbox" checked disabled> Monthly Cash Reconciliation</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="policy-admin-group">
+        <h3 data-ar="الافتراضات المالية والزمنية الافتراضية" data-en="Default Financial & Timing Assumptions">الافتراضات المالية والزمنية الافتراضية</h3>
+        <p data-ar="تطبق تلقائياً على المستخدم العادي وتثبت داخل كل Calculation Run. المحلل فقط يستطيع استخدام افتراضات خاصة بالمشروع." data-en="Applied automatically to standard users and frozen in every Calculation Run. Only analysts may use project-specific overrides.">تطبق تلقائياً على المستخدم العادي وتثبت داخل كل Calculation Run. المحلل فقط يستطيع استخدام افتراضات خاصة بالمشروع.</p>
+        <div class="form-grid policy-admin-grid">
+          <label class="checkbox-label full"><input type="checkbox" name="advanced_finance_enabled"> <span data-ar="تفعيل التمويل كافتراض افتراضي" data-en="Enable financing by default">تفعيل التمويل كافتراض افتراضي</span></label>
+          <label data-ar="التسهيلات التمويلية الافتراضية" data-en="Default committed financing">التسهيلات التمويلية الافتراضية<input type="number" name="advanced_committed_financing" min="0" step="0.01"></label>
+          <label data-ar="الفائدة السنوية %" data-en="Annual interest %">الفائدة السنوية %<input type="number" name="advanced_annual_interest_rate" data-advanced-rate min="0" max="1000" step="0.01"></label>
+          <label data-ar="رسم الترتيب/المقدم %" data-en="Upfront fee %">رسم الترتيب/المقدم %<input type="number" name="advanced_upfront_fee_rate" data-advanced-rate min="0" max="100" step="0.01"></label>
+          <label data-ar="رسم الالتزام %" data-en="Commitment fee %">رسم الالتزام %<input type="number" name="advanced_commitment_fee_rate" data-advanced-rate min="0" max="100" step="0.01"></label>
+          <label data-ar="نسبة السداد من الفائض %" data-en="Cash sweep %">نسبة السداد من الفائض %<input type="number" name="advanced_cash_sweep_share" data-advanced-rate min="0" max="100" step="0.01"></label>
+          <label data-ar="الحد الأدنى للنقد" data-en="Minimum cash balance">الحد الأدنى للنقد<input type="number" name="advanced_minimum_cash_balance" min="0" step="0.01"></label>
+          <label data-ar="ترتيب السحب" data-en="Funding draw order">ترتيب السحب<select name="advanced_funding_draw_order"><option value="EQUITY_FIRST">Equity First</option><option value="DEBT_FIRST">Debt First</option><option value="PRO_RATA">Pro Rata</option></select></label>
+          <label class="checkbox-label"><input type="checkbox" name="advanced_capitalize_interest"> <span data-ar="رسملة الفائدة" data-en="Capitalize interest">رسملة الفائدة</span></label>
+          <label class="checkbox-label"><input type="checkbox" name="advanced_force_terminal_repayment"> <span data-ar="سداد الدين بالكامل عند الإقفال" data-en="Force terminal debt repayment">سداد الدين بالكامل عند الإقفال</span></label>
+
+          <label data-ar="منحنى المبيعات" data-en="Sales curve">منحنى المبيعات<select name="advanced_sales_curve_type"><option>S_CURVE</option><option>LINEAR</option><option>FRONT_LOADED</option><option>BACK_LOADED</option><option>BELL</option><option>ACCELERATED_S_CURVE</option><option>DELAYED_RAMP</option></select></label>
+          <label data-ar="شدة منحنى المبيعات" data-en="Sales curve intensity">شدة منحنى المبيعات<input type="number" name="advanced_sales_curve_intensity" min="0.000001" max="100" step="any" inputmode="decimal"></label>
+          <label data-ar="منحنى كلفة الإنشاء" data-en="Construction cost curve">منحنى كلفة الإنشاء<select name="advanced_construction_curve_type"><option>BELL</option><option>LINEAR</option><option>FRONT_LOADED</option><option>BACK_LOADED</option><option>S_CURVE</option><option>ACCELERATED_S_CURVE</option><option>DELAYED_RAMP</option></select></label>
+          <label data-ar="منحنى الكلف الأخرى" data-en="Other cost curve">منحنى الكلف الأخرى<select name="advanced_other_cost_curve_type"><option>BELL</option><option>LINEAR</option><option>FRONT_LOADED</option><option>BACK_LOADED</option><option>S_CURVE</option><option>ACCELERATED_S_CURVE</option><option>DELAYED_RAMP</option></select></label>
+          <label data-ar="الحسم التجاري %" data-en="Commercial discount %">الحسم التجاري %<input type="number" name="advanced_commercial_discount_rate" data-advanced-rate min="0" max="100" step="0.01"></label>
+          <label data-ar="حوافز المشترين %" data-en="Buyer incentives %">حوافز المشترين %<input type="number" name="advanced_buyer_incentive_rate" data-advanced-rate min="0" max="100" step="0.01"></label>
+          <label data-ar="المردودات/الإلغاءات %" data-en="Refund/cancellation %">المردودات/الإلغاءات %<input type="number" name="advanced_refund_rate" data-advanced-rate min="0" max="100" step="0.01"></label>
+          <label data-ar="تصاعد الكلفة %" data-en="Cost escalation %">تصاعد الكلفة %<input type="number" name="advanced_cost_escalation_rate" data-advanced-rate min="-100" max="1000" step="0.01"></label>
+          <label data-ar="احتياطي الكلفة %" data-en="Cost contingency %">احتياطي الكلفة %<input type="number" name="advanced_cost_contingency_rate" data-advanced-rate min="0" max="1000" step="0.01"></label>
+
+          <label data-ar="سياسة الإنفاق" data-en="Spend policy">سياسة الإنفاق<select name="advanced_spend_policy"><option value="CASH_DRIVEN">Cash Driven</option><option value="HYBRID">Hybrid</option></select></label>
+          <label data-ar="حد التنفيذ الأدنى بالوضع الهجين %" data-en="Hybrid minimum execution %">حد التنفيذ الأدنى بالوضع الهجين %<input type="number" name="advanced_hybrid_minimum_execution_share" data-advanced-rate min="0" max="100" step="0.01"></label>
+          <label data-ar="احتياطي الكلف المستقبلية %" data-en="Future cost reserve %">احتياطي الكلف المستقبلية %<input type="number" name="advanced_future_cost_reserve_share" data-advanced-rate min="0" max="100" step="0.01"></label>
+          <label data-ar="التمديد الأقصى - شهر" data-en="Maximum extension - months">التمديد الأقصى - شهر<input type="number" name="advanced_maximum_extension_months" min="0" max="600" step="1"></label>
+          <label data-ar="الحد الأقصى للتنفيذ الشهري %" data-en="Maximum monthly execution %">الحد الأقصى للتنفيذ الشهري %<input type="number" name="advanced_maximum_monthly_execution_share" data-advanced-rate min="0" max="100" step="0.01"></label>
+          <label data-ar="الحد الأقصى للتنفيذ الشهري - مبلغ" data-en="Maximum monthly execution amount">الحد الأقصى للتنفيذ الشهري - مبلغ<input type="number" name="advanced_maximum_monthly_execution_amount" min="0" step="0.01"></label>
+          <label class="checkbox-label"><input type="checkbox" name="advanced_defer_contractual_payments"> <span data-ar="تأجيل الالتزامات غير المغطاة مع الإفصاح" data-en="Defer uncovered contractual obligations">تأجيل الالتزامات غير المغطاة مع الإفصاح</span></label>
+
+          <label data-ar="هامش أفق النموذج - شهر" data-en="Model horizon buffer - months">هامش أفق النموذج - شهر<input type="number" name="advanced_horizon_buffer_months" min="0" max="240" step="1"></label>
+          <label data-ar="عدد فواصل شبكة الحل" data-en="Solver grid intervals">عدد فواصل شبكة الحل<input type="number" name="advanced_solver_grid_intervals" min="4" max="100" step="1"></label>
+          <label data-ar="تواتر التوزيعات" data-en="Distribution frequency">تواتر التوزيعات<select name="advanced_distribution_frequency_code"><option value="MONTHLY">Monthly</option><option value="QUARTERLY">Quarterly</option><option value="SEMI_ANNUAL">Semi-Annual</option><option value="ANNUAL">Annual</option></select></label>
+          <label data-ar="أول شهر للتوزيع" data-en="First distribution month">أول شهر للتوزيع<input type="number" name="advanced_first_distribution_month" min="1" max="600" step="1"></label>
+          <label data-ar="نسبة النقد القابل للتوزيع %" data-en="Distribution share %">نسبة النقد القابل للتوزيع %<input type="number" name="advanced_distribution_share" data-advanced-rate min="0" max="100" step="0.01"></label>
+          <label data-ar="احتياطي التوزيعات - شهر" data-en="Distribution reserve - months">احتياطي التوزيعات - شهر<input type="number" name="advanced_distribution_reserve_months" min="0" max="240" step="1"></label>
+          <label data-ar="احتياطي الكلفة المتبقية %" data-en="Remaining cost reserve %">احتياطي الكلفة المتبقية %<input type="number" name="advanced_remaining_cost_reserve_share" data-advanced-rate min="0" max="100" step="0.01"></label>
+          <label class="checkbox-label"><input type="checkbox" name="advanced_prohibit_distributions_while_debt_outstanding"> <span data-ar="منع التوزيعات مع وجود دين" data-en="Prohibit distributions while debt is outstanding">منع التوزيعات مع وجود دين</span></label>
+          <label class="checkbox-label"><input type="checkbox" name="advanced_recover_developer_advances_before_landowner_cash"> <span data-ar="استرداد سلف المطور قبل مدفوعات الأرض" data-en="Recover developer advances before landowner cash">استرداد سلف المطور قبل مدفوعات الأرض</span></label>
+          <label class="checkbox-label"><input type="checkbox" name="advanced_settle_prior_obligations_before_distribution"> <span data-ar="تسوية الالتزامات السابقة قبل التوزيع" data-en="Settle prior obligations before distribution">تسوية الالتزامات السابقة قبل التوزيع</span></label>
+          <label class="checkbox-label"><input type="checkbox" name="advanced_prohibit_before_completion"> <span data-ar="منع التوزيعات قبل الاكتمال" data-en="Prohibit distributions before completion">منع التوزيعات قبل الاكتمال</span></label>
+          <label data-ar="مضاعف قيمة الأرض لبحث الدفعة المقدمة" data-en="Land-value multiple for upfront search">مضاعف قيمة الأرض لبحث الدفعة المقدمة<input type="number" name="advanced_upfront_search_land_value_multiple" min="0" max="100" step="0.01"></label>
+          <label data-ar="مضاعف الكلفة لبحث الدفعة المقدمة" data-en="Cost multiple for upfront search">مضاعف الكلفة لبحث الدفعة المقدمة<input type="number" name="advanced_upfront_search_cost_multiple" min="0" max="100" step="0.01"></label>
+
+          <label class="full" data-ar="قواعد التحصيل الافتراضية - JSON" data-en="Default collection rules - JSON">قواعد التحصيل الافتراضية - JSON<textarea name="advanced_collection_rules" rows="7" dir="ltr" required></textarea></label>
+          <label class="full" data-ar="سبب إصدار السياسة الجديدة" data-en="New policy version reason">سبب إصدار السياسة الجديدة<input name="change_reason" minlength="3" maxlength="1000" required placeholder="سبب التعديل وأثره المقصود"></label>
+          <button class="button full" data-ar="نشر نسخة سياسة جديدة" data-en="Publish New Policy Version">نشر نسخة سياسة جديدة</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="grid-2 policy-history-grid">
+      <div>
+        <h3 data-ar="إصدارات السياسة" data-en="Policy Versions">إصدارات السياسة</h3>
+        <div class="table-wrap"><table><thead><tr><th>الإصدار</th><th data-ar="الاسم" data-en="Name">الاسم</th><th data-ar="التاريخ" data-en="Date">التاريخ</th><th data-ar="الإتاحة" data-en="Availability">الإتاحة</th><th data-ar="الحالة" data-en="Status">الحالة</th><th data-ar="الإجراءات" data-en="Actions">الإجراءات</th></tr></thead><tbody id="financialPolicyVersions"></tbody></table></div>
+      </div>
+      <div>
+        <h3 data-ar="إصدارات المحرك" data-en="Engine Versions">إصدارات المحرك</h3>
+        <div class="table-wrap"><table><thead><tr><th>Engine</th><th>Adapter</th><th data-ar="الحالة" data-en="Status">الحالة</th><th>Source Hash</th></tr></thead><tbody id="financialEngineVersions"></tbody></table></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="grid-2">
+    <section class="panel">
+      <h2>إضافة عضو فريق داخلي</h2>
+      <form id="staffForm" class="form-grid">
+        <label>الاسم<input name="full_name" required></label>
+        <label>البريد<input type="email" name="email" required></label>
+        <label>كلمة مرور مؤقتة<input type="password" name="password" minlength="10" required></label>
+        <label>الدور<select name="role"><option>ANALYST</option><option>REVIEWER</option><option>TEAM_MANAGER</option><option>PLATFORM_ADMIN</option></select></label>
+        <button class="button full">إنشاء الحساب والعضوية</button>
+      </form>
+    </section>
+    <section class="panel">
+      <h2>إنشاء مؤسسة</h2>
+      <form id="organizationForm" class="form-grid">
+        <label>اسم المؤسسة<input name="name" required></label>
+        <label>نوع المؤسسة<select name="kind"><option value="LANDOWNER">صاحب أرض</option><option value="INTERNAL">فريق داخلي</option><option value="OTHER">أخرى</option></select></label>
+        <label class="full">Slug اختياري<input name="slug" placeholder="يُنشأ تلقائياً عند تركه فارغاً"></label>
+        <button class="button secondary full">إنشاء المؤسسة</button>
+      </form>
+    </section>
+  </div>
+
+  <section class="panel">
+    <h2>إضافة عضوية وصلاحية</h2>
+    <form id="membershipForm" class="form-grid">
+      <label>المستخدم<select name="user_id" id="membershipUser" required></select></label>
+      <label>المؤسسة<select name="organization_id" id="membershipOrganization" required></select></label>
+      <label>الدور<select name="role" id="membershipRole" required></select></label>
+      <label class="checkbox-label"><input type="checkbox" name="is_owner" value="true"> مالك المؤسسة</label>
+      <button class="button secondary full">إضافة العضوية</button>
+    </form>
+  </section>
+
+  <section class="panel">
+    <div class="section-head"><div><h2 data-ar="المستخدمون والأمان" data-en="Users & Security">المستخدمون والأمان</h2><p data-ar="إدارة الحسابات، إعادة تعيين كلمة المرور، الجلسات وسجل النشاط. لا يمكن عرض كلمات المرور الأصلية." data-en="Manage accounts, password resets, sessions and activity. Original passwords can never be viewed.">إدارة الحسابات، إعادة تعيين كلمة المرور، الجلسات وسجل النشاط. لا يمكن عرض كلمات المرور الأصلية.</p></div></div>
+    <div class="table-wrap"><table><thead><tr><th>الاسم</th><th>البريد</th><th>الأدوار</th><th>آخر دخول</th><th>المشاريع</th><th>الجلسات</th><th>الحالة</th><th>الإجراءات</th></tr></thead><tbody id="adminUsers"></tbody></table></div>
+  </section>
+  <section class="panel"><h2>العضويات</h2><div class="table-wrap"><table><thead><tr><th>المؤسسة</th><th>المستخدم</th><th>الأدوار</th><th>الحالة</th><th>إجراء</th></tr></thead><tbody id="adminMemberships"></tbody></table></div></section>
+  <section class="panel"><h2 data-ar="المؤسسات" data-en="Organizations">المؤسسات</h2><div class="table-wrap"><table><thead><tr><th>المؤسسة</th><th>النوع</th><th>الأعضاء</th><th>المشاريع</th><th>الحالة</th><th>تاريخ الإنشاء</th></tr></thead><tbody id="adminOrganizations"></tbody></table></div></section>
+  <section class="panel">
+    <div class="section-head"><div><h2 data-ar="جميع المشروعات والتقارير" data-en="All Projects & Reports">جميع المشروعات والتقارير</h2><p data-ar="يمكن لمدير المنصة فتح أي مشروع وتحليله وتنزيل تقاريره دون تغيير ملكيته." data-en="Platform administrators can open, analyze and download any project without changing ownership.">يمكن لمدير المنصة فتح أي مشروع وتحليله وتنزيل تقاريره دون تغيير ملكيته.</p></div></div>
+    <div class="admin-search-row"><label data-ar="البحث باسم المشروع أو المالك أو المؤسسة" data-en="Search project, owner or organization"><span class="i18n-label">البحث باسم المشروع أو المالك أو المؤسسة</span><input id="adminProjectSearch" type="search" autocomplete="off"></label><button class="button secondary" id="searchAdminProjects" type="button" data-ar="بحث" data-en="Search">بحث</button></div>
+    <div class="table-wrap"><table><thead><tr><th>المرجع</th><th>المشروع</th><th>المؤسسة</th><th>المالك</th><th>الحالة</th><th>آخر تحليل</th><th>المستندات</th><th>الإجراءات</th></tr></thead><tbody id="adminProjects"></tbody></table></div>
+  </section>
+
+  <section class="panel">
+    <div class="section-head"><div><h2>إعدادات التشغيل</h2><p>قيم JSON محكومة ومؤرخة. لا تضع أسراراً هنا.</p></div></div>
+    <div id="systemSettings"></div>
+  </section>
+
+  <section class="panel">
+    <h2>سياسات الملفات</h2>
+    <div class="table-wrap"><table><thead><tr><th>الامتداد</th><th>MIME Types</th><th>الحد MB</th><th>مفعل</th><th>حفظ</th></tr></thead><tbody id="filePolicies"></tbody></table></div>
+  </section>
+
+  <section class="panel">
+    <h2>قوالب البريد</h2>
+    <p class="muted">المتغيرات المتاحة: <code>{title}</code> و<code>{body}</code> و<code>{link}</code>.</p>
+    <div id="emailTemplates" class="record-list"></div>
+  </section>
+
+  <section class="panel">
+    <h2>طلبات الخصوصية</h2>
+    <div class="table-wrap"><table><thead><tr><th>المستخدم</th><th>الطلب</th><th>الحالة</th><th>التاريخ</th><th>الإجراء</th></tr></thead><tbody id="privacyRequests"></tbody></table></div>
+  </section>
+
+  <section class="panel"><div class="section-head"><div><h2>آخر أحداث التدقيق</h2><p>العمليات الحساسة المسجلة.</p></div><button class="button secondary small" id="reloadAdmin">تحديث البيانات</button></div><div class="admin-search-row"><label data-ar="تصفية حسب الإجراء" data-en="Filter by action"><span class="i18n-label">تصفية حسب الإجراء</span><input id="auditActionFilter" type="search" placeholder="PASSWORD, PROJECT, REPORT"></label><button class="button secondary" id="filterAudit" type="button" data-ar="تطبيق" data-en="Apply">تطبيق</button></div><div id="auditList"></div></section>
+  <p class="form-message" id="formMessage"></p>
+</div>
+<div class="admin-modal" id="adminModal" hidden aria-modal="true" role="dialog" aria-labelledby="adminModalTitle">
+  <div class="admin-modal-card">
+    <div class="admin-modal-head"><h2 id="adminModalTitle">تفاصيل</h2><button type="button" class="button secondary small" id="closeAdminModal" data-ar="إغلاق" data-en="Close">إغلاق</button></div>
+    <div id="adminModalBody"></div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}<script src="/static/admin.js" defer></script>{% endblock %}

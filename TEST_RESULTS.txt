@@ -1,0 +1,41 @@
+LandValue360 Financial Portal v2.5.0
+Final Test Results
+
+Release Gate: 38 / 38 PASS
+Python non-browser tests: 56 PASS
+Optional browser test: 1 SKIPPED by default; requires unrestricted Chromium
+JavaScript syntax checks: 6 PASS
+Policy/negotiation current-code assertions: 49 / 49 PASS across 10 scenarios
+Detailed contract regression matrix: 513 / 513 PASS - 144 candidate points - 8 project cases
+Golden financial cases: 14 / 14 PASS
+Platform core parity: 104 / 104 MATCHED; 0 changed; 0 missing; 0 extra
+Core provenance: PASS
+Fresh SQLite migration: PASS - 47 tables - head 0007_admin_governance_and_security
+PostgreSQL offline migration: PASS - 91,941 bytes
+Static security scan: PASS - 0 High / 0 Medium
+Live Uvicorn HTTP smoke: PASS - root, register, live, ready and OpenAPI returned HTTP 200
+Sample PDF: PASS - 11 A4 pages - visual QA PASS
+Sample Excel: PASS - 5 sheets - 0 formula errors - 0 external links
+Package contract: PASS
+Deployment configuration: PASS
+
+v2.5 UX/report regression:
+- Negotiation axis begins at Minimum Acceptable, not zero: PASS
+- Dynamic axis maximum and out-of-range offer rendering: PASS
+- Collision-aware multi-lane labels: PASS
+- Six evidence-based negotiation explanations: PASS
+- Arabic Minimum Acceptable terminology: PASS
+- Analyst/status workspace hidden and legacy routes redirected: PASS
+- Sales Curve Intensity accepts 1: PASS
+- Policy floating-point display cleanup: PASS
+- PDF negotiation chart and explanation cards: PASS
+
+Old-platform reference:
+- Gross sales: 877,500,000
+- Development cost: 556,522,674
+- 18% gross-sales consideration: 157,950,000
+- Developer profit: 163,027,326
+- Balanced reference band: 12.0%-12.6%
+- Policy-adjusted ceiling reference band: 13.8%-14.4%
+- Technical ceiling reference band: 19.5%-20.2%
+- Residual equivalent reference band: 16.0%-17.0%

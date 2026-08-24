@@ -1,0 +1,52 @@
+{
+  "pairing_id": "LV360-FINANCIAL-PORTAL-PLATFORM-2026-08-18-V250",
+  "status": "PASS",
+  "generated_at_utc": "2026-08-18T08:40:16.784862+00:00",
+  "portal": {
+    "product": "LandValue360 Standalone Financial Portal",
+    "version": "2.5.0",
+    "runtime_marker": "2.5.0",
+    "internal_export_source_platform": "financial-portal-2.5.0"
+  },
+  "embedded_engine": {
+    "product": "LandValue360 Unified Monthly Deterministic Financial Kernel",
+    "platform_source_version": "2.1.1",
+    "portal_adapter_version": "2.5.0",
+    "source_hash": "4c4881993b8c7d05dbbd168a333e629f20aa480c2134440bbc02e71590d15eaf",
+    "contract_engine_semantics_version": "3.1.0"
+  },
+  "platform": {
+    "product": "LandValue360 Platform",
+    "version": "2.1.1",
+    "runtime_marker": "2.1.1-portalintegration2",
+    "role": "Advanced engine reference and full reporting platform"
+  },
+  "contract": {
+    "portable_extension": ".lv360",
+    "format": "LANDVALUE360_PROJECT_PACKAGE",
+    "format_version": "2.1.1",
+    "imported_project_kind": "SHARED",
+    "imported_version_status": "DRAFT",
+    "monthly_financial_inputs_included": true,
+    "platform_recalculation_required": true
+  },
+  "workflow": [
+    "Portal saves one versioned monthly financial analysis model.",
+    "Administrators publish immutable financial policy versions containing return thresholds, negotiation positioning, timing, collection, cost, liquidity and financing assumptions.",
+    "Published user-selectable policy versions are available to standard users; every Calculation Run is permanently bound to the selected Policy Version.",
+    "Policy-managed advanced assumptions remain hidden from standard users while analysts and administrators retain controlled access.",
+    "Portal executes and persists an immutable Calculation Run with Project Version, Policy Version, Engine Version, Input Hash and Result Hash.",
+    "Portal produces separated project, developer and landowner results, residual land-value comparison, policy-positioned negotiation recommendation, PDF and Excel outputs.",
+    "Platform-native export carries the effective frozen financial assumptions used by the run.",
+    "Platform recalculates the project for advanced reports.",
+    "Contract Engine 3.1.0 applies Gross/Net/Profit shares only to their explicitly disclosed economic bases; Balanced and policy-adjusted ceilings remain distinct from the technical feasibility ceiling.",
+    "Negotiation visualization is anchored at the minimum acceptable consideration and uses collision-aware labels.",
+    "Each negotiation boundary is accompanied by a plain-language calculation rationale in the portal and PDF report.",
+    "The legacy analyst/status workspace is not exposed in the standalone portal user interface."
+  ],
+  "backward_compatibility": {
+    "portal_submission_1_0_0": true,
+    "standalone_financial_input_2_0_0_upgrade": true,
+    "platform_project_package_2_1_1": true
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "phase": "artifacts",
+  "status": "PASS",
+  "generated_at_utc": "2026-08-18T09:08:04.667503+00:00",
+  "passed": 18,
+  "total": 18,
+  "checks": [
+    {
+      "name": "runtime_preflight",
+      "status": "PASS",
+      "passed": true,
+      "detail": "portal 2.5.0; engine 2.1.1"
+    },
+    {
+      "name": "sqlite_migration",
+      "status": "PASS",
+      "passed": true,
+      "detail": "47 tables; 0007_admin_governance_and_security"
+    },
+    {
+      "name": "postgresql_offline_migration",
+      "status": "PASS",
+      "passed": true,
+      "detail": "91941 bytes"
+    },
+    {
+      "name": "golden_cases",
+      "status": "PASS",
+      "passed": true,
+      "detail": "14/14"
+    },
+    {
+      "name": "core_provenance",
+      "status": "PASS",
+      "passed": true,
+      "detail": "104 vendored core files"
+    },
+    {
+      "name": "policy_negotiation_current_code",
+      "status": "PASS",
+      "passed": true,
+      "detail": "49/49 assertions; 10 scenarios"
+    },
+    {
+      "name": "contract_regression_matrix",
+      "status": "PASS",
+      "passed": true,
+      "detail": "513 checks; 144 points"
+    },
+    {
+      "name": "financial_sample_audit",
+      "status": "PASS",
+      "passed": true,
+      "detail": "VALIDATED and recommendation SUPPORTED"
+    },
+    {
+      "name": "pdf_report_validation",
+      "status": "PASS",
+      "passed": true,
+      "detail": "11 A4 pages; visual QA PASS"
+    },
+    {
+      "name": "excel_report_validation",
+      "status": "PASS",
+      "passed": true,
+      "detail": "5 sheets; no errors or external links"
+    },
+    {
+      "name": "portal_schema_generation",
+      "status": "PASS",
+      "passed": true,
+      "detail": "portal-submission-1.0.0"
+    },
+    {
+      "name": "deployment_validation",
+      "status": "PASS",
+      "passed": true,
+      "detail": "app, caddy, db, minio, minio-init, notification-worker"
+    },
+    {
+      "name": "openapi_generation",
+      "status": "PASS",
+      "passed": true,
+      "detail": "release_artifacts/openapi.json"
+    },
+    {
+      "name": "sbom_generation",
+      "status": "PASS",
+      "passed": true,
+      "detail": "CycloneDX 1.5"
+    },
+    {
+      "name": "static_security_scan",
+      "status": "PASS",
+      "passed": true,
+      "detail": "0 High; 0 Medium"
+    },
+    {
+      "name": "package_contract",
+      "status": "PASS",
+      "passed": true,
+      "detail": "portal 6 files; internal 4 files"
+    },
+    {
+      "name": "live_uvicorn_http",
+      "status": "PASS",
+      "passed": true,
+      "detail": "{'/': 200, '/register': 200, '/api/health/live': 200, '/api/health/ready': 200, '/openapi.json': 200}"
+    },
+    {
+      "name": "installed_wheel",
+      "status": "PASS",
+      "passed": true,
+      "detail": "v2.5.0; 97 routes; health 200/200"
+    }
+  ]
+}

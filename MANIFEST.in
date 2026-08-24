@@ -1,0 +1,34 @@
+include README.md README_AR.md VERSION LICENSE.md
+include requirements-runtime-lock.txt requirements-dev.txt
+include alembic.ini Dockerfile docker-compose.yml
+include .env.example .env.production.example
+include BASELINE.json CORE_PROVENANCE.json INTEGRATION_PAIRING.json
+include RELEASE_MANIFEST.json FINAL_ACCEPTANCE_REPORT_AR.md DEPLOYMENT_HANDOFF_AR.md
+include INTEGRATION_COMPATIBILITY_2.2.0.md
+include *.bat *.sh
+recursive-include app *
+recursive-include migrations *.py
+recursive-include scripts *.py *.sh *.ps1
+recursive-include tests *.py
+recursive-include validation *.json
+recursive-include schemas *.json
+recursive-include docs *.md *.csv
+recursive-include deploy *
+recursive-include caddy *
+recursive-include .github *.yml *.yaml
+prune .git
+prune .venv
+prune .pytest_cache
+prune .sample-runtime
+prune .release-staging
+prune build
+prune data
+prune tests/.runtime
+prune __pycache__
+exclude .env
+exclude RELEASE_CHECKSUMS.sha256 FILE_MANIFEST.csv
+global-exclude *.py[cod]
+global-exclude __pycache__
+global-exclude *.db *.db-shm *.db-wal
+include CHANGELOG_2.4.0.md
+include INTEGRATION_COMPATIBILITY_2.4.0.md

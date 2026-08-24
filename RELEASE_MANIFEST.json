@@ -1,0 +1,195 @@
+{
+  "product": "LandValue360 Standalone Financial Portal",
+  "version": "2.5.0",
+  "release_channel": "ready-for-staging-and-domain-deployment",
+  "generated_at_utc": "2026-08-18T09:10:09.959171+00:00",
+  "python": ">=3.12",
+  "database_local": "SQLite",
+  "database_production": "PostgreSQL 16+",
+  "object_storage_production": "Private S3-compatible storage",
+  "migration_head": "0007_admin_governance_and_security",
+  "financial_engine": {
+    "included": true,
+    "engine_version": "2.1.1",
+    "portal_adapter_version": "2.5.0",
+    "contract_engine_semantics_version": "3.1.0",
+    "source_hash": "4c4881993b8c7d05dbbd168a333e629f20aa480c2134440bbc02e71590d15eaf",
+    "single_source_of_truth": true,
+    "server_side_only": true
+  },
+  "scope": [
+    "Simple standard-user project inputs with complete financial feasibility outputs",
+    "Single monthly financial model with monthly and annual cash flow",
+    "Separated project, developer and landowner economics",
+    "Gross-sales, net-sales and profit-share contracts tied to explicit disclosed calculation bases",
+    "Upfront, hybrid and minimum-guarantee contract mechanisms",
+    "Minimum Acceptable, Balanced, Policy-Adjusted Ceiling and Technical Ceiling as separate negotiation points",
+    "Residual Land Value as an independent comparison amount and equivalent contract measure",
+    "Minimum-anchored dynamic negotiation chart with collision-aware labels and out-of-range offer rendering",
+    "Evidence-based explanation of every negotiation boundary in the portal and PDF report",
+    "Immutable versioned financial policy library administered by platform administrators",
+    "Published user-selectable policy versions with every calculation run frozen to the selected version",
+    "Administrator-managed timing, collection, cost, liquidity, financing and negotiation assumptions",
+    "Advanced inputs hidden from standard users and available to analysts/administrators",
+    "Immutable calculation runs with Project Version, Policy Version, Engine Version, Input Hash and Result Hash",
+    "Portal-native PDF and Excel financial reports",
+    "Platform-native 2.1.1 export with effective frozen monthly assumptions",
+    "Platform-owner global project and report access with audited cross-organization review",
+    "User, membership, password-reset, session and activity administration",
+    "Accessible bilingual contextual help and financial glossary",
+    "Autosave validation that suppresses incomplete draft submissions",
+    "Simple portal workflow without the legacy analyst/status workspace"
+  ],
+  "policy_governance": {
+    "schema_version": "financial-policy-controls-2.4.0",
+    "immutable_versions": true,
+    "administrator_can_clone_publish_activate_archive_republish": true,
+    "standard_user_can_select_published_user_selectable_versions": true,
+    "historical_runs_preserve_original_policy": true,
+    "integrity_rules_locked": [
+      "uncovered negative cash is prohibited",
+      "terminal debt must be zero",
+      "deferred development cost must be zero",
+      "contractual arrears must be zero",
+      "monthly cash reconciliation is mandatory"
+    ]
+  },
+  "integration_contracts": [
+    "portal-submission-1.0.0",
+    "LANDVALUE360_PROJECT_PACKAGE 2.1.1",
+    "LandValue360 Platform 2.1.1 portal-integration-stable"
+  ],
+  "validation": {
+    "release_gate": {
+      "status": "PASS",
+      "passed": 38,
+      "total": 38
+    },
+    "python_tests": {
+      "passed": 56,
+      "skipped": 1,
+      "failed": 0
+    },
+    "golden_cases": {
+      "status": "PASS",
+      "total_passed": 14,
+      "total_cases": 14
+    },
+    "platform_core_parity": {
+      "status": "PASS",
+      "summary": {
+        "source_python_files": 118,
+        "vendored_python_files": 104,
+        "matched": 104,
+        "allowed_omitted": 14,
+        "missing": 0,
+        "changed": 0,
+        "extra": 0
+      }
+    },
+    "core_provenance": {
+      "status": "PASS",
+      "engine_source_hash": "4c4881993b8c7d05dbbd168a333e629f20aa480c2134440bbc02e71590d15eaf",
+      "vendored_core_files": 104
+    },
+    "contract_scenario_matrix": {
+      "status": "PASS",
+      "scenarios": 8,
+      "candidate_points": 144,
+      "audit_status": "PASS",
+      "audit_checks": 513
+    },
+    "policy_scenario_matrix": {
+      "status": "PASS",
+      "assertions_passed": 49,
+      "assertions_total": 49,
+      "scenario_count": 10
+    },
+    "sqlite_migration": {
+      "status": "PASS",
+      "alembic_head": "0007_admin_governance_and_security",
+      "table_count": 47
+    },
+    "postgresql_offline_migration": {
+      "status": "PASS",
+      "sql_bytes": 91941
+    },
+    "upgrade_2_4_to_2_5": {
+      "status": "PASS",
+      "source_version": "2.4.0",
+      "target_version": "2.5.0",
+      "database_migration_required": false,
+      "historical_runs_preserved": true,
+      "policy_versions_preserved": true
+    },
+    "reports": {
+      "status": "PASS"
+    },
+    "pdf_visual_qa": {
+      "status": "PASS",
+      "pages": 11,
+      "renderer": "pdfium via render_pdf.py at 150 DPI"
+    },
+    "spreadsheet_qa": {
+      "status": "PASS",
+      "sheets": [
+        "Executive Summary",
+        "Negotiation Range",
+        "Annual Cash Flow",
+        "Monthly Cash Flow",
+        "Inputs and Provenance"
+      ],
+      "sha256": "2110b18c4e7c1457563d50b0456ff58441d8bbf5e0ef6c9651964725ff18a2b1",
+      "formula_cells": 0,
+      "external_links": 0
+    },
+    "package_contract": {
+      "status": "PASS"
+    },
+    "installed_wheel": {
+      "status": "PASS",
+      "application_version": "2.5.0",
+      "engine_version": "2.1.1",
+      "wheel_sha256": "b7b741eed6dc590a9888e8071263e85e50f5ccaaf87d38f990832cce76a00f51"
+    },
+    "live_http": {
+      "status": "PASS",
+      "database": "fresh SQLite migrated to 0007_admin_governance_and_security"
+    },
+    "security_scan": {
+      "status": "PASS",
+      "high": 0,
+      "medium": 0
+    },
+    "browser_e2e": {
+      "status": "SKIPPED_BY_DEFAULT",
+      "test": "tests/browser/test_portal_e2e.py",
+      "pytest_result": "1 skipped",
+      "reason": "The release environment does not enable LV360_RUN_BROWSER_E2E and does not guarantee unrestricted Chromium. Run this test in Staging with LV360_RUN_BROWSER_E2E=1.",
+      "counted_as_pass": false,
+      "alternative_validation": [
+        "FastAPI TestClient route and workflow tests",
+        "JavaScript syntax checks",
+        "Live Uvicorn HTTP smoke on fresh migrated SQLite",
+        "PDF visual rendering QA"
+      ]
+    }
+  },
+  "excluded_from_this_release": [
+    "User-visible scenario management",
+    "Sensitivity analysis",
+    "Monte Carlo simulation",
+    "Risk module UI",
+    "Planning alternative comparison",
+    "Market comparable valuation",
+    "Full government tendering system",
+    "Advanced Platform report suite",
+    "Separate Developer Edition"
+  ],
+  "deployment_boundaries": [
+    "No production credentials, domain configuration or TLS secrets are bundled.",
+    "The live portal source, production database and object storage were not accessible in this build environment.",
+    "Run the supplied pre-deployment backup script before replacing code or applying migrations.",
+    "PostgreSQL migration was generated and inspected offline; final application to production remains a deployment operation."
+  ]
+}

@@ -1,0 +1,463 @@
+{
+  "generated_at_utc": "2026-08-17T08:25:13.817783+00:00",
+  "platform_release": "2.1.1-portal-integration-stable",
+  "vendored_packages": [
+    "landvalue360_common",
+    "landvalue360_kernel",
+    "landvalue360_government",
+    "landvalue360_valuation",
+    "landvalue360_finance",
+    "landvalue360_risk",
+    "landvalue360_server"
+  ],
+  "status": "PASS",
+  "summary": {
+    "source_python_files": 118,
+    "vendored_python_files": 104,
+    "matched": 104,
+    "allowed_omitted": 14,
+    "missing": 0,
+    "changed": 0,
+    "extra": 0
+  },
+  "allowed_omitted_prefixes": [
+    "landvalue360_server/migrations/"
+  ],
+  "allowed_omitted_files": [
+    "landvalue360_server/migrations/__init__.py",
+    "landvalue360_server/migrations/env.py",
+    "landvalue360_server/migrations/versions/0001_project_core_project_core_database_schema.py",
+    "landvalue360_server/migrations/versions/0002_postgres_tenant_rls.py",
+    "landvalue360_server/migrations/versions/0003_valuation_evidence_data_quality.py",
+    "landvalue360_server/migrations/versions/0004_risk_sensitivity_tender.py",
+    "landvalue360_server/migrations/versions/0005_government_decision_system.py",
+    "landvalue360_server/migrations/versions/0006_government_projects.py",
+    "landvalue360_server/migrations/versions/0007_product_separation.py",
+    "landvalue360_server/migrations/versions/0008_government_advisory_v016.py",
+    "landvalue360_server/migrations/versions/0009_dual_policy_calculation_runs.py",
+    "landvalue360_server/migrations/versions/0010_stabilized_state_machine.py",
+    "landvalue360_server/migrations/versions/0011_detailed_only_cleanup.py",
+    "landvalue360_server/migrations/versions/__init__.py"
+  ],
+  "missing_files": [],
+  "changed_files": [],
+  "extra_files": [],
+  "matched_files": [
+    {
+      "path": "landvalue360_common/__init__.py",
+      "sha256": "707e34362f69938732ad078e5510a0b844066948b48961e7219033d06324d984"
+    },
+    {
+      "path": "landvalue360_common/versions.py",
+      "sha256": "29791ad9e492ee7646a4a301fd3da61f9b38a079c88f0b9d16f3e86d58dccaaa"
+    },
+    {
+      "path": "landvalue360_finance/__init__.py",
+      "sha256": "dc146df9b1e6b48e6a0dd84fb59d9f554efbed02a38b3c40abc3e40552fa5ec0"
+    },
+    {
+      "path": "landvalue360_government/__init__.py",
+      "sha256": "d9bf9ae9610bafc646ea1e687c6f94ff7092f94d7235b685c2b7a0439805466b"
+    },
+    {
+      "path": "landvalue360_government/contracts.py",
+      "sha256": "117fd30f8acec7766afb6e44ce5f0977677c4197e7e85284e36cd710cb3069ec"
+    },
+    {
+      "path": "landvalue360_government/decision.py",
+      "sha256": "d2736f855397c360c0d72dfe3f0fc2154c94d1d253218dd081d564ccea80892e"
+    },
+    {
+      "path": "landvalue360_government/hashing.py",
+      "sha256": "5e70a8449490afc657b2373935543772dbdee4b528a45070e88119b753309ef2"
+    },
+    {
+      "path": "landvalue360_government/manifest.py",
+      "sha256": "496343df66333887ba54610ff306c6761604ffe745a56b2431f7e3119d64ff31"
+    },
+    {
+      "path": "landvalue360_government/metrics.py",
+      "sha256": "81db235339348e670d83f3e025baa99d047593cb07a4578384930dc9d09e8eeb"
+    },
+    {
+      "path": "landvalue360_government/negotiation.py",
+      "sha256": "45e2c583ef9780dd3e4e1a42da0f1e2dd155a53ddd5c9abb36bd5f1ca07da930"
+    },
+    {
+      "path": "landvalue360_government/registries.py",
+      "sha256": "58ac14eacc7b94359b7bf7210f5880bc35d62d81b81ee698b4b759c27a698b75"
+    },
+    {
+      "path": "landvalue360_government/reports.py",
+      "sha256": "df9b22d4ee9e93c01026b7e855352f3fb3c7c0a9844fd0ca8ca886c3697c1648"
+    },
+    {
+      "path": "landvalue360_government/results.py",
+      "sha256": "7570a8211f0a6b57089d971e22d49e83f818b2c489ce2764796af0654ec7344b"
+    },
+    {
+      "path": "landvalue360_government/solver.py",
+      "sha256": "ea281437c3665ffb24fc9ebf51930c4fbff39b78b4a3b4cb80a22f83177ac5cc"
+    },
+    {
+      "path": "landvalue360_government/valuation.py",
+      "sha256": "bc0a4e692733abbb33b92050ae3109f952b62b595f07759476df4ad62ca42a39"
+    },
+    {
+      "path": "landvalue360_kernel/__init__.py",
+      "sha256": "e534b4de010a299d698e4a741c6ed46892657bb18db6edaf4f191f9e47dd3047"
+    },
+    {
+      "path": "landvalue360_kernel/cashflow.py",
+      "sha256": "b5c7f52c6675686ba48df007c90dbdac491e64948ddf2e9a5c46faf4d23f705a"
+    },
+    {
+      "path": "landvalue360_kernel/costs.py",
+      "sha256": "777045ca08ef062cc94564790e73737f6aac70c0064342828ea1446be77b9888"
+    },
+    {
+      "path": "landvalue360_kernel/curves.py",
+      "sha256": "c935c14bac8bba96dc9b9a57a0ead0efb7f1af3bb3d9757449d7ef3747e4c975"
+    },
+    {
+      "path": "landvalue360_kernel/dates.py",
+      "sha256": "7eac6bbd38db93b81c7c8336f7aa36b8f3cb3c111050d9078625ae512af7b2e8"
+    },
+    {
+      "path": "landvalue360_kernel/decimal_utils.py",
+      "sha256": "5d32bee6d7bfe8dd83833a94f9f4a0e3cb127a2bf2bfee74fd030520ddde5a5d"
+    },
+    {
+      "path": "landvalue360_kernel/exceptions.py",
+      "sha256": "da233b04d241e24d061578e3d0c24e85c91714777ea126c0596cdc00a66e7f47"
+    },
+    {
+      "path": "landvalue360_kernel/finance.py",
+      "sha256": "ded6f1f6ba3385fe24f9e0104a8e9fe3d18c3b50ec3a0fa0e0e1d71bb1209fb3"
+    },
+    {
+      "path": "landvalue360_kernel/ledger.py",
+      "sha256": "6996e7ed1d6102d1f288426599964c95b88daf3d2b34f8b64c133c1b963beaea"
+    },
+    {
+      "path": "landvalue360_kernel/manifest.py",
+      "sha256": "7a210e745417fc2546094ad88f52f296fb3867d80826471ae05f4c8a0aa8ccd4"
+    },
+    {
+      "path": "landvalue360_kernel/monthly_engine.py",
+      "sha256": "73137a315660b06040210e730ce2efb3aa3736b70297628aba2fa401f02ed160"
+    },
+    {
+      "path": "landvalue360_kernel/planning.py",
+      "sha256": "8d9bf7a7be541fa4aad46f3aa03ada8274b77f398b75bbae5305888378ab0cde"
+    },
+    {
+      "path": "landvalue360_kernel/validation.py",
+      "sha256": "b36487168ecbdcfb9ec513450ea41f3be556407545f817652678a425479f9863"
+    },
+    {
+      "path": "landvalue360_risk/__init__.py",
+      "sha256": "599726fa6694941a0309f5cad3ad129896977b28c4f3ce8cf226cfc6df111362"
+    },
+    {
+      "path": "landvalue360_risk/engine.py",
+      "sha256": "3c6904e693272913340b0d96c8c298f25ef1a171d908d7c270b50c5bfa6f4f7b"
+    },
+    {
+      "path": "landvalue360_server/__init__.py",
+      "sha256": "56f79c18f9050611fa831183483be572336acfc7e4aa1cbe37c5976c2ddc5ba3"
+    },
+    {
+      "path": "landvalue360_server/__main__.py",
+      "sha256": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d"
+    },
+    {
+      "path": "landvalue360_server/api/__init__.py",
+      "sha256": "be007ee379b6795f513a01aea7bffaaef52417ca4e7ea934771c0cf65f569ec2"
+    },
+    {
+      "path": "landvalue360_server/api/dependencies.py",
+      "sha256": "f6266aa0706b1df2c81979ed90f3ded0d559e386ec248331c603ab0df6234231"
+    },
+    {
+      "path": "landvalue360_server/api/middleware.py",
+      "sha256": "ecae952c19d8e39b81eb97ff312e516b59febdd5774a7b573e4895709d886129"
+    },
+    {
+      "path": "landvalue360_server/api/routers/__init__.py",
+      "sha256": "b62e688bc2db22ab6c980b373a83ab48b286d9cd4387d3baf9de19473afe9985"
+    },
+    {
+      "path": "landvalue360_server/api/routers/analysis.py",
+      "sha256": "1319776456ef50f64f72c34f9e40fc4786cb0d9f2954e23fcd3cbc50e02cedb3"
+    },
+    {
+      "path": "landvalue360_server/api/routers/audit.py",
+      "sha256": "3b4282249a1130b3bce6b1e990db689cba5878f784bfdc088aec763d665ef8f1"
+    },
+    {
+      "path": "landvalue360_server/api/routers/auth.py",
+      "sha256": "e63b774e3d31bfe253b1356eac8a9eed944e61a8a546ad4e715a30b8a9b99edd"
+    },
+    {
+      "path": "landvalue360_server/api/routers/calculations.py",
+      "sha256": "ad487a46b18d6da0dfb70fa4cb1c788ca8875b8e14c35f19b9aec09358059f7e"
+    },
+    {
+      "path": "landvalue360_server/api/routers/evidence.py",
+      "sha256": "106f742b789e5877b2091c8d74368512c5e5ec4a841cfac8f3271d58507ecb2d"
+    },
+    {
+      "path": "landvalue360_server/api/routers/government.py",
+      "sha256": "94ea2063c439eb99c7d45af7b2f22cdda2d5b1a3ec420ad519e700f5e24514ea"
+    },
+    {
+      "path": "landvalue360_server/api/routers/government_projects.py",
+      "sha256": "843f06e017bc03cde4a60781e6b5bd778f0179fbd3ec441de0cace5074afdcac"
+    },
+    {
+      "path": "landvalue360_server/api/routers/health.py",
+      "sha256": "67a793ee2e6f71bd3c17c369300db9c650089d7a6d2b470f44c7fe10cc608566"
+    },
+    {
+      "path": "landvalue360_server/api/routers/landowner.py",
+      "sha256": "790d4f561507913b86bc6e857fa24a7ba13d67ca112beda374d666dcfe4548ca"
+    },
+    {
+      "path": "landvalue360_server/api/routers/organizations.py",
+      "sha256": "a172b4757477a45313c3e0739622308e4d88d4b4095c9b5ff1adbb26bd974228"
+    },
+    {
+      "path": "landvalue360_server/api/routers/policies.py",
+      "sha256": "0a5e12050f59073dc7deb18b3b9dee462cf41ae011764dec4d73c36801e960ed"
+    },
+    {
+      "path": "landvalue360_server/api/routers/projects.py",
+      "sha256": "6a84ee3b15b4e07f669532c04e4a2fb94b15f20caf55c487395d42e0a16fdc0c"
+    },
+    {
+      "path": "landvalue360_server/api/routers/risk_tender.py",
+      "sha256": "7c5f517e784efd660aeebe23c11eaeca7fc27a5b81f16e8b0939f176b91eca2a"
+    },
+    {
+      "path": "landvalue360_server/api/routers/ui.py",
+      "sha256": "2c17727db85274f7de087dce96f8aabafa79b19f1cc4713dc68ec444bb2f0df4"
+    },
+    {
+      "path": "landvalue360_server/api/routers/valuations.py",
+      "sha256": "b04f6c7b7a20252d427e6a3ff10dca9e988a84ff0bd70082aa71ec11b6c4fb69"
+    },
+    {
+      "path": "landvalue360_server/arabic_text.py",
+      "sha256": "0c847f5e6885fb0c3f6b759bea4e737707fbdc343fb961952ecd962586844d8e"
+    },
+    {
+      "path": "landvalue360_server/audit.py",
+      "sha256": "b96373e4f38d112f59ae12e7f4141141d659ef1a7db49ed7a881725f57a9275a"
+    },
+    {
+      "path": "landvalue360_server/backup.py",
+      "sha256": "841e9d01ec884dab3aff2197a2edd5901eb35f4e2808d691323e13634d54b9ab"
+    },
+    {
+      "path": "landvalue360_server/cli.py",
+      "sha256": "c64c5165ece7b70cc4d24e6fc257db0861f24ad1f62181eedbb521848e9dbf9e"
+    },
+    {
+      "path": "landvalue360_server/config.py",
+      "sha256": "9974c8fadc0cf0fdc03580cd1081327ab6e0df2598505a7b6c11cd8a928f4ce2"
+    },
+    {
+      "path": "landvalue360_server/constraint_registry.py",
+      "sha256": "a2ccb2eaf6ca8ce8ca450ebd7aede0345b9ad15b911e43b2e9c7109210c7071b"
+    },
+    {
+      "path": "landvalue360_server/context.py",
+      "sha256": "5f890902dfc3a5a3f36de42c0d43718388fd10744a845d7a5a4ac727707025c9"
+    },
+    {
+      "path": "landvalue360_server/costing.py",
+      "sha256": "d23214f01274136294140ba7de6992d53fd9058df2d96a16cef2d5709f1612a5"
+    },
+    {
+      "path": "landvalue360_server/database.py",
+      "sha256": "4ed8a9af25ade9e19259048df3f3bfd5d2d5291fb47a0ccd91c9301c8293a015"
+    },
+    {
+      "path": "landvalue360_server/decision.py",
+      "sha256": "105bd3641b6227191b7f3c31f1bc64b08168eaecafe93188663589a97162d322"
+    },
+    {
+      "path": "landvalue360_server/developer_advisory.py",
+      "sha256": "872485587d4f32a4b8539aa48c4d99c329ccb51eff3a9a9dfa82791c2e5a530f"
+    },
+    {
+      "path": "landvalue360_server/developer_reports.py",
+      "sha256": "9fd51a339901f44533cdc019365e5b8fc1a527c30857c6a8639ecce2007d8a76"
+    },
+    {
+      "path": "landvalue360_server/enums.py",
+      "sha256": "77e6237a3f0e6214cb83b2b08cd9b0c0b59dd43e9746548acf110c9cb658db65"
+    },
+    {
+      "path": "landvalue360_server/errors.py",
+      "sha256": "985f221c37a32e9cace21b9fe6262c6cf66368491cc056dd00936eb12d3ea27d"
+    },
+    {
+      "path": "landvalue360_server/financial_truth.py",
+      "sha256": "2c545bbc15fd7124a40683e9b8e1d3ba0f8188bacbada9d2e6ba1ec1af851678"
+    },
+    {
+      "path": "landvalue360_server/funding_policy.py",
+      "sha256": "16cc79eb31297eeafa3ca8fbeb66c04bb66817590fa46df7ac6bc4187601ff34"
+    },
+    {
+      "path": "landvalue360_server/json_tools.py",
+      "sha256": "5d3820ff2b7fd6f748ef9f8c741819e5d9fd11263442542238597a0dde0c3f15"
+    },
+    {
+      "path": "landvalue360_server/landowner_studio.py",
+      "sha256": "6b6d2b473c8f00d67f0539eeb0c2d4364936c01c2ef43cbc04ee0e7c6ffc863a"
+    },
+    {
+      "path": "landvalue360_server/main.py",
+      "sha256": "5688a3d1b5d3d9ffba4c0014e80b4a20fd0ff261a221092dc2c86cca63945d16"
+    },
+    {
+      "path": "landvalue360_server/models.py",
+      "sha256": "6893d1a20726f6bc55667637f3ebcbb2f012f9631f204b88b9575bb2f8168461"
+    },
+    {
+      "path": "landvalue360_server/permissions.py",
+      "sha256": "51c7846809a861f292170b8bfff85d518431a1b4815790cbffd333d2db8bdcb3"
+    },
+    {
+      "path": "landvalue360_server/project_contract.py",
+      "sha256": "9587e371b10bc9a06b9e9b4603fa4f42a3c964117b2c43bee8375a4ef78a4dea"
+    },
+    {
+      "path": "landvalue360_server/project_normalization.py",
+      "sha256": "b82920d64aad0b01835a637e8696f60da4d749deaf64c34ceed4fbd413ffb14e"
+    },
+    {
+      "path": "landvalue360_server/project_package.py",
+      "sha256": "a080fd6b92edce8767a57a14f7642cd923fc4523564adb9ed1240897a6fe0f3b"
+    },
+    {
+      "path": "landvalue360_server/python_pdf_renderer.py",
+      "sha256": "b79ef719c119b56304774072db6cc80471646aa584221b916c9a34c8d56f6a33"
+    },
+    {
+      "path": "landvalue360_server/report_readiness.py",
+      "sha256": "6182dd5fea26a4804a90bfebc75ede6a000e4c57b3d0d9257193ba773ffd7ae9"
+    },
+    {
+      "path": "landvalue360_server/reporting.py",
+      "sha256": "24f106d9f852b69188a2c2c9ef5a5e64a8426b3a7cfc6648114284149980b70a"
+    },
+    {
+      "path": "landvalue360_server/request_limits.py",
+      "sha256": "b5997ae02eb9f5b50b4a2d68afb73a87456e679281de8353c103d4021960c6ad"
+    },
+    {
+      "path": "landvalue360_server/schemas.py",
+      "sha256": "258f658383adf11e65d8890762408508b02519b0887c05383ee554095ab1eb47"
+    },
+    {
+      "path": "landvalue360_server/security.py",
+      "sha256": "f37ab623c624fe1c8d54449640c4592426b6e1863ca563f14093bbd6e5106b51"
+    },
+    {
+      "path": "landvalue360_server/serializers.py",
+      "sha256": "6f948956f1ba271d2d8f0caa0a7bcf2d54ac50918dc0f193f6dcb233597920be"
+    },
+    {
+      "path": "landvalue360_server/services/analysis.py",
+      "sha256": "7ab5a977718cfa9acbd01c64dbbd42734a14d4e7162a6526a17f1c9ef438d2e1"
+    },
+    {
+      "path": "landvalue360_server/services/assumptions.py",
+      "sha256": "66f47aa848c70a6a604991b60d431ceb3c899095f408bc6fd7679d9169cd3d24"
+    },
+    {
+      "path": "landvalue360_server/services/auth.py",
+      "sha256": "ff6a40cf1b798d389f89a772085faa7b1983c6a0be3c4be6534a3cfe1267f60e"
+    },
+    {
+      "path": "landvalue360_server/services/calculations.py",
+      "sha256": "8b63e8df350a08d0ccc9417332a87879dc9dc168148d1c76d2075cb2443dfdb3"
+    },
+    {
+      "path": "landvalue360_server/services/evidence.py",
+      "sha256": "f406f22327ae55ce7ec36f6667c8726ffa6f84a2978757ff958fd97e2fec76fa"
+    },
+    {
+      "path": "landvalue360_server/services/government.py",
+      "sha256": "f6a40b2d03d6886f862b3f8654480fad78039945f40455c7fd1d2e330b0463da"
+    },
+    {
+      "path": "landvalue360_server/services/government_projects.py",
+      "sha256": "331a673ca415057ed45af1b8f469318ef1bff7bfb063d7fa7a55bd70e76f96f1"
+    },
+    {
+      "path": "landvalue360_server/services/organizations.py",
+      "sha256": "449905db71aed8ca641449be4661299e5fbc208880d92959725b99bf4905b75f"
+    },
+    {
+      "path": "landvalue360_server/services/policies.py",
+      "sha256": "deb3cdc145c30a6e8a86481048a85a46dd4bcb0675a29c3d2544970140561e3f"
+    },
+    {
+      "path": "landvalue360_server/services/projects.py",
+      "sha256": "dbb78321e856fbc1cbf4ea14861d2b4b7f5ed84a1275cba1e3ca0e91095bcdc3"
+    },
+    {
+      "path": "landvalue360_server/services/risk_tender.py",
+      "sha256": "eb7d377b512844db2455ba594d27fe847c91d182bdd94461d6b0823f3ac68366"
+    },
+    {
+      "path": "landvalue360_server/services/snapshot_validation.py",
+      "sha256": "05dd02176515d0c2fae17ec7905f7e019a0130dd68ee97884d024975cf2206c7"
+    },
+    {
+      "path": "landvalue360_server/services/tenant.py",
+      "sha256": "93ce5e5706259a3aac22f28eb6aaf07882ceeaed9a5a48230cf0058d385a4a42"
+    },
+    {
+      "path": "landvalue360_server/services/valuations.py",
+      "sha256": "a6fdb03334da586803d5c8c2d7739d1637b76978dfccaa7d1d111d473362b519"
+    },
+    {
+      "path": "landvalue360_server/services/web_defaults_compat.py",
+      "sha256": "f3a7116fb6b3f01efa1750336af724afac79cc15e5a2986494002e74cb156464"
+    },
+    {
+      "path": "landvalue360_server/solver.py",
+      "sha256": "8a59525df18036be13e42118875d139db403f4f061770d5a3e3c4d1cef03ae14"
+    },
+    {
+      "path": "landvalue360_server/state_machine.py",
+      "sha256": "165d7413139fe9e968f2d47bfb32639b448c83ca5ad33f977526e0d51b36175f"
+    },
+    {
+      "path": "landvalue360_server/unified_engine.py",
+      "sha256": "7e99fffc28b523bc216a6d2dddd77e794ef9c1153a4ba8678990cac866aa7ac5"
+    },
+    {
+      "path": "landvalue360_server/valuation_policy.py",
+      "sha256": "3effbc906d1c37e8bcd88239e5de812c2ce5699b2e266765da02627abf7edd85"
+    },
+    {
+      "path": "landvalue360_server/web_defaults.py",
+      "sha256": "ebd0091bfcdb20301c8eee544d8d70e96e7f0c4b7cf4d6142daa2a3a6af349fb"
+    },
+    {
+      "path": "landvalue360_valuation/__init__.py",
+      "sha256": "d615610f4ef50ac0f633e695892ded94a62d10e9ea031e1c1d0c553f63d32758"
+    },
+    {
+      "path": "landvalue360_valuation/engine.py",
+      "sha256": "1ef0536e06d04c5d3f69fa8dfbbacbb18d077cd7bbf94a5304b3b23f5c5ba208"
+    }
+  ]
+}

@@ -1,0 +1,215 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "version": 1,
+  "metadata": {
+    "component": {
+      "type": "application",
+      "name": "landvalue360-financial-portal",
+      "version": "2.5.0"
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "name": "fastapi",
+      "version": "0.128.2",
+      "purl": "pkg:pypi/fastapi@0.128.2"
+    },
+    {
+      "type": "library",
+      "name": "uvicorn[standard]",
+      "version": "0.48.0",
+      "purl": "pkg:pypi/uvicorn[standard]@0.48.0"
+    },
+    {
+      "type": "library",
+      "name": "sqlalchemy",
+      "version": "2.0.50",
+      "purl": "pkg:pypi/sqlalchemy@2.0.50"
+    },
+    {
+      "type": "library",
+      "name": "alembic",
+      "version": "1.18.4",
+      "purl": "pkg:pypi/alembic@1.18.4"
+    },
+    {
+      "type": "library",
+      "name": "pydantic",
+      "version": "2.13.4",
+      "purl": "pkg:pypi/pydantic@2.13.4"
+    },
+    {
+      "type": "library",
+      "name": "pydantic-settings",
+      "version": "2.13.1",
+      "purl": "pkg:pypi/pydantic-settings@2.13.1"
+    },
+    {
+      "type": "library",
+      "name": "jinja2",
+      "version": "3.1.6",
+      "purl": "pkg:pypi/jinja2@3.1.6"
+    },
+    {
+      "type": "library",
+      "name": "python-multipart",
+      "version": "0.0.22",
+      "purl": "pkg:pypi/python-multipart@0.0.22"
+    },
+    {
+      "type": "library",
+      "name": "argon2-cffi",
+      "version": "25.1.0",
+      "purl": "pkg:pypi/argon2-cffi@25.1.0"
+    },
+    {
+      "type": "library",
+      "name": "email-validator",
+      "version": "2.3.0",
+      "purl": "pkg:pypi/email-validator@2.3.0"
+    },
+    {
+      "type": "library",
+      "name": "openpyxl",
+      "version": "3.1.5",
+      "purl": "pkg:pypi/openpyxl@3.1.5"
+    },
+    {
+      "type": "library",
+      "name": "Pillow",
+      "version": "12.2.0",
+      "purl": "pkg:pypi/pillow@12.2.0"
+    },
+    {
+      "type": "library",
+      "name": "defusedxml",
+      "version": "0.7.1",
+      "purl": "pkg:pypi/defusedxml@0.7.1"
+    },
+    {
+      "type": "library",
+      "name": "boto3",
+      "version": "1.43.18",
+      "purl": "pkg:pypi/boto3@1.43.18"
+    },
+    {
+      "type": "library",
+      "name": "httpx",
+      "version": "0.28.1",
+      "purl": "pkg:pypi/httpx@0.28.1"
+    },
+    {
+      "type": "library",
+      "name": "psycopg[binary]",
+      "version": "3.3.3",
+      "purl": "pkg:pypi/psycopg[binary]@3.3.3"
+    },
+    {
+      "type": "library",
+      "name": "landvalue360-common",
+      "version": "2.1.1",
+      "properties": [
+        {
+          "name": "landvalue360:distribution",
+          "value": "vendored-source"
+        },
+        {
+          "name": "landvalue360:source",
+          "value": "LandValue360 Platform 2.1.1"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "landvalue360-kernel",
+      "version": "2.1.1",
+      "properties": [
+        {
+          "name": "landvalue360:distribution",
+          "value": "vendored-source"
+        },
+        {
+          "name": "landvalue360:source",
+          "value": "LandValue360 Platform 2.1.1"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "landvalue360-government",
+      "version": "2.1.1",
+      "properties": [
+        {
+          "name": "landvalue360:distribution",
+          "value": "vendored-source"
+        },
+        {
+          "name": "landvalue360:source",
+          "value": "LandValue360 Platform 2.1.1"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "landvalue360-valuation",
+      "version": "2.1.1",
+      "properties": [
+        {
+          "name": "landvalue360:distribution",
+          "value": "vendored-source"
+        },
+        {
+          "name": "landvalue360:source",
+          "value": "LandValue360 Platform 2.1.1"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "landvalue360-finance",
+      "version": "2.1.1",
+      "properties": [
+        {
+          "name": "landvalue360:distribution",
+          "value": "vendored-source"
+        },
+        {
+          "name": "landvalue360:source",
+          "value": "LandValue360 Platform 2.1.1"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "landvalue360-risk",
+      "version": "2.1.1",
+      "properties": [
+        {
+          "name": "landvalue360:distribution",
+          "value": "vendored-source"
+        },
+        {
+          "name": "landvalue360:source",
+          "value": "LandValue360 Platform 2.1.1"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "landvalue360-server-core",
+      "version": "2.1.1",
+      "properties": [
+        {
+          "name": "landvalue360:distribution",
+          "value": "vendored-source"
+        },
+        {
+          "name": "landvalue360:source",
+          "value": "LandValue360 Platform 2.1.1"
+        }
+      ]
+    }
+  ]
+}

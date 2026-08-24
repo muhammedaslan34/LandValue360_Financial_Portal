@@ -1,0 +1,129 @@
+{
+  "phase": "foundation",
+  "status": "PASS",
+  "generated_at_utc": "2026-08-18T09:08:04.666377+00:00",
+  "passed": 20,
+  "total": 20,
+  "checks": [
+    {
+      "name": "python_compileall",
+      "status": "PASS",
+      "passed": true,
+      "detail": "app, scripts and tests"
+    },
+    {
+      "name": "pytest_test_auth_security",
+      "status": "PASS",
+      "passed": true,
+      "detail": "3 passed"
+    },
+    {
+      "name": "pytest_test_calculations",
+      "status": "PASS",
+      "passed": true,
+      "detail": "7 passed"
+    },
+    {
+      "name": "pytest_test_contract_semantics_v230",
+      "status": "PASS",
+      "passed": true,
+      "detail": "3 passed"
+    },
+    {
+      "name": "pytest_test_end_to_end",
+      "status": "PASS",
+      "passed": true,
+      "detail": "3 passed"
+    },
+    {
+      "name": "pytest_test_files_and_packages",
+      "status": "PASS",
+      "passed": true,
+      "detail": "4 passed"
+    },
+    {
+      "name": "pytest_test_financial_portal",
+      "status": "PASS",
+      "passed": true,
+      "detail": "12 passed"
+    },
+    {
+      "name": "pytest_test_negotiation_policy_v240",
+      "status": "PASS",
+      "passed": true,
+      "detail": "1 passed"
+    },
+    {
+      "name": "pytest_test_policy_admin_coverage_v240",
+      "status": "PASS",
+      "passed": true,
+      "detail": "2 passed"
+    },
+    {
+      "name": "pytest_test_policy_versions_v240",
+      "status": "PASS",
+      "passed": true,
+      "detail": "2 passed"
+    },
+    {
+      "name": "pytest_test_release_contracts",
+      "status": "PASS",
+      "passed": true,
+      "detail": "6 passed"
+    },
+    {
+      "name": "pytest_test_v250_negotiation_ui_and_reports",
+      "status": "PASS",
+      "passed": true,
+      "detail": "5 passed"
+    },
+    {
+      "name": "pytest_test_workflow_and_admin",
+      "status": "PASS",
+      "passed": true,
+      "detail": "8 passed"
+    },
+    {
+      "name": "browser_e2e",
+      "status": "SKIPPED",
+      "passed": true,
+      "detail": "1 skipped by default; requires unrestricted Chromium"
+    },
+    {
+      "name": "javascript_admin.js",
+      "status": "PASS",
+      "passed": true,
+      "detail": "node --check"
+    },
+    {
+      "name": "javascript_auth.js",
+      "status": "PASS",
+      "passed": true,
+      "detail": "node --check"
+    },
+    {
+      "name": "javascript_common.js",
+      "status": "PASS",
+      "passed": true,
+      "detail": "node --check"
+    },
+    {
+      "name": "javascript_financial.js",
+      "status": "PASS",
+      "passed": true,
+      "detail": "node --check"
+    },
+    {
+      "name": "javascript_operations.js",
+      "status": "PASS",
+      "passed": true,
+      "detail": "node --check"
+    },
+    {
+      "name": "javascript_project.js",
+      "status": "PASS",
+      "passed": true,
+      "detail": "node --check"
+    }
+  ]
+}

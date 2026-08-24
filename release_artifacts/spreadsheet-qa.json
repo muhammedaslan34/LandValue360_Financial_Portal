@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "path": "LandValue360_Financial_Portal_Sample_Cashflow.xlsx",
+  "sheets": [
+    "Executive Summary",
+    "Negotiation Range",
+    "Annual Cash Flow",
+    "Monthly Cash Flow",
+    "Inputs and Provenance"
+  ],
+  "bytes": 22972,
+  "sha256": "2110b18c4e7c1457563d50b0456ff58441d8bbf5e0ef6c9651964725ff18a2b1",
+  "formula_cells": 0,
+  "error_cells": [],
+  "external_links": 0,
+  "sheet_stats": [
+    {
+      "name": "Executive Summary",
+      "rows": 34,
+      "columns": 4,
+      "freeze_panes": "A5",
+      "gridlines": false
+    },
+    {
+      "name": "Negotiation Range",
+      "rows": 7,
+      "columns": 14,
+      "freeze_panes": "A2",
+      "gridlines": false
+    },
+    {
+      "name": "Annual Cash Flow",
+      "rows": 6,
+      "columns": 18,
+      "freeze_panes": "A2",
+      "gridlines": false
+    },
+    {
+      "name": "Monthly Cash Flow",
+      "rows": 55,
+      "columns": 22,
+      "freeze_panes": "A2",
+      "gridlines": false
+    },
+    {
+      "name": "Inputs and Provenance",
+      "rows": 200,
+      "columns": 2,
+      "freeze_panes": "",
+      "gridlines": false
+    }
+  ],
+  "errors": []
+}
