@@ -99,7 +99,7 @@ def main() -> int:
         if not org_ids:
             print("NO_ORG", file=sys.stderr)
             return 1
-        org_id = org_ids[0]
+        org_id = next(iter(org_ids))
 
         project = db.scalar(
             select(Project).where(
