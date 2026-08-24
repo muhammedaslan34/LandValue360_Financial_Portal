@@ -65,6 +65,8 @@ services:
       LV360_PORTAL_ENV: production
       LV360_PORTAL_SECRET_KEY: ${LV360_PORTAL_SECRET_KEY:?Set LV360_PORTAL_SECRET_KEY}
       LV360_PORTAL_BASE_URL: ${LV360_PORTAL_BASE_URL:-https://${DOMAIN}}
+      LV360_PORTAL_DATABASE_URL: postgresql+psycopg://${APP_DB_USER:-lv360_app}:${APP_DB_PASSWORD}@db:5432/${POSTGRES_DB:-lv360_portal}
+      LV360_PORTAL_MIGRATION_DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-lv360}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-lv360_portal}
       LV360_PORTAL_STORAGE_BACKEND: s3
       LV360_PORTAL_S3_ENDPOINT_URL: http://minio:9000
       LV360_PORTAL_S3_PUBLIC_ENDPOINT_URL: ${S3_PUBLIC_ENDPOINT_URL:-}
@@ -87,27 +89,24 @@ services:
     expose:
       - "8090"
     healthcheck:
-      test:
-        - CMD
-        - python
-        - -c
-        - import urllib.request as u; u.urlopen('http://127.0.0.1:8090/api/health/live', timeout=3)
-      interval: 30s
-      timeout: 5s
-      retries: 5
-      start_period: 120s
+      test: ["CMD", "python", "/app/scripts/healthcheck.py"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 180s
 
   notification-worker:
     build: .
     restart: unless-stopped
     depends_on:
       app:
-        condition: service_healthy
+        condition: service_started
     command: ["sh", "-c", "while true; do python scripts/send_notifications.py; sleep 30; done"]
     environment:
       LV360_PORTAL_ENV: production
       LV360_PORTAL_SECRET_KEY: ${LV360_PORTAL_SECRET_KEY}
       LV360_PORTAL_BASE_URL: ${LV360_PORTAL_BASE_URL:-https://${DOMAIN}}
+      LV360_PORTAL_DATABASE_URL: postgresql+psycopg://${APP_DB_USER:-lv360_app}:${APP_DB_PASSWORD}@db:5432/${POSTGRES_DB:-lv360_portal}
       LV360_PORTAL_STORAGE_BACKEND: s3
       LV360_PORTAL_S3_ENDPOINT_URL: http://minio:9000
       LV360_PORTAL_S3_REGION: us-east-1
