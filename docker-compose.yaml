@@ -64,7 +64,7 @@ services:
     environment:
       LV360_PORTAL_ENV: production
       LV360_PORTAL_SECRET_KEY: ${LV360_PORTAL_SECRET_KEY:?Set LV360_PORTAL_SECRET_KEY}
-      LV360_PORTAL_BASE_URL: https://${DOMAIN:?Set DOMAIN}
+      LV360_PORTAL_BASE_URL: https://${DOMAIN}
       LV360_PORTAL_DATABASE_URL: postgresql+psycopg://${APP_DB_USER:-lv360_app}:${APP_DB_PASSWORD}@db:5432/${POSTGRES_DB:-lv360_portal}
       LV360_PORTAL_MIGRATION_DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-lv360}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-lv360_portal}
       LV360_PORTAL_STORAGE_BACKEND: s3
@@ -93,7 +93,7 @@ services:
       interval: 30s
       timeout: 5s
       retries: 5
-      start_period: 60s
+      start_period: 120s
 
   notification-worker:
     build: .
