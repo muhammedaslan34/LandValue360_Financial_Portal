@@ -11,9 +11,13 @@ function message(text, ok = false) {
 let cache = { users: [], organizations: [], roles: [] };
 
 function populateSelectors() {
-  $('membershipUser').innerHTML = '<option value="">اختر المستخدم</option>' + cache.users.map((u) => `<option value="${u.id}">${lv360.esc(u.full_name)} — ${lv360.esc(u.email)}</option>`).join('');
-  $('membershipOrganization').innerHTML = '<option value="">اختر المؤسسة</option>' + cache.organizations.map((o) => `<option value="${o.id}">${lv360.esc(o.name)}</option>`).join('');
+  const userPh = lv360.t('اختر المستخدم', 'Select User');
+  const orgPh = lv360.t('اختر المؤسسة', 'Select Organization');
+  $('membershipUser').innerHTML = `<option value="" disabled selected hidden>${lv360.esc(userPh)}</option>` + cache.users.map((u) => `<option value="${u.id}">${lv360.esc(u.full_name)} — ${lv360.esc(u.email)}</option>`).join('');
+  $('membershipOrganization').innerHTML = `<option value="" disabled selected hidden>${lv360.esc(orgPh)}</option>` + cache.organizations.map((o) => `<option value="${o.id}">${lv360.esc(o.name)}</option>`).join('');
   $('membershipRole').innerHTML = cache.roles.map((r) => `<option value="${r.code}">${lv360.esc(r.name_ar)} (${lv360.esc(r.code)})</option>`).join('');
+  lv360.syncSelectPlaceholder($('membershipUser'));
+  lv360.syncSelectPlaceholder($('membershipOrganization'));
 }
 
 function renderSettings(settings) {
@@ -94,7 +98,7 @@ function renderPrivacy(rows) {
     <td>${lv360.esc(row.request_type)}</td>
     <td>${lv360.esc(row.status)}</td>
     <td>${new Date(row.created_at).toLocaleString('ar')}</td>
-    <td><select class="privacy-status" data-id="${row.id}"><option>OPEN</option><option>IN_PROGRESS</option><option>COMPLETED</option><option>REJECTED</option></select></td>
+    <td><select class="privacy-status" data-id="${row.id}">${lv360.optionsHtml('privacy_status', { selected: row.status })}</select></td>
   </tr>`).join('');
   document.querySelectorAll('.privacy-status').forEach((select) => {
     const current = rows.find((row) => row.id === select.dataset.id);
@@ -224,6 +228,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
       await lv360.api('/api/admin/users', { method: 'POST', body: JSON.stringify(payload) });
       form.reset();
+      lv360.refreshSelectOptions(form);
       message('تم إنشاء عضو الفريق.', true);
       await loadAdmin();
     } catch (error) { message(error.message); }
@@ -270,6 +275,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       message('تمت إضافة العضوية.', true);
       await loadAdmin();
     } catch (error) { message(error.message); }
+  });
+  window.addEventListener('lv360:languagechange', () => {
+    if (cache.users.length) populateSelectors();
   });
 });
 

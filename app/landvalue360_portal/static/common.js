@@ -134,10 +134,172 @@ function lv360InitHelp(root=document){
   });
 }
 
+const LV360_SELECT_OPTIONS = {
+  currency: [
+    ['USD', ['دولار أمريكي (USD)', 'US Dollar (USD)']],
+    ['SYP', ['ليرة سورية (SYP)', 'Syrian Pound (SYP)']],
+    ['EUR', ['يورو (EUR)', 'Euro (EUR)']],
+    ['SAR', ['ريال سعودي (SAR)', 'Saudi Riyal (SAR)']],
+    ['AED', ['درهم إماراتي (AED)', 'UAE Dirham (AED)']],
+    ['TRY', ['ليرة تركية (TRY)', 'Turkish Lira (TRY)']],
+  ],
+  cost_category: [
+    ['CONSTRUCTION', ['إنشاء', 'Construction']],
+    ['INFRASTRUCTURE', ['بنية تحتية', 'Infrastructure']],
+    ['PUBLIC_FACILITIES', ['مرافق عامة', 'Public Facilities']],
+    ['PROFESSIONAL_FEES', ['دراسات واستشارات', 'Professional Fees']],
+    ['PERMITS', ['تراخيص ورسوم', 'Permits & Fees']],
+    ['PROJECT_MANAGEMENT', ['إدارة مشروع', 'Project Management']],
+    ['MARKETING', ['تسويق ومبيعات', 'Marketing & Sales']],
+    ['OTHER', ['أخرى', 'Other']],
+  ],
+  document_category: [
+    ['TITLE', ['سند الملكية', 'Title Deed']],
+    ['PLANNING', ['تنظيم ومخططات', 'Planning & Drawings']],
+    ['MARKET', ['سوق وتسعير', 'Market & Pricing']],
+    ['COST', ['كلف وعروض', 'Costs & Quotations']],
+    ['OTHER', ['أخرى', 'Other']],
+  ],
+  project_status: [
+    ['SUBMITTED', ['مرسل', 'Submitted']],
+    ['DATA_REVIEW', ['مراجعة البيانات', 'Data Review']],
+    ['MISSING_INFORMATION', ['معلومات ناقصة', 'Missing Information']],
+    ['READY_FOR_ANALYSIS', ['جاهز للتحليل', 'Ready for Analysis']],
+    ['IN_ANALYSIS', ['قيد التحليل', 'In Analysis']],
+    ['IN_REVIEW', ['قيد المراجعة', 'In Review']],
+    ['REPORT_READY', ['التقرير جاهز', 'Report Ready']],
+    ['COMPLETED', ['مكتمل', 'Completed']],
+    ['CANCELLED', ['ملغى', 'Cancelled']],
+  ],
+  staff_role: [
+    ['ANALYST', ['محلل', 'Analyst']],
+    ['REVIEWER', ['مدقق', 'Reviewer']],
+    ['TEAM_MANAGER', ['مدير الفريق', 'Team Manager']],
+    ['PLATFORM_ADMIN', ['مدير المنصة', 'Platform Admin']],
+  ],
+  org_kind: [
+    ['LANDOWNER', ['صاحب أرض', 'Landowner']],
+    ['INTERNAL', ['فريق داخلي', 'Internal Team']],
+    ['OTHER', ['أخرى', 'Other']],
+  ],
+  proposal_selection: [
+    ['BALANCED', ['متوازن', 'Balanced']],
+    ['MAXIMUM_LANDOWNER_VALUE', ['أقصى قيمة لصاحب الأرض', 'Maximum Landowner Value']],
+  ],
+  negotiation_method: [
+    ['POLICY_RANGE_POSITION', ['الموضع ضمن نطاق السياسة', 'Policy Range Position']],
+    ['CORE_TARGET_RETURN', ['العائد المستهدف الأساسي', 'Core Target Return']],
+  ],
+  funding_draw_order: [
+    ['EQUITY_FIRST', ['حقوق الملكية أولاً', 'Equity First']],
+    ['DEBT_FIRST', ['الدين أولاً', 'Debt First']],
+    ['PRO_RATA', ['بالتناسب', 'Pro Rata']],
+  ],
+  spend_policy: [
+    ['CASH_DRIVEN', ['حسب السيولة', 'Cash Driven']],
+    ['HYBRID', ['هجين', 'Hybrid']],
+  ],
+  distribution_frequency: [
+    ['MONTHLY', ['شهري', 'Monthly']],
+    ['QUARTERLY', ['ربع سنوي', 'Quarterly']],
+    ['SEMI_ANNUAL', ['نصف سنوي', 'Semi-Annual']],
+    ['ANNUAL', ['سنوي', 'Annual']],
+  ],
+  curve_type: [
+    ['LINEAR', ['خطي', 'Linear']],
+    ['FRONT_LOADED', ['مكثف في البداية', 'Front Loaded']],
+    ['BACK_LOADED', ['مكثف في النهاية', 'Back Loaded']],
+    ['BELL', ['جرسي', 'Bell']],
+    ['S_CURVE', ['منحنى S', 'S-Curve']],
+    ['ACCELERATED_S_CURVE', ['منحنى S متسارع', 'Accelerated S-Curve']],
+    ['DELAYED_RAMP', ['تصاعد متأخر', 'Delayed Ramp']],
+  ],
+  contract_basis: [
+    ['GROSS_SALES', ['إجمالي المبيعات', 'Gross Sales']],
+    ['NET_SALES', ['صافي المبيعات', 'Net Sales']],
+    ['PROFIT_SHARE', ['مشاركة الربح', 'Profit Share']],
+  ],
+  net_deduction_treatment: [
+    ['CUMULATIVE_CARRY_FORWARD', ['تراكمي مع ترحيل', 'Cumulative Carry Forward']],
+    ['PERIOD_BY_PERIOD', ['كل فترة على حدة', 'Period by Period']],
+  ],
+  assignment_type: [
+    ['ANALYST', ['محلل', 'Analyst']],
+    ['REVIEWER', ['مدقق', 'Reviewer']],
+  ],
+  report_type: [
+    ['EXECUTIVE', ['التقرير التنفيذي', 'Executive Report']],
+    ['DETAILED', ['التقرير الفني والمالي', 'Technical & Financial Report']],
+  ],
+  privacy_status: [
+    ['OPEN', ['مفتوح', 'Open']],
+    ['IN_PROGRESS', ['قيد المعالجة', 'In Progress']],
+    ['COMPLETED', ['مكتمل', 'Completed']],
+    ['REJECTED', ['مرفوض', 'Rejected']],
+  ],
+};
+
+function lv360OptionLabel(pair, fallback = '') {
+  if (!pair) return fallback;
+  return window.lv360.t(pair[0], pair[1]);
+}
+
+function lv360OptionsHtml(key, { selected = null, placeholder = null, placeholderSelectable = false, includeValues = null } = {}) {
+  const items = (includeValues ? includeValues.map((value) => [value, (LV360_SELECT_OPTIONS[key] || []).find(([v]) => v === value)?.[1]]) : LV360_SELECT_OPTIONS[key]) || [];
+  const parts = [];
+  if (placeholder) {
+    const text = typeof placeholder === 'string' ? placeholder : window.lv360.t(placeholder[0], placeholder[1]);
+    if (placeholderSelectable) {
+      parts.push(`<option value=""${selected === '' || selected == null ? ' selected' : ''}>${window.lv360.esc(text)}</option>`);
+    } else {
+      parts.push(`<option value="" disabled${selected ? '' : ' selected'} hidden>${window.lv360.esc(text)}</option>`);
+    }
+  }
+  for (const [value, pair] of items) {
+    if (!value) continue;
+    const label = lv360OptionLabel(pair, value);
+    parts.push(`<option value="${window.lv360.esc(value)}"${selected === value ? ' selected' : ''}>${window.lv360.esc(label)}</option>`);
+  }
+  return parts.join('');
+}
+
+function lv360RefreshSelectOptions(root = document) {
+  root.querySelectorAll?.('select[data-options]').forEach((select) => {
+    const key = select.dataset.options;
+    const selected = select.value || select.dataset.default || null;
+    const placeholder = select.dataset.placeholder ? JSON.parse(select.dataset.placeholder) : null;
+    const placeholderSelectable = select.dataset.placeholderSelectable === 'true';
+    select.innerHTML = lv360OptionsHtml(key, { selected: selected || null, placeholder, placeholderSelectable });
+    if (selected) select.value = selected;
+    lv360SyncSelectPlaceholder(select);
+  });
+}
+
+function lv360SyncSelectPlaceholder(select) {
+  if (!select || select.tagName !== 'SELECT') return;
+  const empty = !select.value;
+  select.classList.toggle('field-placeholder', empty && select.querySelector('option[value=""]'));
+}
+
+function lv360EnhanceFormControls(root = document) {
+  root.querySelectorAll?.('select').forEach((select) => {
+    lv360SyncSelectPlaceholder(select);
+    if (!select.dataset.placeholderBound) {
+      select.dataset.placeholderBound = '1';
+      select.addEventListener('change', () => lv360SyncSelectPlaceholder(select));
+    }
+  });
+}
+
 window.lv360 = {
   csrf: null,
   user: null,
   language: localStorage.getItem('lv360_language') === 'en' ? 'en' : 'ar',
+  selectOptions: LV360_SELECT_OPTIONS,
+  optionsHtml: lv360OptionsHtml,
+  refreshSelectOptions: lv360RefreshSelectOptions,
+  syncSelectPlaceholder: lv360SyncSelectPlaceholder,
+  enhanceFormControls: lv360EnhanceFormControls,
   lang(){ return this.language; },
   t(ar,en){ return this.language === 'en' ? en : ar; },
   setLang(language){
@@ -172,6 +334,8 @@ window.lv360 = {
     });
     const toggle=document.getElementById('languageToggle');
     if(toggle) toggle.textContent = this.language === 'en' ? 'العربية' : 'English';
+    lv360RefreshSelectOptions(root);
+    lv360EnhanceFormControls(root);
   },
   async me(){try{const r=await fetch('/api/auth/me');if(!r.ok)return null;const d=await r.json();this.csrf=d.csrf_token;this.user=d;return d}catch{return null}},
   async api(url,options={}){const headers=new Headers(options.headers||{});if(options.body && !(options.body instanceof FormData))headers.set('Content-Type','application/json');if(this.csrf)headers.set('X-CSRF-Token',this.csrf);const r=await fetch(url,{credentials:'same-origin',...options,headers});const text=await r.text();let data={};try{data=text?JSON.parse(text):{}}catch{data={detail:text}}if(!r.ok){if(r.status===428&&location.pathname!=='/change-password'){location.href='/change-password';throw new Error(this.t('يجب تغيير كلمة المرور المؤقتة أولاً.','You must change the temporary password first.'));}throw new Error(lv360ErrorDetail(data.detail)||this.t('تعذر تنفيذ العملية','The operation could not be completed'));}return data},
@@ -195,6 +359,8 @@ document.addEventListener('DOMContentLoaded',async()=>{
     if(admin)admin.hidden=!permissions.has('admin.users');
   }
   lv360.initHelp(document);
+  lv360.refreshSelectOptions(document);
+  lv360.enhanceFormControls(document);
   const language=document.getElementById('languageToggle');
   if(language)language.addEventListener('click',()=>lv360.setLang(lv360.lang()==='ar'?'en':'ar'));
   const b=document.getElementById('logoutButton');

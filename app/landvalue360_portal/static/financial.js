@@ -57,7 +57,7 @@ function setBusy(busy,labelText=''){ ['saveFinancial','runFinancial'].forEach(id
 function getByPath(object,path){ return path.split('.').reduce((value,key)=>value?.[key],object); }
 function setByPath(object,path,value){ const parts=path.split('.');let target=object;parts.slice(0,-1).forEach(part=>{target[part]||={};target=target[part];});target[parts.at(-1)]=value; }
 function metric(labelText,value,note='',helpKey=''){ return `<div class="metric"><span>${lv360.esc(labelText)}${helpKey?lv360.help(helpKey):''}</span><strong>${value??'—'}</strong>${note?`<small>${lv360.esc(note)}</small>`:''}</div>`; }
-function fillSelects(){ document.querySelectorAll('[data-curve-select]').forEach(select=>{const current=select.value;select.innerHTML=CURVES.map(([value,pair])=>`<option value="${value}">${lv360.esc(label(pair))}</option>`).join('');if(current)select.value=current;}); }
+function fillSelects(){ document.querySelectorAll('[data-curve-select]').forEach(select=>{const current=select.value;select.innerHTML=lv360.optionsHtml('curve_type',{selected:current||null});if(current)select.value=current;}); }
 function collectionRow(row={}){
   const tr=document.createElement('tr');
   tr.innerHTML=`<td><input data-field="label" value="${lv360.esc(row.label||'')}"></td><td><input data-field="lag_months" type="number" min="0" max="600" step="1" value="${num(row.lag_months)}"></td><td><input data-field="weight" type="number" min="0" max="100" step="0.01" value="${lv360.number(num(row.weight)*100,4)}"></td><td><button class="remove-row" type="button">${t('حذف','Remove')}</button></td>`;

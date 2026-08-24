@@ -1,5 +1,5 @@
 {% extends "base.html" %}
 {% block content %}
-<section class="auth-card"><h1>تسجيل الدخول</h1><form id="loginForm"><label>البريد الإلكتروني<input type="email" name="email" required></label><label>كلمة المرور<input type="password" name="password" required></label><button class="button" type="submit">دخول</button><p class="form-message" id="formMessage"></p></form><a href="/forgot-password">نسيت كلمة المرور</a></section>
+<section class="auth-card"><h1>تسجيل الدخول</h1><form id="loginForm"><label>البريد الإلكتروني<input type="email" name="email" required placeholder="name@example.com" autocomplete="email"></label><label>كلمة المرور<input type="password" name="password" required autocomplete="current-password"></label><button class="button" type="submit">دخول</button><p class="form-message" id="formMessage"></p></form><a href="/forgot-password">نسيت كلمة المرور</a></section>
 {% endblock %}
 {% block scripts %}<script src="/static/auth.js" defer></script>{% endblock %}

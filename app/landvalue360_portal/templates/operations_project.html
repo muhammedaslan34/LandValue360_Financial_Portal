@@ -33,11 +33,11 @@
       <h3>الإسناد</h3>
       <form id="assignmentForm" class="form-grid">
         <label>نوع الإسناد
-          <select name="assignment_type"><option value="ANALYST">محلل</option><option value="REVIEWER">مدقق</option></select>
+          <select name="assignment_type" data-options="assignment_type" data-default="ANALYST"></select>
         </label>
         <label>عضو الفريق
           <select name="user_id" required>
-            <option value="">اختر العضو</option>
+            <option value="" disabled selected hidden data-ar="اختر العضو" data-en="Select Member">اختر العضو</option>
             {% for member in staff %}<option value="{{ member.id }}">{{ member.full_name }} — {{ member.roles|join(', ') }}</option>{% endfor %}
           </select>
         </label>
@@ -81,8 +81,8 @@
     {% endif %}
     {% if can_upload %}
     <form id="reportUploadForm" enctype="multipart/form-data" class="form-grid">
-      <label>نوع التقرير<select name="report_type"><option value="EXECUTIVE">التقرير التنفيذي</option><option value="DETAILED">التقرير الفني والمالي</option></select></label>
-      <label>اللغة<select name="language"><option value="ar">العربية</option><option value="en">English</option></select></label>
+      <label>نوع التقرير<select name="report_type" data-options="report_type" data-default="EXECUTIVE"></select></label>
+      <label>اللغة<select name="language" data-default="ar"><option value="ar" data-ar="العربية" data-en="Arabic">العربية</option><option value="en" data-ar="English" data-en="English">English</option></select></label>
       <label class="full">مرجع تشغيل الحساب<input name="calculation_run_reference" placeholder="مرجع تشغيل الحساب الداخلي"></label>
       <label class="full">ملف PDF<input type="file" name="file" accept=".pdf" required></label>
       <button class="button full">رفع للمراجعة</button>

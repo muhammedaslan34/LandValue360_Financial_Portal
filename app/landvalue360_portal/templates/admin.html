@@ -56,16 +56,16 @@
           <label>Minimum Landowner Share %<input type="number" name="minimum_landowner_share" data-policy-rate min="0" max="100" step="0.0001" required></label>
           <label>Maximum Landowner Share %<input type="number" name="maximum_landowner_share" data-policy-rate min="0" max="100" step="0.0001" required></label>
           <label>Search Tolerance<input type="number" name="search_tolerance" min="0.000000001" max="1" step="0.000000001" required></label>
-          <label data-ar="طريقة اختيار المقترح النهائي" data-en="Final proposal selection"><span class="i18n-label">طريقة اختيار المقترح النهائي</span><select name="proposal_selection_method"><option value="BALANCED">Balanced</option><option value="MAXIMUM_LANDOWNER_VALUE">Maximum Landowner Value</option></select></label>
+          <label data-ar="طريقة اختيار المقترح النهائي" data-en="Final proposal selection"><span class="i18n-label">طريقة اختيار المقترح النهائي</span><select name="proposal_selection_method" data-options="proposal_selection" data-default="BALANCED"></select></label>
         </div>
         <div class="contract-policy-options">
           <strong data-ar="الآليات المسموحة" data-en="Allowed mechanisms">الآليات المسموحة</strong>
-          <label class="checkbox-label"><input type="checkbox" name="allowed_contract_methods" value="GROSS_SALES"> Gross Sales Share</label>
-          <label class="checkbox-label"><input type="checkbox" name="allowed_contract_methods" value="NET_SALES"> Net Sales Share</label>
-          <label class="checkbox-label"><input type="checkbox" name="allowed_contract_methods" value="PROFIT_SHARE"> Profit Share</label>
-          <label class="checkbox-label"><input type="checkbox" name="allowed_contract_methods" value="UPFRONT"> Upfront Payment</label>
-          <label class="checkbox-label"><input type="checkbox" name="allowed_contract_methods" value="HYBRID"> Hybrid</label>
-          <label class="checkbox-label"><input type="checkbox" name="allowed_contract_methods" value="MINIMUM_GUARANTEE"> Minimum Guarantee</label>
+          <label class="checkbox-label"><input type="checkbox" name="allowed_contract_methods" value="GROSS_SALES"> <span data-ar="حصة من إجمالي المبيعات" data-en="Gross Sales Share">حصة من إجمالي المبيعات</span></label>
+          <label class="checkbox-label"><input type="checkbox" name="allowed_contract_methods" value="NET_SALES"> <span data-ar="حصة من صافي المبيعات" data-en="Net Sales Share">حصة من صافي المبيعات</span></label>
+          <label class="checkbox-label"><input type="checkbox" name="allowed_contract_methods" value="PROFIT_SHARE"> <span data-ar="مشاركة الربح" data-en="Profit Share">مشاركة الربح</span></label>
+          <label class="checkbox-label"><input type="checkbox" name="allowed_contract_methods" value="UPFRONT"> <span data-ar="دفعة مقدمة" data-en="Upfront Payment">دفعة مقدمة</span></label>
+          <label class="checkbox-label"><input type="checkbox" name="allowed_contract_methods" value="HYBRID"> <span data-ar="عقد هجين" data-en="Hybrid">عقد هجين</span></label>
+          <label class="checkbox-label"><input type="checkbox" name="allowed_contract_methods" value="MINIMUM_GUARANTEE"> <span data-ar="ضمان أدنى" data-en="Minimum Guarantee">ضمان أدنى</span></label>
         </div>
       </div>
 
@@ -73,7 +73,7 @@
         <h3 data-ar="منهج تحديد النقطة المتوازنة والسقف المتحفظ" data-en="Balanced Point & Policy-Adjusted Ceiling">منهج تحديد النقطة المتوازنة والسقف المتحفظ</h3>
         <p class="muted" data-ar="السقف الفني تحدده الجدوى الفعلية. أما السقف المتحفظ والنقطة المتوازنة فيحددهما نطاق السياسة بين الحد الأدنى المقبول والسقف الفني." data-en="The technical ceiling is determined by actual feasibility. The policy-adjusted ceiling and balanced point are positioned within the range between the Minimum Acceptable and Technical Ceiling.">السقف الفني تحدده الجدوى الفعلية. أما السقف المتحفظ والنقطة المتوازنة فيحددهما نطاق السياسة بين الحد الأدنى المقبول والسقف الفني.</p>
         <div class="form-grid policy-admin-grid">
-          <label data-ar="منهج التوصية" data-en="Recommendation method"><span class="i18n-label">منهج التوصية</span><select name="negotiation_recommendation_method"><option value="POLICY_RANGE_POSITION">Policy Range Position</option><option value="CORE_TARGET_RETURN">Core Target Return</option></select></label>
+          <label data-ar="منهج التوصية" data-en="Recommendation method"><span class="i18n-label">منهج التوصية</span><select name="negotiation_recommendation_method" data-options="negotiation_method" data-default="POLICY_RANGE_POSITION"></select></label>
           <label>Institutional Conservatism %<input type="number" name="institutional_conservatism" data-policy-rate min="0" max="95" step="0.01" required></label>
           <label>Policy Ceiling Capacity Factor %<input type="number" name="risk_adjusted_capacity_factor" data-policy-rate min="0" max="100" step="0.01" required></label>
           <label>Minimum Capacity Factor %<input type="number" name="minimum_capacity_factor" data-policy-rate min="0" max="100" step="0.01" required></label>
@@ -117,21 +117,21 @@
           <label data-ar="رسم الالتزام %" data-en="Commitment fee %">رسم الالتزام %<input type="number" name="advanced_commitment_fee_rate" data-advanced-rate min="0" max="100" step="0.01"></label>
           <label data-ar="نسبة السداد من الفائض %" data-en="Cash sweep %">نسبة السداد من الفائض %<input type="number" name="advanced_cash_sweep_share" data-advanced-rate min="0" max="100" step="0.01"></label>
           <label data-ar="الحد الأدنى للنقد" data-en="Minimum cash balance">الحد الأدنى للنقد<input type="number" name="advanced_minimum_cash_balance" min="0" step="0.01"></label>
-          <label data-ar="ترتيب السحب" data-en="Funding draw order">ترتيب السحب<select name="advanced_funding_draw_order"><option value="EQUITY_FIRST">Equity First</option><option value="DEBT_FIRST">Debt First</option><option value="PRO_RATA">Pro Rata</option></select></label>
+          <label data-ar="ترتيب السحب" data-en="Funding draw order">ترتيب السحب<select name="advanced_funding_draw_order" data-options="funding_draw_order" data-default="EQUITY_FIRST"></select></label>
           <label class="checkbox-label"><input type="checkbox" name="advanced_capitalize_interest"> <span data-ar="رسملة الفائدة" data-en="Capitalize interest">رسملة الفائدة</span></label>
           <label class="checkbox-label"><input type="checkbox" name="advanced_force_terminal_repayment"> <span data-ar="سداد الدين بالكامل عند الإقفال" data-en="Force terminal debt repayment">سداد الدين بالكامل عند الإقفال</span></label>
 
-          <label data-ar="منحنى المبيعات" data-en="Sales curve">منحنى المبيعات<select name="advanced_sales_curve_type"><option>S_CURVE</option><option>LINEAR</option><option>FRONT_LOADED</option><option>BACK_LOADED</option><option>BELL</option><option>ACCELERATED_S_CURVE</option><option>DELAYED_RAMP</option></select></label>
+          <label data-ar="منحنى المبيعات" data-en="Sales curve">منحنى المبيعات<select name="advanced_sales_curve_type" data-options="curve_type" data-default="S_CURVE"></select></label>
           <label data-ar="شدة منحنى المبيعات" data-en="Sales curve intensity">شدة منحنى المبيعات<input type="number" name="advanced_sales_curve_intensity" min="0.000001" max="100" step="any" inputmode="decimal"></label>
-          <label data-ar="منحنى كلفة الإنشاء" data-en="Construction cost curve">منحنى كلفة الإنشاء<select name="advanced_construction_curve_type"><option>BELL</option><option>LINEAR</option><option>FRONT_LOADED</option><option>BACK_LOADED</option><option>S_CURVE</option><option>ACCELERATED_S_CURVE</option><option>DELAYED_RAMP</option></select></label>
-          <label data-ar="منحنى الكلف الأخرى" data-en="Other cost curve">منحنى الكلف الأخرى<select name="advanced_other_cost_curve_type"><option>BELL</option><option>LINEAR</option><option>FRONT_LOADED</option><option>BACK_LOADED</option><option>S_CURVE</option><option>ACCELERATED_S_CURVE</option><option>DELAYED_RAMP</option></select></label>
+          <label data-ar="منحنى كلفة الإنشاء" data-en="Construction cost curve">منحنى كلفة الإنشاء<select name="advanced_construction_curve_type" data-options="curve_type" data-default="BELL"></select></label>
+          <label data-ar="منحنى الكلف الأخرى" data-en="Other cost curve">منحنى الكلف الأخرى<select name="advanced_other_cost_curve_type" data-options="curve_type" data-default="BELL"></select></label>
           <label data-ar="الحسم التجاري %" data-en="Commercial discount %">الحسم التجاري %<input type="number" name="advanced_commercial_discount_rate" data-advanced-rate min="0" max="100" step="0.01"></label>
           <label data-ar="حوافز المشترين %" data-en="Buyer incentives %">حوافز المشترين %<input type="number" name="advanced_buyer_incentive_rate" data-advanced-rate min="0" max="100" step="0.01"></label>
           <label data-ar="المردودات/الإلغاءات %" data-en="Refund/cancellation %">المردودات/الإلغاءات %<input type="number" name="advanced_refund_rate" data-advanced-rate min="0" max="100" step="0.01"></label>
           <label data-ar="تصاعد الكلفة %" data-en="Cost escalation %">تصاعد الكلفة %<input type="number" name="advanced_cost_escalation_rate" data-advanced-rate min="-100" max="1000" step="0.01"></label>
           <label data-ar="احتياطي الكلفة %" data-en="Cost contingency %">احتياطي الكلفة %<input type="number" name="advanced_cost_contingency_rate" data-advanced-rate min="0" max="1000" step="0.01"></label>
 
-          <label data-ar="سياسة الإنفاق" data-en="Spend policy">سياسة الإنفاق<select name="advanced_spend_policy"><option value="CASH_DRIVEN">Cash Driven</option><option value="HYBRID">Hybrid</option></select></label>
+          <label data-ar="سياسة الإنفاق" data-en="Spend policy">سياسة الإنفاق<select name="advanced_spend_policy" data-options="spend_policy" data-default="CASH_DRIVEN"></select></label>
           <label data-ar="حد التنفيذ الأدنى بالوضع الهجين %" data-en="Hybrid minimum execution %">حد التنفيذ الأدنى بالوضع الهجين %<input type="number" name="advanced_hybrid_minimum_execution_share" data-advanced-rate min="0" max="100" step="0.01"></label>
           <label data-ar="احتياطي الكلف المستقبلية %" data-en="Future cost reserve %">احتياطي الكلف المستقبلية %<input type="number" name="advanced_future_cost_reserve_share" data-advanced-rate min="0" max="100" step="0.01"></label>
           <label data-ar="التمديد الأقصى - شهر" data-en="Maximum extension - months">التمديد الأقصى - شهر<input type="number" name="advanced_maximum_extension_months" min="0" max="600" step="1"></label>
@@ -141,7 +141,7 @@
 
           <label data-ar="هامش أفق النموذج - شهر" data-en="Model horizon buffer - months">هامش أفق النموذج - شهر<input type="number" name="advanced_horizon_buffer_months" min="0" max="240" step="1"></label>
           <label data-ar="عدد فواصل شبكة الحل" data-en="Solver grid intervals">عدد فواصل شبكة الحل<input type="number" name="advanced_solver_grid_intervals" min="4" max="100" step="1"></label>
-          <label data-ar="تواتر التوزيعات" data-en="Distribution frequency">تواتر التوزيعات<select name="advanced_distribution_frequency_code"><option value="MONTHLY">Monthly</option><option value="QUARTERLY">Quarterly</option><option value="SEMI_ANNUAL">Semi-Annual</option><option value="ANNUAL">Annual</option></select></label>
+          <label data-ar="تواتر التوزيعات" data-en="Distribution frequency">تواتر التوزيعات<select name="advanced_distribution_frequency_code" data-options="distribution_frequency" data-default="MONTHLY"></select></label>
           <label data-ar="أول شهر للتوزيع" data-en="First distribution month">أول شهر للتوزيع<input type="number" name="advanced_first_distribution_month" min="1" max="600" step="1"></label>
           <label data-ar="نسبة النقد القابل للتوزيع %" data-en="Distribution share %">نسبة النقد القابل للتوزيع %<input type="number" name="advanced_distribution_share" data-advanced-rate min="0" max="100" step="0.01"></label>
           <label data-ar="احتياطي التوزيعات - شهر" data-en="Distribution reserve - months">احتياطي التوزيعات - شهر<input type="number" name="advanced_distribution_reserve_months" min="0" max="240" step="1"></label>
@@ -179,7 +179,7 @@
         <label>الاسم<input name="full_name" required></label>
         <label>البريد<input type="email" name="email" required></label>
         <label>كلمة مرور مؤقتة<input type="password" name="password" minlength="10" required></label>
-        <label>الدور<select name="role"><option>ANALYST</option><option>REVIEWER</option><option>TEAM_MANAGER</option><option>PLATFORM_ADMIN</option></select></label>
+        <label>الدور<select name="role" data-options="staff_role" data-default="ANALYST"></select></label>
         <button class="button full">إنشاء الحساب والعضوية</button>
       </form>
     </section>
@@ -187,7 +187,7 @@
       <h2>إنشاء مؤسسة</h2>
       <form id="organizationForm" class="form-grid">
         <label>اسم المؤسسة<input name="name" required></label>
-        <label>نوع المؤسسة<select name="kind"><option value="LANDOWNER">صاحب أرض</option><option value="INTERNAL">فريق داخلي</option><option value="OTHER">أخرى</option></select></label>
+        <label>نوع المؤسسة<select name="kind" data-options="org_kind" data-default="LANDOWNER"></select></label>
         <label class="full">Slug اختياري<input name="slug" placeholder="يُنشأ تلقائياً عند تركه فارغاً"></label>
         <button class="button secondary full">إنشاء المؤسسة</button>
       </form>
@@ -197,8 +197,8 @@
   <section class="panel">
     <h2>إضافة عضوية وصلاحية</h2>
     <form id="membershipForm" class="form-grid">
-      <label>المستخدم<select name="user_id" id="membershipUser" required></select></label>
-      <label>المؤسسة<select name="organization_id" id="membershipOrganization" required></select></label>
+      <label>المستخدم<select name="user_id" id="membershipUser" required data-placeholder='["اختر المستخدم","Select User"]'></select></label>
+      <label>المؤسسة<select name="organization_id" id="membershipOrganization" required data-placeholder='["اختر المؤسسة","Select Organization"]'></select></label>
       <label>الدور<select name="role" id="membershipRole" required></select></label>
       <label class="checkbox-label"><input type="checkbox" name="is_owner" value="true"> مالك المؤسسة</label>
       <button class="button secondary full">إضافة العضوية</button>

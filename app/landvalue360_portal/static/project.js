@@ -102,16 +102,7 @@ function addCost(row = {
   const tr = document.createElement('tr');
   tr.innerHTML = `
     <td>${rowInput('name', row.name, 'text', 'required maxlength="200"')}</td>
-    <td><select data-key="category">
-      <option value="CONSTRUCTION">إنشاء</option>
-      <option value="INFRASTRUCTURE">بنية تحتية</option>
-      <option value="PUBLIC_FACILITIES">مرافق عامة</option>
-      <option value="PROFESSIONAL_FEES">دراسات واستشارات</option>
-      <option value="PERMITS">تراخيص ورسوم</option>
-      <option value="PROJECT_MANAGEMENT">إدارة مشروع</option>
-      <option value="MARKETING">تسويق ومبيعات</option>
-      <option value="OTHER">أخرى</option>
-    </select></td>
+    <td><select data-key="category">${lv360.optionsHtml('cost_category', { selected: row.category || 'CONSTRUCTION' })}</select></td>
     <td>${rowInput('amount', row.amount ?? '', 'number', 'min="0" step="0.01"')}</td>
     <td>${rowInput('quantity', row.quantity ?? '', 'number', 'min="0" step="0.01"')}</td>
     <td>${rowInput('unit_cost', row.unit_cost ?? '', 'number', 'min="0" step="0.01"')}</td>
@@ -487,4 +478,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   if ($('projectApp')) bindEditor();
   bindNewProject();
   bindInformationRequests();
+});
+
+window.addEventListener('lv360:languagechange', () => {
+  document.querySelectorAll('#costRows select[data-key="category"]').forEach((select) => {
+    const selected = select.value;
+    select.innerHTML = lv360.optionsHtml('cost_category', { selected });
+  });
 });
