@@ -7,7 +7,8 @@ import sys
 from sqlalchemy import select
 
 from landvalue360_portal.database import session_scope
-from landvalue360_portal.models import OrganizationMember, Project, ProjectVersion, User
+from landvalue360_portal.models import Project, User
+from landvalue360_portal.security import apply_rls_context
 from landvalue360_portal.services import create_project, current_version, persist_snapshot, user_org_ids
 
 PROJECT_NAME = "مشروع اختبار SIA — دمشق"
@@ -95,6 +96,7 @@ def main() -> int:
         if not user:
             print(f"USER_NOT_FOUND {email}", file=sys.stderr)
             return 1
+        apply_rls_context(db, user)
         org_ids = user_org_ids(db, user.id)
         if not org_ids:
             print("NO_ORG", file=sys.stderr)
